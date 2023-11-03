@@ -31,10 +31,11 @@
      <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
          <property name="dataSource" ref="ds" />
          <property name="configLocation" value="classpath:/mybatis-config.xml" />
-         <!--  <property name="mapperLocations" value="classpath:/mappers/*Mapper.xml" />  -->
+         <property name="mapperLocations" value="classpath:/mappers/*Mapper.xml" />
      </bean>
      
      
+    <mybatis-spring:scan base-package="com.spring.todoproject.user.mapper"/>
      <!-- 
         SqlSessionFactory가 여러분이 지정하신 경로의 xml 파일을 클래스로 변환하여
         bean으로 등록하려는 시도를 할 때, 어떤 타입으로 빈 등록을 할 지를 결정해야 하는데,
@@ -42,7 +43,6 @@
         그 인터페이스가 존재하는 패키지의 경로를 탐색하라는 태그입니다.
    
     <mybatis-spring:scan base-package="com.spring.todoproject.freeboard.mapper"/>
-    <mybatis-spring:scan base-package="com.spring.todoproject.user.mapper"/>
     <mybatis-spring:scan base-package="com.spring.todoproject.reply.mapper"/>
     <mybatis-spring:scan base-package="com.spring.todoproject.snsboard.mapper"/>
     <mybatis-spring:scan base-package="com.spring.todoproject.rest"/>
