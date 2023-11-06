@@ -35,7 +35,7 @@
 	
 	<resources mapping="/styles/**" location="/resources/static/styles/" />
     <resources mapping="/assets/**" location="/resources/static/assets/" />
-    <resources mapping="/font/**" location="/resources/static/font/" /> 
+    <resources mapping="/fonts/**" location="/resources/static/fonts/" /> 
 
 
 	<!-- 뷰리졸버 : 컨트롤러가 리턴한 문자열 앞, 뒤에 적절한 경로를 붙여서 화면을 응답할 수 있도록 도와주는 뷰 리졸버. -->
