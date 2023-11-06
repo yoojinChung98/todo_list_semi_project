@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.todoproject.user.dto.UserInsertInfoRequestDTO;
@@ -22,7 +23,7 @@ public class UserController {
 	private final IUserService service;
 	
 	// @RequestMapping(value = "/test1", method = RequestMethod.GET)
-	@GetMapping("/test1")
+	@PostMapping("/join")
 	public String insertUserDate(HttpServletRequest request, Model model, UserInsertInfoRequestDTO dto) {
 		// service.insertUserData();
 		
@@ -43,7 +44,12 @@ public class UserController {
 		
 		service.insertUserData(dto);
 		
-		return "todok/test1";
+		return "todok/join";
+	}
+	
+	@GetMapping("/join")
+	public void UserJoin() {
+		
 	}
 	
 	
