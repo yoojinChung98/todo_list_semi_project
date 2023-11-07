@@ -15,5 +15,8 @@ public interface IUserService {
 		
 		//회원 정보 수정
 		void updateUserDate();
+		
+		//아이디 체크
+		int idCheck(String account);
 
 }

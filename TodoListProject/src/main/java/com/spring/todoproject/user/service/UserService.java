@@ -16,7 +16,6 @@ public class UserService implements IUserService {
 	
 	@Override
 	public void insertUserData(UserInsertInfoRequestDTO dto) {
-		// TODO Auto-generated method stub
 		mapper.insertUserData(dto);
 	}
 
@@ -36,6 +35,13 @@ public class UserService implements IUserService {
 	public void updateUserDate() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	//아이디 중복확인
+	@Override
+	public int idCheck(String account) {
+		return mapper.idCheck(account); //sql문에서 실행된 아이디가 있다면 (총개수) 1이 account에 리턴될것.
+		
 	}
 
 }
