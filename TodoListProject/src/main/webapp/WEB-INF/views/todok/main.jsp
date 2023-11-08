@@ -17,120 +17,29 @@
 <body>
   <div class="main-eLH">
     <div class="auto-group-2bkm-y7f">
-      <div class="calendar-HPF">
-        <div class="calheader-nL1">
-          <div class="auto-group-bh6z-tdw">
-            <img class="leftbtn-2EM" src="${pageContext.request.contextPath}/assets/leftbtn.png" />
-            <div class="yearmonth-YTb">2023년 10월</div>
-            <img class="rightbtn-2tZ" src="${pageContext.request.contextPath}/assets/rightbtn.png" />
-          </div>
+
+      <section class="cal">
+        <div class="header">
+          <button class="nav-btn go-prev" onclick="prevMonth()">&lt;</button>
+          <div class="year-month"></div>
+          <button class="nav-btn go-next" onclick="nextMonth()">&gt;</button>
+          <button class="nav-btn go-today" onclick="goToday()">Today</button>
         </div>
-        <div class="caldays-suB">
-          <div class="days-Rfo">
-            <img class="daybox-BQ5" src="${pageContext.request.contextPath}/assets/daybox-Z8d.png" />
-            <div class="sun-7oX">일</div>
+        <div class="main">
+          <div class="days">
+            <div class="day">일</div>
+            <div class="day">월</div>
+            <div class="day">화</div>
+            <div class="day">수</div>
+            <div class="day">목</div>
+            <div class="day">금</div>
+            <div class="day">토</div>
           </div>
-          <div class="auto-group-cjxt-byb">
-            <div class="days-LgH">
-              <img class="daybox-hFw" src="${pageContext.request.contextPath}/assets/daybox-RnR.png" />
-              <div class="mon-SDX">월</div>
-            </div>
-            <div class="days-8s3">
-              <img class="daybox-Vhb" src="${pageContext.request.contextPath}/assets/daybox.png" />
-              <div class="tue-FRs">화</div>
-            </div>
-            <div class="days-ME1">
-              <img class="daybox-hYm" src="${pageContext.request.contextPath}/assets/daybox-2tq.png" />
-              <div class="wen-rRf">수</div>
-            </div>
-            <div class="days-Z5B">
-              <img class="daybox-WWD" src="${pageContext.request.contextPath}/assets/daybox-y3X.png" />
-              <div class="tur-GEV">목</div>
-            </div>
-            <div class="days-dUM">
-              <img class="daybox-Bkm" src="${pageContext.request.contextPath}/assets/daybox-C3s.png" />
-              <div class="fri-wE9">금</div>
-            </div>
-            <div class="days-3HB">
-              <img class="daybox-oGM" src="${pageContext.request.contextPath}/assets/daybox-pWD.png" />
-              <div class="sat-Ln5">토</div>
-            </div>
-          </div>
+          <div class="dates"></div>
         </div>
-        <div class="calnum-qyj">
-          <div class="numbers-bCD">1</div>
-          <div class="auto-group-yee5-VHb">
-            <div class="item-1-113">8</div>
-            <div class="item-1-huT">9</div>
-            <div class="item-1-RKf">10</div>
-            <div class="item-1-8zm">11</div>
-            <div class="item-1-Tn9">12</div>
-            <div class="auto-group-eu5k-MMj">
-              <div class="item-1-5Yd">13</div>
-              <div class="item-1-pFK">14</div>
-            </div>
-          </div>
-          <div class="auto-group-x7sh-wqj">
-            <div class="item-1-DYM">15</div>
-            <div class="item-1-jWh">16</div>
-            <div class="item-1-Svu">17</div>
-            <div class="item-1-Zkd">18</div>
-            <div class="auto-group-tok7-f2y">
-              <div class="item-1-avd">19</div>
-              <div class="item-1-7Qm">20</div>
-            </div>
-            <div class="item-1-RRT">21</div>
-          </div>
-          <div class="auto-group-wrbp-XjP">
-            <div class="item-1-eJD">22</div>
-            <div class="item-1-Xso">23</div>
-            <div class="item-1-dA9">24</div>
-            <div class="auto-group-v8kh-trm">
-              <div class="item-1-EQq">25</div>
-              <div class="item-1-YRX">26</div>
-            </div>
-            <div class="auto-group-usih-GcR">
-              <div class="item-1-QCq">27</div>
-              <div class="item-1-iDX">28</div>
-            </div>
-          </div>
-          <div class="auto-group-fhn1-FUM">
-            <div class="item-1-ZE9">29</div>
-            <div class="item-1-5TP">30</div>
-            <div class="item-1-LPK">31</div>
-            <div class="item-1-G25">2</div>
-            <div class="auto-group-koez-B93">
-              <div class="item-1-7Hb">3</div>
-              <div class="item-1-eHX">4</div>
-            </div>
-            <div class="item-1-NzD">5</div>
-          </div>
-          <div class="auto-group-gsf7-HbP">
-            <div class="item-1-Nsj">2</div>
-            <div class="item-1-6Hw">3</div>
-            <div class="item-1-QpR">4</div>
-            <div class="item-1-MUm">5</div>
-            <div class="item-1-6hF">6</div>
-            <div class="item-1-cfb">7</div>
-          </div>
-        </div>
-      </div>
+      </section>
+
       <div class="boardmain-fNy">
-        <div class="recommain-CNu">
-          <div class="recomtext-9Z3">토독이 추천하는 오늘의 할 일</div>
-          <div class="recomtodo-Fry">
-            <div class="profilecircle-BVj">
-            </div>
-            <div class="auto-group-ag6m-uAq">
-              <div class="userid-SRf">user1abce RksliIekk</div>
-              <div class="this-is-one-line-content-vrd">40 바이트, 20글자만 들어가므로 원라인인</div>
-            </div>
-            <div class="auto-group-drq3-G9o">
-              <div class="k-CZF">21.2k</div>
-              <img class="like-Umf" src="${pageContext.request.contextPath}/assets/like-hRT.png" />
-            </div>
-          </div>
-        </div>
         <!------------------------------------가장 많은 좋아요G 시작------------------------------------->
         <div class="mostlikemain-jhb">
           <div class="mostliketext-gcq">가장 많은 좋아요를 받은 할 일</div>
@@ -236,33 +145,133 @@
 
 
   <script>
+    //--------------------------------달력-------------------------
+    let date = new Date();
+
+    const renderCalendar = () => {
+      //달력 보여주는 함수----
+      const viewYear = date.getFullYear();
+      const viewMonth = date.getMonth();
+
+      //현재 연도와 월 표시---
+      document.querySelector('.year-month').textContent = `${viewYear}년 ${
+    viewMonth + 1
+  }월`;
+
+      //지난달 마지막날과 이번달 마지막날 ---
+      const prevLast = new Date(viewYear, viewMonth, 0); //2022 12 31 토
+      const thisLast = new Date(viewYear, viewMonth + 1, 0); // 2023 1 31 화
+
+      const PLDate = prevLast.getDate(); // 지난 달 마지막 날 31일
+      const PLDay = prevLast.getDay(); // 지난달 마지막 요일 토요일(6)
+
+      const TLDate = thisLast.getDate(); // 이번달 마지막 날 31일
+      const TLDay = thisLast.getDay(); // 이번달 마지막 요일 화요일(2)
+
+      //지난달 이번달 다음달 달력 배열 만들고 합치기
+      const prevDates = [];
+      const thisDates = [...Array(TLDate + 1).keys()].slice(1);
+      const nextDates = [];
+
+      //달력 합치기 ---
+      if (PLDay !== 6) {
+        for (let i = 0; i < PLDay + 1; i++) {
+          prevDates.unshift(PLDate - i); //지난달 날짜들 넣어줌
+        }
+      }
+      for (let i = 1; i < 7 - TLDay; i++) {
+        nextDates.push(i); // 다음달 날짜 넣어줌
+      }
+
+      const dates = prevDates.concat(thisDates, nextDates); // 지난달 이번달 다음달 합쳐주기
+
+      // 기존 이벤트 리스너 제거
+      document.querySelectorAll('.this.click').forEach((e) => {
+        e.removeEventListener('click', handleClick);
+        e.classList.remove('click');
+      });
+
+      //화면에 날짜 뿌려주기
+      const firstDateIndex = dates.indexOf(1); //이번달 1일의 인덱스 찾기
+      const lastDateIndex = dates.lastIndexOf(TLDate); //이번달 막날의 인덱스 찾기
+
+      dates.forEach((date, i) => {
+        const condition =
+          i >= firstDateIndex && i < lastDateIndex + 1 ? 'this' : 'other';
+        dates[
+          i
+        ] = `<div class="date"><span class=${condition}>${date}</span></div>`;
+      });
+
+      document.querySelector('.dates').innerHTML = dates.join('');
+
+      //오늘날짜 표시하기 ---
+      const today = new Date();
+
+      if (
+        viewMonth === today.getMonth() &&
+        viewYear === today.getFullYear()
+      ) {
+        for (let date of document.querySelectorAll('.this')) {
+          if (+date.innerText === today.getDate()) {
+            date.classList.add('today');
+            break;
+          }
+        }
+      }
+      // 화면에 날짜 뿌려준 후에 새로운 이벤트 리스너 등록
+      document.querySelectorAll('.this').forEach((e) => {
+        e.addEventListener('click', handleClick);
+      });
+    };
+    renderCalendar();
+
+    const prevMonth = () => {
+      console.log('prevMonth 동작');
+      date.setMonth(date.getMonth() - 1);
+      renderCalendar();
+    };
+
+    const nextMonth = () => {
+      date.setMonth(date.getMonth() + 1);
+      renderCalendar();
+    };
+
+    const goToday = () => {
+      date = new Date();
+      renderCalendar();
+    };
+    const nonClick = document.querySelectorAll('.this');
+
+    function handleClick(event) {
+      // 기존에 선택한 날짜에 대한 클래스를 찾아 제거
+      document.querySelectorAll('.this.click').forEach((e) => {
+        e.classList.remove('click');
+      });
+
+      // 클릭한 div에 "click" 클래스 추가
+      event.target.classList.add('click');
+    }
+
+    nonClick.forEach((e) => {
+      e.addEventListener('click', handleClick);
+    });
+    //----------------------------------달력----------------------------------------
+
     window.onload = function () {
 
-      getMostLike();
-      /*
-      1. 가장 많은 조아여를 받은 할 일을 불러오려면,,,
-  
-      -일단 boardTodo에서 값을 가져와야겠지
-      몇개 ? 3개
-      가장많은 좋아요를 세는 방법은 ? Count 함수 쓰면되지 (매퍼연결해야겠네)
-      엔터티 리스트로 받아와서 쓰면 되겠당.
-  
-      (나중에 구현) 해당하는 버튼을 누르면 todays List에 추가되는 거였지!
-      */
-      //1. 값을 받아오기 위한 사전작업
-      // 매퍼를 통해 무슨 값이 필요해? 
+      // getMostLike();
 
-      function getMostLike() {
-
-        // const $testBtn = document.getElementById('testBtn');
+      // '가장 많은 좋아요를 받은 할 일' 을 List<dto>로 받아오는 함수
+      /* function getMostLike() {
         fetch('todok/main/mostlike')
           .then(res => res.json())
           .then(data => {
             console.log("mostlike: ", data);
           })
+        }; */
 
-      };
 
-    }
+    };
   </script>
 </body>

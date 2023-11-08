@@ -39,7 +39,7 @@
                 ORDER BY cnt DESC
             ) bcnt
         ) brn
-        <![CDATA[WHERE rn <= 3]]>
+        <![CDATA[WHERE rn <= 4]]>
 	</select>
 	<!-- DTO 로 포장해도, 그냥 null 은 null 인대로 두고, 서비스에서 getProfColor 랑 조합하면 됨. -->
 	

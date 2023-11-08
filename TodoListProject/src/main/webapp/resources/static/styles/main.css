@@ -1,5 +1,13 @@
+@font-face {
+  font-family: 'Nanum AmSeuTeReuDam';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_01@1.0/Amsterdam.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 html {
   font-size: 62.5%;
+  font-family: 'Nanum AmSeuTeReuDam';
   background-image: url(../assets/bg.png);
 }
 * {
@@ -16,7 +24,113 @@ input {
 body {
   width: 192rem;
   padding: -10rem;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.cal {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  color: #000000;
+  padding: 10px 30px 10px 20px;
+  border-bottom: 1px solid #8d8b8b;
+}
+
+.nav-btn {
+  color: #000;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: 'Nanum AmSeuTeReuDam';
+  background-color: transparent;
+  font-weight: bold;
+  transition: color 0.3s; /* 부드러운 색상 변화를 위한 트랜지션 추가 */
+}
+
+.nav-btn:hover {
+  color: #f39c12;
+}
+
+.year-month {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  height: 290px;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 40px);
+  gap: 5px;
+}
+
+.day {
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 10px;
+  background-color: #fff;
+  color: #000000;
+}
+
+.dates {
+  display: grid;
+  grid-template-columns: repeat(7, 40px);
+  gap: 5px;
+}
+
+.date {
+  text-align: center;
+  padding: 3px;
+  height: 45px;
+}
+.this {
+  color: #000;
+}
+.today {
+  font-weight: bold;
+}
+.click {
+  color: #8dc3e1;
+  font-size: 25px; /* 폰트 크기를 18px로 변경 */
+  position: relative;
+  top: -0.3rem;
+}
+
+.other {
+  color: #888;
+  font-weight: 500;
+}
+
+span.this:hover {
+  cursor: pointer;
+  color: #f39c12;
+}
+
+.days .day:first-child {
+  color: #ff6363;
+}
+.days .day:last-child {
+  color: #2a98fe;
+}
+
 .main-eLH {
   width: 100%;
   height: 108rem;
@@ -51,1194 +165,7 @@ body {
   border-radius: 4rem;
   flex-shrink: 0;
 }
-.main-eLH .auto-group-2bkm-y7f .calendar-HPF .calheader-nL1 {
-  margin: 0rem 0.2rem 3.5rem 0.4rem;
-  width: calc(100% - 0.6rem);
-  height: 4rem;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calheader-nL1
-  .auto-group-bh6z-tdw {
-  margin-bottom: 2.55rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calheader-nL1
-  .auto-group-bh6z-tdw
-  .leftbtn-2EM {
-  margin: 0rem 7.7rem 0.2rem 0rem;
-  width: 2.2996rem;
-  height: 4.0001rem;
-  object-fit: contain;
-  vertical-align: top;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calheader-nL1
-  .auto-group-bh6z-tdw
-  .yearmonth-YTb {
-  margin-right: 7.8095rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  letter-spacing: 0.2rem;
-  color: #606060;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calheader-nL1
-  .auto-group-bh6z-tdw
-  .rightbtn-2tZ {
-  margin-bottom: 0.1427rem;
-  width: 2.2004rem;
-  height: 4.1008rem;
-  object-fit: contain;
-  vertical-align: top;
-  flex-shrink: 0;
-}
-.main-eLH .auto-group-2bkm-y7f .calendar-HPF .calheader-nL1 .calbottomline-MA9 {
-  width: 40.6rem;
-  height: 0;
-  object-fit: contain;
-  vertical-align: top;
-  flex-shrink: 0;
-}
-.main-eLH .auto-group-2bkm-y7f .calendar-HPF .caldays-suB {
-  width: 100%;
-  height: 6.6rem;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-.main-eLH .auto-group-2bkm-y7f .calendar-HPF .caldays-suB .days-Rfo {
-  width: 5.8rem;
-  height: 100%;
-  position: relative;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .days-Rfo
-  .daybox-BQ5 {
-  width: 5.8rem;
-  height: 5.4197rem;
-  position: absolute;
-  left: 0;
-  top: 0.0365rem;
-  object-fit: contain;
-  vertical-align: top;
-}
-.main-eLH .auto-group-2bkm-y7f .calendar-HPF .caldays-suB .days-Rfo .sun-7oX {
-  width: 2.2rem;
-  height: 4.5rem;
-  position: absolute;
-  left: 1.85rem;
-  top: 1.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.5rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #ec7e7e;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-}
-.main-eLH .auto-group-2bkm-y7f .calendar-HPF .caldays-suB .auto-group-cjxt-byb {
-  box-sizing: border-box;
-  padding: 0.0365rem 0;
-  height: 100%;
-  display: flex;
-  align-items: flex-start;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-LgH {
-  width: 5.8rem;
-  height: 100%;
-  position: relative;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-LgH
-  .daybox-hFw {
-  width: 5.8rem;
-  height: 5.4197rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  object-fit: contain;
-  vertical-align: top;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-LgH
-  .mon-SDX {
-  width: 2.2rem;
-  height: 4.5rem;
-  position: absolute;
-  left: 1.85rem;
-  top: 1.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.5rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #606060;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-8s3 {
-  width: 5.8rem;
-  height: 100%;
-  position: relative;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-8s3
-  .daybox-Vhb {
-  width: 5.8rem;
-  height: 5.4197rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  object-fit: contain;
-  vertical-align: top;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-8s3
-  .tue-FRs {
-  width: 2.2rem;
-  height: 4.5rem;
-  position: absolute;
-  left: 1.85rem;
-  top: 1.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.5rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #606060;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-ME1 {
-  width: 5.8rem;
-  height: 100%;
-  position: relative;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-ME1
-  .daybox-hYm {
-  width: 5.8rem;
-  height: 5.4197rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  object-fit: contain;
-  vertical-align: top;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-ME1
-  .wen-rRf {
-  width: 2.2rem;
-  height: 4.5rem;
-  position: absolute;
-  left: 1.85rem;
-  top: 1.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.5rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #606060;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-Z5B {
-  width: 5.8rem;
-  height: 100%;
-  position: relative;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-Z5B
-  .daybox-WWD {
-  width: 5.8rem;
-  height: 5.4197rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  object-fit: contain;
-  vertical-align: top;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-Z5B
-  .tur-GEV {
-  width: 2.2rem;
-  height: 4.5rem;
-  position: absolute;
-  left: 1.85rem;
-  top: 1.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.5rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #606060;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-dUM {
-  width: 5.8rem;
-  height: 100%;
-  position: relative;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-dUM
-  .daybox-Bkm {
-  width: 5.8rem;
-  height: 5.4197rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  object-fit: contain;
-  vertical-align: top;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-dUM
-  .fri-wE9 {
-  width: 2.2rem;
-  height: 4.5rem;
-  position: absolute;
-  left: 1.85rem;
-  top: 1.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.5rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #606060;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-3HB {
-  width: 5.8rem;
-  height: 100%;
-  position: relative;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-3HB
-  .daybox-oGM {
-  width: 5.8rem;
-  height: 5.4197rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  object-fit: contain;
-  vertical-align: top;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .caldays-suB
-  .auto-group-cjxt-byb
-  .days-3HB
-  .sat-Ln5 {
-  width: 2.2rem;
-  height: 4.5rem;
-  position: absolute;
-  left: 1.85rem;
-  top: 1.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.5rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #3f6ee7;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-}
-.main-eLH .auto-group-2bkm-y7f .calendar-HPF .calnum-qyj {
-  width: 100%;
-  height: 40rem;
-  position: relative;
-  flex-shrink: 0;
-}
-.main-eLH .auto-group-2bkm-y7f .calendar-HPF .calnum-qyj .numbers-bCD {
-  width: 5.8rem;
-  height: 8rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-}
-.main-eLH .auto-group-2bkm-y7f .calendar-HPF .calnum-qyj .auto-group-yee5-VHb {
-  box-sizing: border-box;
-  padding-left: 2.1rem;
-  width: 40.5rem;
-  height: 8rem;
-  position: absolute;
-  left: 0;
-  top: 8rem;
-  display: flex;
-  align-items: center;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-yee5-VHb
-  .item-1-113 {
-  width: 5.8rem;
-  height: 8rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-yee5-VHb
-  .item-1-huT {
-  width: 5.8rem;
-  height: 8rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-yee5-VHb
-  .item-1-RKf {
-  margin: 0.1rem 2.55rem 0rem 0rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-yee5-VHb
-  .item-1-8zm {
-  margin: 0.1rem 2.6rem 0rem 0rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-yee5-VHb
-  .item-1-Tn9 {
-  margin: 0.1rem 1.3rem 0rem 0rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-yee5-VHb
-  .auto-group-eu5k-MMj {
-  box-sizing: border-box;
-  padding: 2rem 1.25rem 1.9rem 1.3rem;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-yee5-VHb
-  .auto-group-eu5k-MMj
-  .item-1-5Yd {
-  margin-right: 2.55rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-yee5-VHb
-  .auto-group-eu5k-MMj
-  .item-1-pFK {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH .auto-group-2bkm-y7f .calendar-HPF .calnum-qyj .auto-group-x7sh-wqj {
-  box-sizing: border-box;
-  padding: 0rem 1.3rem 0rem 1.35rem;
-  width: 40.5rem;
-  height: 8rem;
-  position: absolute;
-  left: 0;
-  top: 16rem;
-  display: flex;
-  align-items: center;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-x7sh-wqj
-  .item-1-DYM {
-  width: 5.8rem;
-  height: 8rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-x7sh-wqj
-  .item-1-jWh {
-  margin: 0.1rem 2.6rem 0rem 0rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-x7sh-wqj
-  .item-1-Svu {
-  margin: 0.1rem 2.6rem 0rem 0rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-x7sh-wqj
-  .item-1-Zkd {
-  margin: 0.1rem 1.25rem 0rem 0rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-x7sh-wqj
-  .auto-group-tok7-f2y {
-  margin-right: 1.3rem;
-  box-sizing: border-box;
-  padding: 2rem 1.3rem 1.9rem 1.3rem;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-x7sh-wqj
-  .auto-group-tok7-f2y
-  .item-1-avd {
-  margin-right: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-x7sh-wqj
-  .auto-group-tok7-f2y
-  .item-1-7Qm {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-x7sh-wqj
-  .item-1-RRT {
-  margin-top: 0.1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH .auto-group-2bkm-y7f .calendar-HPF .calnum-qyj .auto-group-wrbp-XjP {
-  box-sizing: border-box;
-  padding-left: 1.35rem;
-  width: 40.4rem;
-  height: 8rem;
-  position: absolute;
-  left: 0;
-  top: 24rem;
-  display: flex;
-  align-items: center;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-wrbp-XjP
-  .item-1-eJD {
-  width: 5.8rem;
-  height: 8rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-wrbp-XjP
-  .item-1-Xso {
-  margin: 0.1rem 2.6rem 0rem 0rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-wrbp-XjP
-  .item-1-dA9 {
-  margin: 0.1rem 1.25rem 0rem 0rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-wrbp-XjP
-  .auto-group-v8kh-trm {
-  box-sizing: border-box;
-  padding: 2rem 1.25rem 1.9rem 1.35rem;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-wrbp-XjP
-  .auto-group-v8kh-trm
-  .item-1-EQq {
-  margin-right: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-wrbp-XjP
-  .auto-group-v8kh-trm
-  .item-1-YRX {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-wrbp-XjP
-  .auto-group-usih-GcR {
-  box-sizing: border-box;
-  padding: 2rem 1.25rem 1.9rem 1.35rem;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-wrbp-XjP
-  .auto-group-usih-GcR
-  .item-1-QCq {
-  margin-right: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-wrbp-XjP
-  .auto-group-usih-GcR
-  .item-1-iDX {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH .auto-group-2bkm-y7f .calendar-HPF .calnum-qyj .auto-group-fhn1-FUM {
-  box-sizing: border-box;
-  padding: 0rem 2.1rem 0rem 1.3rem;
-  width: 40.5rem;
-  height: 8rem;
-  position: absolute;
-  left: 0;
-  top: 32rem;
-  display: flex;
-  align-items: center;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-fhn1-FUM
-  .item-1-ZE9 {
-  width: 5.8rem;
-  height: 8rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-fhn1-FUM
-  .item-1-5TP {
-  margin: 0.1rem 2.6rem 0rem 0rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-fhn1-FUM
-  .item-1-LPK {
-  margin: 0.1rem 3.4rem 0rem 0rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-fhn1-FUM
-  .item-1-G25 {
-  margin: 0.1rem 2.1rem 0rem 0rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #d0d0d0;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-fhn1-FUM
-  .auto-group-koez-B93 {
-  margin-right: 2.1rem;
-  box-sizing: border-box;
-  padding: 2rem 2.1rem 1.9rem 2.1rem;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-fhn1-FUM
-  .auto-group-koez-B93
-  .item-1-7Hb {
-  margin-right: 4.1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #d0d0d0;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-fhn1-FUM
-  .auto-group-koez-B93
-  .item-1-eHX {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #d0d0d0;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-fhn1-FUM
-  .item-1-NzD {
-  margin-top: 0.1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #d0d0d0;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH .auto-group-2bkm-y7f .calendar-HPF .calnum-qyj .auto-group-gsf7-HbP {
-  box-sizing: border-box;
-  padding: 0rem 1.3rem 0rem 1.35rem;
-  width: 40.5rem;
-  height: 8rem;
-  position: absolute;
-  left: 0;
-  display: flex;
-  align-items: center;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-gsf7-HbP
-  .item-1-Nsj {
-  width: 5.8rem;
-  height: 8rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-gsf7-HbP
-  .item-1-6Hw {
-  width: 5.8rem;
-  height: 8rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-gsf7-HbP
-  .item-1-QpR {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-gsf7-HbP
-  .item-1-MUm {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-gsf7-HbP
-  .item-1-6hF {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.main-eLH
-  .auto-group-2bkm-y7f
-  .calendar-HPF
-  .calnum-qyj
-  .auto-group-gsf7-HbP
-  .item-1-cfb {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2575;
-  color: #5d5d5d;
-  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
+
 .main-eLH .auto-group-2bkm-y7f .boardmain-fNy {
   width: 49.5rem;
   height: 100%;
