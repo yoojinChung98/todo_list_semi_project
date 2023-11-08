@@ -9,17 +9,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
   <title>Todok Login</title>
-  <link rel="stylesheet" href="./font/AmSeuTeReuDam.ttf" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A400" />
-  <link rel="stylesheet" href="./styles/login.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/login.css" />
 </head>
 
 <body>
-  <img class="todoksidelogo-qmK" id="miniLogo" src="./assets/todoksidelogo-eNM.png" />
+  <img class="todoksidelogo-qmK" id="miniLogo" src="${pageContext.request.contextPath}/assets/todoksidelogo-eNM.png" />
   <div class="login-o3w">
     <div class="loginheader-74d">
-      <img class="todoktitle-x5F" src="./assets/todoktitle.png" />
+      <img class="todoktitle-x5F" src="${pageContext.request.contextPath}/assets/todoktitle.png" />
     </div>
     <div class="loginbox-6BT">
       <div class="auto-group-xsar-2L1">

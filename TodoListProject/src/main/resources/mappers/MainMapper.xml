@@ -3,7 +3,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper
-	namespace="com.spring.todoproject.Main.mapper.IMainMapper">
+	namespace="com.spring.todoproject.main.mapper.IMainMapper">
 
 
 	<!-- 이렇게 해주는거 귀찮 그냥 이름 맞춰주자 -> 이러면 안됌. <resultMap type="" id=""></resultMap> 
@@ -24,6 +24,34 @@
 	<!-- CDATA: Character Data의 약자로, 마크업 언어에서 문자열 데이터를 표기하기 위한 문법입니다. 특수 문자 
 		등을 순수한 문자로 표기하고 싶을 때 사용하는 태그입니다. -->
 
+
+	<!-- 가장 많은 좋아요를 받은 추천 board_bno, board_like의 수 3개 추출-->
+	<select id="mostLikeBno" resultType="MostLikeRecomdResponseDTO">
+		SELECT brn.board_bno, brn.cnt AS boardLikeCnt
+        FROM
+        (
+            SELECT ROWNUM AS rn, bcnt.* 
+            FROM
+            (
+                SELECT count(*) AS cnt, board_bno
+                FROM board_like bl
+                GROUP BY board_bno
+                ORDER BY cnt DESC
+            ) bcnt
+        ) brn
+        <![CDATA[WHERE rn <= 3]]>
+	</select>
+	<!-- DTO 로 포장해도, 그냥 null 은 null 인대로 두고, 서비스에서 getProfColor 랑 조합하면 됨. -->
+	
+	
+	<!-- 매개값으로 받은 board_bno의 사용자의 프로필컬러 hex, bno, user_id, board_content 값을 받아옴-->
+	<select id="getMostLikeData" resultType="MostLikeRecomdResponseDTO">
+		SELECT u.profile_color, b.board_bno, b.user_id, content
+		FROM users u
+		INNER JOIN  board b
+		ON b.user_id = u.user_id
+		WHERE board_bno = #{boardBno}
+	</select>
 
 </mapper>
 
