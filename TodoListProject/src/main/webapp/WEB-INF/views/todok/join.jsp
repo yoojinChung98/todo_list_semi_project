@@ -8,17 +8,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
   <title>Todok Join</title>
-  <link rel="stylesheet" href="./font/AmSeuTeReuDam.ttf" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/font/AmSeuTeReuDam.ttf" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A400" />
-  <link rel="stylesheet" href="./styles/join.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/join.css" />
 </head>
 
 
 <body>
   <div class="join-z81">
     <div class="joinbox-h2R">
-      <img class="todoksidelogo-qmK" id="miniLogo" src="./assets/todoksidelogo-eNM.png" />
+      <img class="todoksidelogo-qmK" id="miniLogo" src="${pageContext.request.contextPath}/assets/todoksidelogo-eNM.png" />
       <div class="auto-group-4ykb-khP">
         <div class="joinheader-5jf">
           <div class="joinheader-pSM">회원 가입</div>
@@ -34,7 +34,7 @@
             <input type="text" class="inputidbox-Vsw" placeholder="아이디를 입력해주세요" />
             <div class="auto-group-4l25-n6M">
               <button type="button" class="idchecktext-L7s">아이디 중복확인</button>
-              <img class="btn-qaR" src="./assets/btn.png" />
+              <img class="btn-qaR" src="${pageContext.request.contextPath}/assets/btn.png" />
             </div>
           </div>
         </div>
@@ -71,7 +71,7 @@
             </select>
             <div class="auto-group-zym7-oKf">
               <button type="button" class="emailconfirmtext-Koo">이메일 인증</button>
-              <img class="emailconfirmbtn-CMo" src="./assets/btn.png" />
+              <img class="emailconfirmbtn-CMo" src="${pageContext.request.contextPath}/assets/btn.png" />
             </div>
           </div>
           <div class="emailcheck-WtH">
@@ -79,7 +79,7 @@
             </input>
             <div class="auto-group-rqhb-k1w">
               <button type="button" class="emailchecktext-NJD">인증 확인</button>
-              <img class="emailcheckbtn-Qkh" src="./assets/btn.png" />
+              <img class="emailcheckbtn-Qkh" src="${pageContext.request.contextPath}/assets/btn.png" />
             </div>
           </div>
         </div>

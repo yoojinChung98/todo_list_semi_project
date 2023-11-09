@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <title>Todok MyAccount</title>
-    <link rel="stylesheet" href="./font/AmSeuTeReuDam.ttf" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/font/AmSeuTeReuDam.ttf" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400"
@@ -16,7 +16,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Inter%3A400"
     />
-    <link rel="stylesheet" href="./styles/myaccount.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/myaccount.css" />
   </head>
 
   <body>
@@ -24,7 +24,7 @@
       <div class="profilebox-xUZ">
         <div class="profile-FTf">
           <div class="auto-group-rhqm-mgu">
-            <img class="profilcricle-tmX" src="./assets/profilcricle-cfT.png" />
+            <img class="profilcricle-tmX" src="${pageContext.request.contextPath}/assets/profilcricle-cfT.png" />
             <div class="userid-maR">test1</div>
           </div>
           <div class="auto-group-cga5-FVb">
@@ -45,7 +45,7 @@
           <button type="button" class="mytodolist-rBs">My Todo List</button>
           <button type="button" class="logout-qs3">Logout</button>
         </div>
-        <img class="todoksidelogo-LMw" src="./assets/todoksidelogo-CDw.png" />
+        <img class="todoksidelogo-LMw" src="${pageContext.request.contextPath}/assets/todoksidelogo-CDw.png" />
       </div>
       <div class="auto-group-pd2h-Dgd">
         <div class="mypagetitle-MH3">My Account</div>

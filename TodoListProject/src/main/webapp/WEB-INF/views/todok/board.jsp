@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <title>Board</title>
-    <link rel="stylesheet" href="./font/AmSeuTeReuDam.ttf" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/font/AmSeuTeReuDam.ttf" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400"
@@ -16,13 +16,13 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Inter%3A400"
     />
-    <link rel="stylesheet" href="./styles/board.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/board.css" />
   </head>
 
   <body>
     <div class="board-xLZ">
       <div class="auto-group-skmt-U41">
-        <img class="todoksidelogo-zHF" src="./assets/todoksidelogo-jBw.png" />
+        <img class="todoksidelogo-zHF" src="${pageContext.request.contextPath}/assets/todoksidelogo-jBw.png" />
         <div class="regboardinputbox-WWV">
           <div class="regboarduserprofile-1y3"></div>
           <div class="auto-group-d2mf-VdK">
@@ -36,7 +36,7 @@
             type="button"
             style="margin-top: 88px; border: none; background: transparent"
           >
-            <img class="regbtn-8ph" src="./assets/regbtn.png" />
+            <img class="regbtn-8ph" src="${pageContext.request.contextPath}/assets/regbtn.png" />
           </button>
         </div>
       </div>
@@ -57,7 +57,7 @@
           </div>
           <div class="auto-group-mgfb-PCD">
             <button type="button" style="border: none; background: transparent">
-              <img class="like-XZK" src="./assets/like-VSR.png" />
+              <img class="like-XZK" src="${pageContext.request.contextPath}/assets/like-VSR.png" />
             </button>
             <p class="heartnum-sdB">2</p>
           </div>
@@ -74,7 +74,7 @@
           </div>
           <div class="auto-group-htzd-d21">
             <button type="button" style="border: none; background: transparent">
-              <img class="like-yLm" src="./assets/like-zqf.png" />
+              <img class="like-yLm" src="${pageContext.request.contextPath}/assets/like-zqf.png" />
             </button>
             <p class="heartnum-iJM">2</p>
           </div>
@@ -91,7 +91,7 @@
           </div>
           <div class="auto-group-cwts-WG9">
             <button type="button" style="border: none; background: transparent">
-              <img class="like-rau" src="./assets/like-3n1.png" />
+              <img class="like-rau" src="${pageContext.request.contextPath}/assets/like-3n1.png" />
             </button>
             <p class="heartnum-om3">2</p>
           </div>
@@ -108,7 +108,7 @@
           </div>
           <div class="auto-group-ovem-oRb">
             <button type="button" style="border: none; background: transparent">
-              <img class="like-xJV" src="./assets/like-n9f.png" />
+              <img class="like-xJV" src="${pageContext.request.contextPath}/assets/like-n9f.png" />
             </button>
             <p class="heartnum-WL1">2</p>
           </div>

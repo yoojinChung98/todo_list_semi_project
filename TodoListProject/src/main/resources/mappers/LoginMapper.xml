@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.spring.todoproject.login.mapper.ILoginMapper">
+
+	<resultMap type="user" id="login">
+		<result property="userId" column="user_id"/>
+		<result property="userPw" column="user_pw"/>
+	</resultMap>
+	
+	
+	
+	<select id="login" resultType="string">
+		SELECT 
+    		user_pw
+		FROM users
+		WHERE user_id = #{userId}
+	</select>
+
+
+
+</mapper>
