@@ -30,10 +30,10 @@
         <div class="id-VjX">
           <div class="idtext-daq">아이디</div>
           <div class="auto-group-75km-mS9">
-            <input name="userId" id="userId" type="text" class="inputidbox-Vsw" placeholder="영문 대,소문자, 숫자 6~15글자"  />
+            <input name="userId" id="userId" type="text" class="inputidbox-Vsw" placeholder="영문 대,소문자, 숫자 6~15글자" onkeyup="idInputCheck(event)" />
             <div class="auto-group-4l25-n6M">
-              <a href="#" class="idchecktext-L7s" id="idCheckBtn" >
-                <img class="btn-qaR" src="${pageContext.request.contextPath}/assets/btn.png" />아이디 중복확인</a><span id="msgId"></span>
+              <button type="button" class="idchecktext-L7s" id="idCheckBtn" >아이디 중복확인</button><span id="msgId"></span>
+                <!-- <img class="btn-qaR" src="${pageContext.request.contextPath}/assets/btn.png" /> -->
               <!-- <img class="btn-qaR" src="./assets/btn.png" /> button태그로 감싼 이미지는 버튼으로 눌리지않아 a태그로 바꿨습니다.-->
             </div>
           </div>
@@ -50,27 +50,31 @@
         </div>
         <div class="name-D5s">
           <div class="nametext-WKs">이름</div>
-          <input name="name" id="name" type="text" class="inputidbox-cNu" placeholder="이름을 입력해주세요">
+          <input name="name" id="name" type="text" class="inputidbox-cNu" placeholder="이름을 입력해주세요" onkeyup="nameInputCheck(event)">
           </input>
         </div>
         <div class="nickname-6tR">
           <div class="nicknametext-p3j">닉네임</div>
-          <input name="nickName" id="nickName" type="text" class="inputidbox-htD" placeholder="닉네임을 입력해주세요(특수문자 사용은 불가능합니다)">
+          <input name="nickName" id="nickName" type="text" class="inputidbox-htD" placeholder="2~10글자의 닉네임을 입력해주세요" onkeyup="nickInputCheck(event)" >
           </input>
         </div>
         <div class="email-83B">
           <div class="emailconfirm-f37">
             <div class="email-xnu">Email</div>
-            <input name="email1" id="email1" type="text" class="inputidbox-FGD" placeholder="이메일을 입력해주세요">
+            <input name="email1" id="email1" type="text" class="inputidbox-FGD" placeholder="이메일을 입력해주세요" >
             </input>
             <div class="item--L2m"></div>
             <select name="email2" id="email2" class="selectdbox-gVw">
               <option>@naver.com</option>
-              <option>@google.com</option>
               <option>@daum.net</option>
+              <option>@kakao.com</option>
+              <option>@google.com</option>
+              <option>@hanmail.net</option>
+              <option>@icloud.com</option>
+              <option>@yahoo.com</option>
             </select>
             <div class="auto-group-zym7-oKf">
-              <button type="button" id="emailCheck" class="emailconfirmtext-Koo" >이메일 인증</button>
+              <button type="button" id="emailCheck" class="emailconfirmtext-Koo">이메일 인증</button>
               <!-- <img class="emailconfirmbtn-CMo" src="${pageContext.request.contextPath}/assets/btn.png" /> 클릭버튼 테스트중 -->
             </div>
           </div>
@@ -78,7 +82,7 @@
             <input name="checkNumber" id="checkNumber" type="text" class="selectdbox-S1F" 
             placeholder="인증번호를 입력하세요" maxlength="6" disabled="disabled"></input>
             <div class="auto-group-rqhb-k1w">
-              <button type="button" name="checkNumber-c" id="checkNumber-c" class="emailchecktext-NJD">인증 확인</button>
+              <button type="button" name="checkNumber-c" id="checkNumber-c" class="emailchecktext-NJD" disabled="disabled">인증 확인</button>
               <!-- <img class="emailcheckbtn-Qkh" src="${pageContext.request.contextPath}/assets/btn.png" /> 클릭버튼 테스트중 -->
             </div>
           </div>
@@ -111,9 +115,33 @@
         let code = ''; // 이메일 인증번호 저장을 위한 변수.
         let idFlag, pwFlag; //정규표현식 유효성 검사 여부 판단. 
 
+        function idInputCheck(event) { //아이디 입력창 영문, 숫자만 허용
+          const regExp = /[^0-9a-zA-Z]/g;
+          const del = event.target;
+          if (regExp.test(del.value)) {
+          del.value = del.value.replace(regExp, '');
+          }
+        };
+
+        function nameInputCheck(event) { // 이름 입력창 한글만 허용
+          const regExp = /[^ㄱ-ㅎ|가-힣]/g;
+          const del = event.target;
+          if (regExp.test(del.value)) {
+          del.value = del.value.replace(regExp, '');
+          }
+        };
+
+        function nickInputCheck(event) { //닉네임 입력창 영문, 숫자, 한글 허용
+          const regExp = /[^0-9a-zA-Zㄱ-ㅎ|가-힣]/g;
+          const del = event.target;
+          if (regExp.test(del.value)) {
+          del.value = del.value.replace(regExp, '');
+          }
+        };
+
 
         //아이디 중복 체크
-        document.getElementById('idCheckBtn').onclick = function() {
+        document.getElementById('idCheckBtn').onclick = function(e) {
 
             const userId = document.getElementById('userId').value;
             //아래 if문은 정규표현식 적용시 사용할것
@@ -135,9 +163,13 @@
                     document.getElementById('userId').setAttribute('readonly', true);
                     document.getElementById('idCheckBtn').setAttribute('disabled', true);
                     document.getElementById("userId").style.backgroundColor = "rgb(150 255 160 / 50%)";
-                    document.getElementById('msgId').textContent = '사용 가능한 아이디 입니다.';
+                    // document.getElementById('msgId').textContent = '사용 가능한 아이디 입니다.';
+                    alert('사용 가능한 아이디 입니다.');
+                    document.getElementById('msgId').style.display = 'none';
                 } else {
-                  document.getElementById('msgId').textContent = '이미 사용중인 아이디 입니다.';
+                    document.getElementById("userId").style.backgroundColor = "rgb(255 167 167 / 50%)";
+                    // document.getElementById('msgId').textContent = '이미 사용중인 아이디 입니다.';
+                    alert('이미 사용중인 아이디 입니다.');
                     document.getElementById('userId').focus();
                 }
             });
@@ -147,26 +179,35 @@
 
         //인증번호 이메일 전송
         document.getElementById('emailCheck').onclick = function(){
+            const eBtn = document.querySelector('.emailconfirmtext-Koo');
+            const email1 = document.getElementById('email1');
             const email = document.getElementById('email1').value + document.getElementById('email2').value;
-            console.log('완성된 email:', email);
-            
-            fetch('${pageContext.request.contextPath}/todok/email', { 
-                method:'post',
-                headers: {'Content-Type': 'text/plain'},
-                body: email
-            })
-            .then(res => res.text())
-            .then(data => {
-                console.log('인증번호: ', data);
-                //비활성화된 인증번호 입력창을 활성화
-                document.querySelector('.selectdbox-S1F').disabled = false; // disabled = false; 입력란 사용가능으로 변경
-                document.getElementById("checkNumber").style.backgroundColor = "rgba(97, 97, 97, 0.150000006)";
-                code = data;
-                alert('인증번호가 전송되었습니다. 6자리 번호를 입력해 주세요.');
-        })
-        .catch(error => {
-            alert('알수없는 문제가 발생하였습니다. 관리자에게 문의하세요.');
-        }); // 비동기 끝.
+
+            if(email1.value.trim() === ''){
+              alert('이메일을 입력해 주세요');
+              return;
+            }else{
+              console.log('완성된 email:', email);
+              
+              fetch('${pageContext.request.contextPath}/todok/email', { 
+                  method:'post',
+                  headers: {'Content-Type': 'text/plain'},
+                  body: email
+              })
+              .then(res => res.text())
+              .then(data => {
+                  console.log('인증번호: ', data);
+                  //비활성화된 인증번호 입력창을 활성화
+                  document.querySelector('.selectdbox-S1F').disabled = false; // disabled = false; 입력란 사용가능으로 변경
+                  document.querySelector('.emailchecktext-NJD').disabled = false;
+                  document.getElementById("checkNumber").style.backgroundColor = "rgba(97, 97, 97, 0.150000006)";
+                  code = data;
+                  alert('인증번호가 전송되었습니다. 6자리 번호를 입력해 주세요.');
+          })
+          .catch(error => {
+              alert('알수없는 문제가 발생하였습니다. 관리자에게 문의하세요.');
+          }); // 비동기 끝.
+            }
 
     }; //이메일 인증 버튼 클릭 이벤트 끝 (구현완료)
 
@@ -204,13 +245,12 @@
         if(regex.test(document.getElementById("userId").value.trim() )) {
           // console.log('입력한 value: ', document.getElementById("userId").value);
           // console.log('공백을 제거한 value: ', document.getElementById("userId").value.trim());
-            document.getElementById("userId").style.backgroundColor = "rgb(255 167 167 / 50%)";
-            document.getElementById("msgId").innerHTML = "아이디 중복체크는 필수 입니다";
+            document.getElementById("msgId").innerHTML = '아이디 중복체크는 필수 입니다';
             idFlag = true;
 
         } else {
             document.getElementById("userId").style.backgroundColor = "rgb(255 167 167 / 50%)";
-            document.getElementById("msgId").innerHTML = "사용할 수 없는 아이디 입니다.";
+            document.getElementById("msgId").innerHTML = '사용할 수 없는 아이디 입니다.';
             idFlag = false;
         }
       
@@ -219,38 +259,47 @@
         /*비밀번호 형식 검사 스크립트*/
         var pw = document.getElementById("userPw");
         pw.onkeyup = function(){
-          // console.log('비번스팬태그!');
-            var regex = /^[A-Za-z0-9]{8,16}$/; // 비밀번호 영문 대, 소문자 8~16 사이 
+            var regex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/; 
+            // 비밀번호 숫자, 영문 대, 소문자 를포함하여 8~16 사이 
              if(regex.test(document.getElementById("userPw").value.trim() )) {
                 document.getElementById("userPw").style.backgroundColor = "rgb(150 255 160 / 50%)";
-                document.getElementById("msgPw").innerHTML = "사용 가능합니다";
+                document.getElementById("msgPw").innerHTML = '사용 가능합니다';
                 pwFlag = true;
             } else {
                 document.getElementById("userPw").style.backgroundColor = "rgb(255 167 167 / 50%)";
-                document.getElementById("msgPw").innerHTML = "비밀번호는 영문 대, 소문자 8~16사이로 작성해주세요.";
+                document.getElementById("msgPw").innerHTML = '비밀번호는 영문+숫자로 입력하세요.';
                 pwFlag = false;
             }
         }
         /*비밀번호 확인검사*/
         var pwConfirm = document.getElementById("userPwCheck");
         pwConfirm.onkeyup = function() {
-            // console.log('비번체크 스팬태그!');
-            var regex = /^[A-Za-z0-9]{8,16}$/;
+            var regex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/; 
             if(regex.test(document.getElementById("userPwCheck").value.trim() )){
               if(document.getElementById("userPwCheck").value.trim() == document.getElementById("userPw").value.trim() ) {
                   document.getElementById("userPwCheck").style.backgroundColor = "rgb(150 255 160 / 50%)";
-                  document.getElementById("msgPw-c").innerHTML = "비밀번호가 일치합니다";
+                  document.getElementById("msgPw-c").innerHTML = '비밀번호가 일치합니다';
                   pwFlag = true;
             }
             } else {
                 document.getElementById("userPwCheck").style.backgroundColor = "rgb(255 167 167 / 50%)";
-                document.getElementById("msgPw-c").innerHTML = "비밀번호를 확인하세요";
+                document.getElementById("msgPw-c").innerHTML = '비밀번호를 확인하세요';
                 pwFlag = false;
             }
         }
 
             // 폼 데이터 검증
     document.getElementById('joinBtn').onclick = function(e){
+
+        // const userPw = document.getElementById('userPw');
+        // const userPwCheck = document.getElementById('userPwCheck');
+
+        // if(userPw.value !== userPwCheck.value){
+        //       console.log('비밀번호 체크(폼)');
+        //         alert('비밀번호가 다릅니다.');
+        //         userPw.focus();
+        //         return;
+            
         if(idFlag && pwFlag){
             if(!document.getElementById('userId').getAttribute('readonly')){
               console.log('아이디 중복체크(폼)');
@@ -263,8 +312,13 @@
                 return;
             }
             if(document.getElementById('nickName').value.trim() === ''){
-              console.log('닉네임을 인증(폼)');
+              console.log('닉네임 인증(폼)');
                 alert('닉네임을 입력해주세요.');
+                return;
+            }
+            if(document.getElementById('email1').value.trim() === ''){
+              console.log('이메일 인증(폼)');
+                alert('이메일을 입력해주세요.');
                 return;
             }
             if(!document.getElementById('emailCheck').disabled){
@@ -283,7 +337,8 @@
             alert('아이디와 비밀번호를 다시 확인해주세요.');
             return;
         }
-    }
+      }
+    // }
 
 
 

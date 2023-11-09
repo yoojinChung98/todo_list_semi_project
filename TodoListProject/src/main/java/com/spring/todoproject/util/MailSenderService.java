@@ -37,7 +37,7 @@ public class MailSenderService {
 						"인증번호는 <strong>" + autNum + "<strong> 입니다." + 
 						"<br>" + 
 						"해당 인증 번호를 인증번호 확인란에 기입해 주세요."; // 내용
-		mailSend(setFrom, toMail, title, content); //메일발송
+//		mailSend(setFrom, toMail, title, content); //메일발송
 		
 		return Integer.toString(autNum);
 		
