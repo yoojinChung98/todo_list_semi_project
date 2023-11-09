@@ -12,4 +12,7 @@ public interface IMainMapper {
 
 	// 매개값으로 받은 board_bno의 사용자의 프로필컬러 hex, bno, user_id, board_content 값 받아오기
 	MostLikeRecomdResponseDTO getMostLikeData (int boardBno);
+
+	// 매개값으로 받은 userId 유저의 닉네임을 추출
+	String getNickname(String userId);
 }

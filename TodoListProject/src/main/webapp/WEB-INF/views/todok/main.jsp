@@ -43,57 +43,25 @@
         <!------------------------------------가장 많은 좋아요G 시작------------------------------------->
         <div class="mostlikemain-jhb">
           <div class="mostliketext-gcq">가장 많은 좋아요를 받은 할 일</div>
-          <!-- <button type="button" id="testBtn" onclick="exe()">테스트</button> -->
 
-
-          <!-----좋아요 박스묶음. 나중에 로그인검증 구현되면, if문 받아서 디폴트값을 넣어서 3개 뽑는 예시 살려야함.------->
-
-          <%-- <c:choose>
-				<c:when test="로그인되어있을때~"> --%>
-
-          <c:forEach var="item" items="${mostLike}">
+          <c:forEach var="i" begin="1" end="4" step="1">
             <div class="mostliketodo1-z7j">
-              <div class="profilecircle-i3j" style="background-color: #${item.profileColor}">
+              <div class="profilecircle-i3j" style="background-color: #D9D9D9">
                 <!-- profile circle color 받아서 스타일 입력-->
               </div>
 
               <div class="auto-group-4rdx-2aD">
-                <div class="userid-AgR">${item.userId}</div>
+                <div class="userid-AgR">user ${i}</div>
 
-                <div class="this-is-one-line-content-6py">${item.content}</div>
+                <div class="this-is-one-line-content-6py">오늘의 추천 ${i}</div>
               </div>
 
               <div class="auto-group-zp4z-EwB">
-                <div class="k-b13">${item.boardLikeCnt}</div>
+                <div class="k-b13">0</div>
                 <img class="like-TJ9" src="${pageContext.request.contextPath}/assets/like-RBX.png" />
               </div>
             </div>
           </c:forEach>
-
-          <%-- </c:when> --%>
-
-          <%-- <c:when test="로그인안돼있을때~">
-		          <c:forEach var="i" begin="1" end="3" step="1">
-		            <div class="mostliketodo1-z7j">
-		              <div class="profilecircle-i3j" style="background-color: #D9D9D9">
-		                <!-- profile circle color 받아서 스타일 입력-->
-		              </div>
-		
-		              <div class="auto-group-4rdx-2aD">
-		                <div class="userid-AgR">user ${i}</div>
-		
-		                <div class="this-is-one-line-content-6py">오늘의 추천 ${i}</div>
-		              </div>
-		
-		              <div class="auto-group-zp4z-EwB">
-		                <div class="k-b13">0</div>
-		                <img class="like-TJ9" src="${pageContext.request.contextPath}/assets/like-RBX.png" />
-		              </div>
-		            </div>
-		          </c:forEach>
-		    	</c:when> --%>
-
-          <%--  </c:choose> --%>
 
 
           <!---------------------------------------End B--------------------------------------------------------->
@@ -131,7 +99,7 @@
       <div class="auto-group-rn1p-xcq">
         <div class="weathericon-WeM">
         </div>
-        <div class="userid-DHs">000님, 어서오세요</div>
+        <div class="userid-DHs">${mostLike[0].userId}님, 어서오세요</div>
       </div>
       <img class="todoksidelogo-78M" src="${pageContext.request.contextPath}/assets/todoksidelogo-weZ.png" />
     </div>
@@ -200,7 +168,7 @@
           i >= firstDateIndex && i < lastDateIndex + 1 ? 'this' : 'other';
         dates[
           i
-        ] = `<div class="date"><span class=${condition}>${date}</span></div>`;
+        ] = '<div class="date"><span class=' + condition + '>' + date + '</span></div>';
       });
 
       document.querySelector('.dates').innerHTML = dates.join('');
@@ -256,21 +224,80 @@
     nonClick.forEach((e) => {
       e.addEventListener('click', handleClick);
     });
-    //----------------------------------달력----------------------------------------
+    //---------------------------------- 할 일 추천 ----------------------------------------
+
 
     window.onload = function () {
 
-      // getMostLike();
+      const $mostLikeBox = document.querySelector('.mostlikemain-jhb');
 
       // '가장 많은 좋아요를 받은 할 일' 을 List<dto>로 받아오는 함수
-      /* function getMostLike() {
-        fetch('todok/main/mostlike')
+      function getMostLike() {
+        fetch('main/mostlike')
           .then(res => res.json())
           .then(data => {
-            console.log("mostlike: ", data);
-          })
-        }; */
 
+            console.log('return 전', data);
+            if (data == null) return;
+
+            const $mostliketext = $mostLikeBox.firstElementChild;
+
+            console.log('return 넘김', data);
+
+            const $firstSiblings = $mostliketext.nextElementSibling.childNodes;
+            const $secondSiblings = $mostliketext.nextElementSibling.nextElementSibling.childNodes;
+            const $thirdSiblings = $mostliketext.nextElementSibling.nextElementSibling.nextElementSibling
+              .childNodes;
+            const $fourthSiblings = $mostliketext.nextElementSibling.nextElementSibling.nextElementSibling
+              .nextElementSibling.childNodes;
+
+
+
+            $firstSiblings[1].setAttribute('style', 'background-color: #' + data.mostLike[0].profileColor);
+            $firstSiblings[3].firstElementChild.textContent = data.mostLike[0].userId;
+            $firstSiblings[3].firstElementChild.nextElementSibling.textContent = data.mostLike[0]
+              .content;
+            $firstSiblings[5].firstElementChild.textContent = data.mostLike[0].boardLikeCnt;
+
+            $secondSiblings[1].setAttribute('style', 'background-color: #' + data.mostLike[1].profileColor);
+            $secondSiblings[3].firstElementChild.textContent = data.mostLike[1].userId;
+            $secondSiblings[3].firstElementChild.nextElementSibling.textContent = data.mostLike[1]
+              .content;
+            $secondSiblings[5].firstElementChild.textContent = data.mostLike[1].boardLikeCnt;
+
+            $thirdSiblings[1].setAttribute('style', 'background-color: #' + data.mostLike[2].profileColor);
+            $thirdSiblings[3].firstElementChild.textContent = data.mostLike[2].userId;
+            $thirdSiblings[3].firstElementChild.nextElementSibling.textContent = data.mostLike[2]
+              .content;
+            $thirdSiblings[5].firstElementChild.textContent = data.mostLike[2].boardLikeCnt;
+
+            $fourthSiblings[1].setAttribute('style', 'background-color: #' + data.mostLike[3].profileColor);
+            $fourthSiblings[3].firstElementChild.textContent = data.mostLike[3].userId;
+            $fourthSiblings[3].firstElementChild.nextElementSibling.textContent = data.mostLike[3]
+              .content;
+            $fourthSiblings[5].firstElementChild.textContent = data.mostLike[3].boardLikeCnt;
+
+
+
+
+
+          })
+      };
+
+      function getNickname(userId) {
+        fetch('main/nickname/' + userId)
+          .then(res => res.text())
+          .then(data => {
+            const $userid = document.querySelector('.userid-DHs');
+            console.log(data);
+            $userid.textContent = data + '님, 어서오세요';
+
+          })
+      };
+
+
+      getMostLike();
+      getNickname("유저아이디");
 
     };
   </script>

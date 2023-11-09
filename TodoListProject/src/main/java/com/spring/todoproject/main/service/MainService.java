@@ -33,6 +33,11 @@ public class MainService {
 			
 		return dtoList;	
 	}
+
+
+	public String getNickname(String userId) {
+		return mapper.getNickname(userId);
+	}
 	
 	// 매개값으로 받은 board_bno의 사용자의 프로필컬러 hex 값을 받아오는 서비스
 //	public String[] getProfColor(Integer[] boardBnos) {

@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @Controller
-@RequestMapping("/todok")
+@RequestMapping("/main")
 @RequiredArgsConstructor
 @Slf4j
 public class MainController {
@@ -43,7 +43,7 @@ public class MainController {
 	@Autowired
 	private final IWeatherMapper mapper;
 	
-	@GetMapping("/main")
+	@GetMapping("")
 	public ModelAndView goMain() {
 		ModelAndView mv = new ModelAndView();
 		List<MostLikeRecomdResponseDTO> dto = service.showMostLike();
@@ -55,32 +55,31 @@ public class MainController {
 	
 	
 	
-	// 이거 스크립트부분 비동기통신용 메서드이긴 한데,, 음,,, 일단 main으로 몰아놓아서 필요는 없긴 함.
-	@GetMapping("/main/mostlike")
+	// 이거 스크립트부분 비동기통신용 메서드
+	@GetMapping("/mostlike")
 	@ResponseBody
-	public List<MostLikeRecomdResponseDTO> showMostLike() {
-		log.info("/todok/main/mostlike : GET 요청");
-		ModelAndView mv = new ModelAndView();
-		
+	public Map<String, Object> showMostLike() {
+		Map<String, Object> mv = new HashMap<>();
 		
 		List<MostLikeRecomdResponseDTO> dto = service.showMostLike();
-		return dto;
+		mv.put("mostLike", dto);
+		
+		return mv;
 	}
 	
-//	// 날씨 요청 한번 따로 만들어보는 상태
-//	@GetMapping("/main/weather/{latitude}/{longitude}")
-//	@ResponseBody
-//	public HashMap<String, Object> getWeather(@PathVariable String latitude, @PathVariable String longitude ) {
-//		
-//		log.info("여기는 컨트롤러~"+latitude+longitude);
-//		??? serviceW.getWeather(latitude, longitude);
-//		
-//		return null;
-//		
-// 		이거 위경도 nx ny 좌표로 변환하다 포기함. 나머지부분 필요하면 디스코드 쌤이 보내주신 코드로 짜면 됨.
-//		
-//		// RestTemplate을 이용하여 api 요청 시작.	
-//	}
+	// 닉네임을 가져오는 메서드
+	@GetMapping("/nickname/{userId}")
+	@ResponseBody
+	public String getNickname(@PathVariable String userId ) {
+		Map<String, Object> mv = new HashMap<>();
+		
+		return service.getNickname(userId);
+	}
+	
+	
+	
+
+	
 	
 	
 

@@ -53,6 +53,13 @@
 		WHERE board_bno = #{boardBno}
 	</select>
 
+
+	<select id="getNickname" resultType="string">
+		SELECT nickname
+		FROM users
+		WHERE user_id = #{userId}
+	</select>
+
 </mapper>
 
 
