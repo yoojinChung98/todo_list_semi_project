@@ -55,7 +55,7 @@
         </div>
         <div class="nickname-6tR">
           <div class="nicknametext-p3j">닉네임</div>
-          <input name="nickName" type="text" class="inputidbox-htD" placeholder="닉네임을 입력해주세요(특수문자 사용은 불가능합니다)">
+          <input name="nickName" id="nickName" type="text" class="inputidbox-htD" placeholder="닉네임을 입력해주세요(특수문자 사용은 불가능합니다)">
           </input>
         </div>
         <div class="email-83B">
@@ -87,7 +87,7 @@
         <div class="joinorcancelbtn-BiH">
           <div class="auto-group-nnzd-WVf">
             <div class="joinbtn-8G9">
-              <button type="submit" id="joinBtn" class="jointext-41P" class="joinBtnImg">회원가입</button>
+              <button type="button" id="joinBtn" class="jointext-41P joinBtnImg">회원가입</button>
             </div>
           </div>
           <div class="auto-group-ha5f-Cmo">
@@ -134,6 +134,7 @@
                 if(data === 'ok') {
                     document.getElementById('userId').setAttribute('readonly', true);
                     document.getElementById('idCheckBtn').setAttribute('disabled', true);
+                    document.getElementById("userId").style.backgroundColor = "rgb(150 255 160 / 50%)";
                     document.getElementById('msgId').textContent = '사용 가능한 아이디 입니다.';
                 } else {
                   document.getElementById('msgId').textContent = '이미 사용중인 아이디 입니다.';
@@ -185,7 +186,7 @@
             document.getElementById('email1').setAttribute('readonly', true);
             document.getElementById('email2').setAttribute('readonly', true);
 
-            e.target.style.display = 'text: "인증완료"'; // 인증번호 입력창 숨기기
+            // e.target.style.display = 'text: "인증완료"'; // 인증번호 입력창 숨기기 (x)
    
         }else {
             alert('인증번호가 틀렸습니다.');
@@ -203,12 +204,12 @@
         if(regex.test(document.getElementById("userId").value.trim() )) {
           // console.log('입력한 value: ', document.getElementById("userId").value);
           // console.log('공백을 제거한 value: ', document.getElementById("userId").value.trim());
-            document.getElementById("userId").style.backgroundColor = "rgba";
+            document.getElementById("userId").style.backgroundColor = "rgb(255 167 167 / 50%)";
             document.getElementById("msgId").innerHTML = "아이디 중복체크는 필수 입니다";
             idFlag = true;
 
         } else {
-            document.getElementById("userId").style.backgroundColor = "#FFA7A7";
+            document.getElementById("userId").style.backgroundColor = "rgb(255 167 167 / 50%)";
             document.getElementById("msgId").innerHTML = "사용할 수 없는 아이디 입니다.";
             idFlag = false;
         }
@@ -221,11 +222,11 @@
           // console.log('비번스팬태그!');
             var regex = /^[A-Za-z0-9]{8,16}$/; // 비밀번호 영문 대, 소문자 8~16 사이 
              if(regex.test(document.getElementById("userPw").value.trim() )) {
-                document.getElementById("userPw").style.backgroundColor = "#E4F7BA";
+                document.getElementById("userPw").style.backgroundColor = "rgb(150 255 160 / 50%)";
                 document.getElementById("msgPw").innerHTML = "사용 가능합니다";
                 pwFlag = true;
             } else {
-                document.getElementById("userPw").style.backgroundColor = "#FFA7A7";
+                document.getElementById("userPw").style.backgroundColor = "rgb(255 167 167 / 50%)";
                 document.getElementById("msgPw").innerHTML = "비밀번호는 영문 대, 소문자 8~16사이로 작성해주세요.";
                 pwFlag = false;
             }
@@ -237,34 +238,43 @@
             var regex = /^[A-Za-z0-9]{8,16}$/;
             if(regex.test(document.getElementById("userPwCheck").value.trim() )){
               if(document.getElementById("userPwCheck").value.trim() == document.getElementById("userPw").value.trim() ) {
-                  document.getElementById("userPwCheck").style.backgroundColor = "#E4F7BA";
+                  document.getElementById("userPwCheck").style.backgroundColor = "rgb(150 255 160 / 50%)";
                   document.getElementById("msgPw-c").innerHTML = "비밀번호가 일치합니다";
                   pwFlag = true;
             }
             } else {
-                document.getElementById("userPwCheck").style.backgroundColor = "#FFA7A7";
+                document.getElementById("userPwCheck").style.backgroundColor = "rgb(255 167 167 / 50%)";
                 document.getElementById("msgPw-c").innerHTML = "비밀번호를 확인하세요";
                 pwFlag = false;
             }
         }
 
-            // 폼 데이터 검증 (회원 가입 버튼 눌렀을 시)
-    document.getElementById('joinBtn').onclick = function(){
+            // 폼 데이터 검증
+    document.getElementById('joinBtn').onclick = function(e){
         if(idFlag && pwFlag){
             if(!document.getElementById('userId').getAttribute('readonly')){
+              console.log('아이디 중복체크(폼)');
                 alert('아이디 중복체크는 필수입니다.');
                 return;
             }
-            if(document.getElementById('userName').value.trim() === ''){
+            if(document.getElementById('name').value.trim() === ''){
+              console.log('이름 중복체크(폼)');
                 alert('이름을 입력해주세요.');
                 return;
             }
+            if(document.getElementById('nickName').value.trim() === ''){
+              console.log('닉네임을 인증(폼)');
+                alert('닉네임을 입력해주세요.');
+                return;
+            }
             if(!document.getElementById('emailCheck').disabled){
+              console.log('이메일 중복체크(폼)');
                 alert('이메일 인증을 완료해주세요.');
                 return;
             }
 
             if(confirm('회원가입을 하시겠습니까?')){
+              console.log('회원가입버튼(폼)');
                 document.joinForm.submit();
             }else return;
 
