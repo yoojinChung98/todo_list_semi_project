@@ -41,40 +41,49 @@
     </div>
     <div class="auto-group-pd2h-Dgd">
       <div class="mypagetitle-MH3">My Account</div>
-      <div class="auto-group-ynrd-PUd">
-        <div class="auto-group-ktu7-K7P">
-          <div class="auto-group-eq3f-q5j">
-            <div class="infoname-L2V">
-              <div class="infotitle-FfF">name</div>
-              <input type="text" class="infovalue-jqK" readonly value="${userInfo.userId}" />
+
+
+      <form action="${pageContext.request.contextPath}/myaccount/update" method="post" name="updateForm">
+        <div class="auto-group-ynrd-PUd">
+          <div class="auto-group-ktu7-K7P">
+            <div class="auto-group-eq3f-q5j">
+              <div class="infoname-L2V">
+                <div class="infotitle-FfF">name</div>
+                <input type="text" class="infovalue-jqK" readonly value="${userInfo.userId}" />
+              </div>
+              <div class="infonickname-BxD">
+                <div class="infotitle-Y25">nickname</div>
+                <input type="text" name="nickName" id="nickName" class="infovalue-2xq" value="${userInfo.nickName}"
+                  placeholder="새로운 닉네임" />
+              </div>
+              <div class="infoemail-sTf">
+                <div class="infobox-buT"></div>
+                <div class="infotitle-tNm">email</div>
+                <input type="text" name="email" id="email" class="infovalue-CPT" readonly value="${userInfo.email}" />
+              </div>
             </div>
-            <div class="infonickname-BxD">
-              <div class="infotitle-Y25">nickname</div>
-              <input type="text" class="infovalue-2xq" value="${userInfo.nickName}" placeholder="새로운 닉네임" />
-            </div>
-            <div class="infoemail-sTf">
-              <div class="infobox-buT"></div>
-              <div class="infotitle-tNm">email</div>
-              <input type="text" class="infovalue-CPT" readonly value="${userInfo.email}" />
+            <div class="editpic-skV">
+              <div class="infotitle-CXs">profile color</div>
+              <div class="profilcricle-XKF" id="profileColor" name="profileColor"
+                style="background-color:#${profBox.profileColor};"></div>
             </div>
           </div>
-          <div class="editpic-skV">
-            <div class="infotitle-CXs">profile color</div>
-            <div class="profilcricle-XKF" style="background-color:#${profBox.profileColor};"></div>
+          <div class="auto-group-vc2d-nFB">
+            <div class="infopassword-5zy">
+              <div class="infotitle-R3F">password</div>
+              <input type="password" name="userPw" id="userPw" class="infovalue-vkh" placeholder="새로운 비밀번호를 입력해주세요" />
+              <input type="password" name="userPwCheck" id="userPwCheck" class="infochk-qsf"
+                placeholder="입력한 비밀번호를 다시 입력해주세요" />
+            </div>
+            <div class="auto-group-3imf-usX">
+              <button type="button" class="compledit-qWH">수정완료</button>
+              <button type="button" class="canceledit-EoK">취소</button>
+            </div>
           </div>
         </div>
-        <div class="auto-group-vc2d-nFB">
-          <div class="infopassword-5zy">
-            <div class="infotitle-R3F">password</div>
-            <input type="password" class="infovalue-vkh" placeholder="새로운 비밀번호를 입력해주세요" />
-            <input type="password" class="infochk-qsf" placeholder="입력한 비밀번호를 다시 입력해주세요" />
-          </div>
-          <div class="auto-group-3imf-usX">
-            <button type="button" class="compledit-qWH">수정완료</button>
-            <button type="button" class="canceledit-EoK">취소</button>
-          </div>
-        </div>
-      </div>
+      </form>
+
+
     </div>
   </div>
 
@@ -83,8 +92,96 @@
     // 검증을 통과했다면, update를 할 수 있도록 하면됨.
 
     // 검증이 통과되고 난 뒤에 DB 업데이트가 일어날 요청
+    // 1. 일단 value를 가져오고
+    // 2. fetch말고 redirect 할거임
+    // 3. 요청을 받으면 무지성으로 update 갈겨~
 
-    // 각
+
+
+    // 수정완료 버튼을 누르면 검증 시작
+    document.getElementById('idCheckBtn').onclick = function (e) {
+
+      /*비밀번호 형식 검사 스크립트*/
+      var pw = document.getElementById("userPw");
+      pw.onkeyup = function () {
+        var regex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/;
+        // 비밀번호 숫자, 영문 대, 소문자 를포함하여 8~16 사이 
+        if (regex.test(document.getElementById("userPw").value.trim())) {
+          document.getElementById("userPw").style.backgroundColor = "rgb(150 255 160 / 50%)";
+          // document.getElementById("msgPw").innerHTML = '사용 가능합니다';
+          pwFlag = true;
+        } else {
+          document.getElementById("userPw").style.backgroundColor = "rgb(255 167 167 / 50%)";
+          alert('비밀번호는 영문+숫자로 입력해주세요.');
+          pwFlag = false;
+        }
+      }
+      /*비밀번호 확인검사*/
+      var pwConfirm = document.getElementById("userPwCheck");
+      pwConfirm.onkeyup = function () {
+        var regex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/;
+        if (regex.test(document.getElementById("userPwCheck").value.trim())) {
+          if (document.getElementById("userPwCheck").value.trim() == document.getElementById("userPw").value
+            .trim()) {
+            document.getElementById("userPwCheck").style.backgroundColor = "rgb(150 255 160 / 50%)";
+            // document.getElementById("msgPw-c").innerHTML = '비밀번호가 일치합니다';
+            pwFlag = true;
+          }
+        } else {
+          document.getElementById("userPwCheck").style.backgroundColor = "rgb(255 167 167 / 50%)";
+          alert('비밀번호를 확인해주세요');
+          pwFlag = false;
+        }
+      }
+
+
+      if (pwFlag) {
+        if (document.getElementById('nickName').value.trim() === '') {
+          console.log('닉네임 인증(폼)');
+          alert('닉네임을 입력해주세요.');
+          return;
+        }
+
+        // 모든 값이 유효하다면 confirm 띄우고 요청보냄.
+        if (confirm('회원정보를 수정하시겠습니까?')) {
+          document.updateForm.submit();
+        }
+
+      } else {
+        alert('아이디와 비밀번호를 다시 확인해주세요.');
+        return;
+      }
+    };
+
+
+
+    // 취소버튼을 누르면 기존의 값으로 다시 세팅해줄 것.
+    document.querySelector('.canceledit-EoK').onclick = () => {
+      if (!confirm('변경사항을 되돌리시겠습니까?')) {
+        return;
+      }
+      document.getElementById("nickName").value = "${userInfo.nickName}";
+
+      document.getElementById("profileColor").setAttribute('style', 'background-color:#${profBox.profileColor};');
+
+      document.getElementById("userPw").value = "";
+
+      document.querySelector('.infochk-qsf').value = "";
+    };
+
+    // 로그아웃버튼
+    document.querySelector('.logout-qs3').onclick = () => {
+      if (!confirm('로그아웃하시겠습니까?')) {
+        return;
+      }
+      sessionStorage.removeItem('login');
+      location.href = '${pageContext.request.contextPath}/main';
+    };
+
+    // 로고클릭 -> main.jsp 로 이동
+    document.querySelector('.todoksidelogo-LMw').onclick = () => {
+      location.href = '${pageContext.request.contextPath}/main';
+    };
   </script>
 
 
