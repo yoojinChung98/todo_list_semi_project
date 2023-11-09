@@ -22,27 +22,24 @@ public class MyaccountController {
 	private final MyaccountService service;
 	
 	
-	@GetMapping("/myaccount")
-	public ModelAndView goMyaccount() {
-		ModelAndView mv = new ModelAndView();
-		
-		// 1. 사용자 정보 받아오기
-		
-		// 2. 유저 정보 받아오기
-		
-//		List<MostLikeRecomdResponseDTO> dto = service.showMostLike();
-//		mv.addObject("mostLike", dto);
-		log.info("여기는 컨트롤러");
-		
-		service.get
-		
-		
-		mv.setViewName("/todok/myaccount");
-		return mv;
-	}
+//	@GetMapping("/myaccount")
+//	public ModelAndView goMyaccount() {
+//		ModelAndView mv = new ModelAndView();
+//		
+//		log.info("여기는 컨트롤러로 넘어옴, 이제 서비스부르고 프로필정보/계정정보 값 받아서 뿌려줄거임.");
+//		
+//		service.getProfInfo(userID);
+//		
+//		
+//		mv.setViewName("/todok/myaccount");
+//		return mv;
+//	}
 	
 	
 	
+	
+	
+	// 여기는 일단 죽여놓은 부분
 //	// 이거 스크립트부분 비동기통신용 메서드이긴 한데,, 음,,, 일단 main으로 몰아놓아서 필요는 없긴 함.
 //	@GetMapping("/main/mostlike")
 //	@ResponseBody
