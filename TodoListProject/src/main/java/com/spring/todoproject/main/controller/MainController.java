@@ -48,7 +48,6 @@ public class MainController {
 		ModelAndView mv = new ModelAndView();
 		List<MostLikeRecomdResponseDTO> dto = service.showMostLike();
 		mv.addObject("mostLike", dto);
-		
 		mv.setViewName("/todok/main");
 		return mv;
 	}
@@ -60,7 +59,6 @@ public class MainController {
 	@ResponseBody
 	public Map<String, Object> showMostLike() {
 		Map<String, Object> mv = new HashMap<>();
-		
 		List<MostLikeRecomdResponseDTO> dto = service.showMostLike();
 		mv.put("mostLike", dto);
 		
@@ -72,7 +70,6 @@ public class MainController {
 	@ResponseBody
 	public String getNickname(@PathVariable String userId ) {
 		Map<String, Object> mv = new HashMap<>();
-		
 		return service.getNickname(userId);
 	}
 	

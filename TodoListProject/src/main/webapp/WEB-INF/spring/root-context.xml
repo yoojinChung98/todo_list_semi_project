@@ -43,6 +43,7 @@
         그 인터페이스가 존재하는 패키지의 경로를 탐색하라는 태그입니다.-->
    
    	<mybatis-spring:scan base-package="com.spring.todoproject.main.mapper"/>
+   	<mybatis-spring:scan base-package="com.spring.todoproject.myaccount.mapper"/>
    <!-- 
     <mybatis-spring:scan base-package="com.spring.todoproject.freeboard.mapper"/>
     <mybatis-spring:scan base-package="com.spring.todoproject.reply.mapper"/>

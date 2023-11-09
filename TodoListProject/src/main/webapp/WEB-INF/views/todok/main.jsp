@@ -67,8 +67,7 @@
           <!---------------------------------------End B--------------------------------------------------------->
         </div>
         <!---------------------------------------End G-------------------------------------------------------->
-        <button type="button" class="goboardbtn-WWd"
-          onclick="location.href='${pageContext.request.contextPath}/todok/board'">
+        <button type="button" class="goboardbtn-WWd" onclick="location.href='${pageContext.request.contextPath}/board'">
           go to board
         </button>
 
@@ -97,8 +96,6 @@
       <div class="headuserprofile-Ewj">
       </div>
       <div class="auto-group-rn1p-xcq">
-        <div class="weathericon-WeM">
-        </div>
         <div class="userid-DHs">${mostLike[0].userId}님, 어서오세요</div>
       </div>
       <img class="todoksidelogo-78M" src="${pageContext.request.contextPath}/assets/todoksidelogo-weZ.png" />
@@ -113,6 +110,8 @@
 
 
   <script>
+    // const login = sessionStorage.getItem('login');
+
     //--------------------------------달력-------------------------
     let date = new Date();
 
@@ -297,8 +296,17 @@
 
 
       getMostLike();
-      getNickname("유저아이디");
+      // 더미데이터 입력해놓음. 나중에 세션에서 가져온 로그인아이디 넣어놓을 것임.
+      getNickname("id2");
 
+    };
+
+
+
+
+
+    document.querySelector('.headuserprofile-Ewj').onclick = () => {
+      location.href = '${pageContext.request.contextPath}/myaccount';
     };
   </script>
 </body>
