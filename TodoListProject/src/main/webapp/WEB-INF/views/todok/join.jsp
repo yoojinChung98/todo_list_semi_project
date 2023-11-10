@@ -74,16 +74,26 @@
               <option>@yahoo.com</option>
             </select>
             <div class="auto-group-zym7-oKf">
+<<<<<<<<< Temporary merge branch 1
               <button type="button" id="emailCheck" class="emailconfirmtext-Koo">이메일 인증</button>
               <!-- <img class="emailconfirmbtn-CMo" src="${pageContext.request.contextPath}/assets/btn.png" /> 클릭버튼 이미지 미적용 -->
+=========
+              <button type="button" class="emailconfirmtext-Koo">이메일 인증</button>
+              <img class="emailconfirmbtn-CMo" src="${pageContext.request.contextPath}/assets/btn.png" />
+>>>>>>>>> Temporary merge branch 2
             </div>
           </div>
           <div class="emailcheck-WtH">
             <input name="checkNumber" id="checkNumber" type="text" class="selectdbox-S1F" 
             placeholder="인증번호를 입력하세요" maxlength="6" disabled="disabled"></input>
             <div class="auto-group-rqhb-k1w">
+<<<<<<<<< Temporary merge branch 1
               <button type="button" name="checkNumber-c" id="checkNumber-c" class="emailchecktext-NJD" disabled="disabled">인증 확인</button>
               <!-- <img class="emailcheckbtn-Qkh" src="${pageContext.request.contextPath}/assets/btn.png" /> 클릭버튼 이미지 미적용-->
+=========
+              <button type="button" class="emailchecktext-NJD">인증 확인</button>
+              <img class="emailcheckbtn-Qkh" src="${pageContext.request.contextPath}/assets/btn.png" />
+>>>>>>>>> Temporary merge branch 2
             </div>
           </div>
         </div>

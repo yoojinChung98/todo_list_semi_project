@@ -27,6 +27,7 @@ public class MainService {
 		
 		for(MostLikeRecomdResponseDTO l : list) {
 			MostLikeRecomdResponseDTO dto = mapper.getMostLikeData(l.getBoardBno());
+			
 			dto.setBoardLikeCnt(l.getBoardLikeCnt());
 			dtoList.add(dto);	
 		}

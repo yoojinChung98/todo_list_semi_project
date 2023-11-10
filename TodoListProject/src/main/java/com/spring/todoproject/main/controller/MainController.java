@@ -47,6 +47,7 @@ public class MainController {
 	public ModelAndView goMain() {
 		ModelAndView mv = new ModelAndView();
 		List<MostLikeRecomdResponseDTO> dto = service.showMostLike();
+		
 		mv.addObject("mostLike", dto);
 		mv.setViewName("/todok/main");
 		return mv;
