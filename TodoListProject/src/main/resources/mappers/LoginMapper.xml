@@ -7,7 +7,14 @@
 	<resultMap type="user" id="login">
 		<result property="userId" column="user_id"/>
 		<result property="userPw" column="user_pw"/>
+		<result property="name" column="name"/>
+		<result property="nickName" column="nickname"/>
+		<result property="email1" column="email1"/>
+		<result property="email2" column="email2"/>
+		
 	</resultMap>
+	
+
 	
 	
 	
@@ -17,6 +24,19 @@
 		FROM users
 		WHERE user_id = #{userId}
 	</select>
+	
+	
+	<select id="naverlogintest" resultType="string">
+		SELECT *
+		FROM users
+		WHERE email1 = #{email1}
+		AND email2 = #{email2}
+	</select>
+	
+	<insert id="naverlogininsert">
+		INSERT INTO users
+		VALUES (#{userId}, #{userPw}, #{name}, #{nickname}, #{email1}, #{email2}, 'D9D9D9')
+	</insert>
 
 
 

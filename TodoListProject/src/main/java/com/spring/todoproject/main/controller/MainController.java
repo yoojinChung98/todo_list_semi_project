@@ -1,6 +1,6 @@
 package com.spring.todoproject.main.controller;
 
-import java.io.IOException;
+
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.net.URLEncoder;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spring.todoproject.login.entity.UserInfo;
+
 import com.spring.todoproject.login.service.LoginService;
 
 import lombok.RequiredArgsConstructor;

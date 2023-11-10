@@ -24,26 +24,7 @@
 
     <body>
     
-    
-    <%--  <%
-    String clientId = "W7Mq7kXYF3dBqzpj2kxG";//애플리케이션 클라이언트 아이디값";
-    String redirectURI = URLEncoder.encode("http://127.0.0.1:80/todoproject/todok/main", "UTF-8");
-    SecureRandom random = new SecureRandom();
-    String state = new BigInteger(130, random).toString();
-    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code"
-         + "&client_id=" + clientId
-         + "&redirect_uri=" + redirectURI
-         + "&state=" + state;
-    session.setAttribute("state", state);
- %> --%>
- 
-<%--  	<c:when test="${sessionId != null}">			
- 	<h2> 네이버 아이디 로그인 성공하셨습니다!! </h2>			
- 	<h3>'${sessionId}' 님 환영합니다! </h3>            	
- 	<h3><a href="logout">로그아웃</a></h3> --%>
 
-
- 
       <img class="todoksidelogo-qmK" id="miniLogo"
         src="${pageContext.request.contextPath}/assets/todoksidelogo-eNM.png" />
       <div class="login-o3w">
@@ -126,29 +107,7 @@
       	
       	console.log(state);
         
-     	// CSRF 방지를 위한 상태 토큰 생성 코드
-     	// 상태 토큰은 추후 검증을 위해 세션에 저장되어야 한다.
 
-
-    	/*  fetch('${pageContext.request.contextPath}/rest/api-req/' + value1 + '/' + value2) */ 
-    	
-        
-        
-        document.getElementById('naver_id_login').onclick = () =>{
-        
-        	
-        	fetch('${pageContext.request.contextPath}/todok/login/naver/'+ state)
-        }
-         
-        
-
-
-        
-        
-
-        
-        
-       
 
             
 			

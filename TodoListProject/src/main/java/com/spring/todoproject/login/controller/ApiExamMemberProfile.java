@@ -10,22 +10,26 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
-import com.spring.todoproject.login.service.LoginService;
+import com.spring.todoproject.login.naver.NaverLoginRequestDTO;
 
+import lombok.RequiredArgsConstructor;
 
+@Component
 public class ApiExamMemberProfile {
-	public static void main(String data) {
+	
+	public NaverLoginRequestDTO parseJsonData(String token) {
+				
+		
+		System.out.println("asdfasdfsadf " + token);
 		
 
-		
-		System.out.println("asdfasdfsadf " + data);
-		
-		
-		
-        String token = data; // 네이버 로그인 접근 토큰;
+//        String token = token; // 네이버 로그인 접근 토큰;
         String header = "Bearer " + token; // Bearer 다음에 공백 추가
 
 
@@ -35,12 +39,72 @@ public class ApiExamMemberProfile {
         Map<String, String> requestHeaders = new HashMap<>();
         requestHeaders.put("Authorization", header);
         String responseBody = get(apiURL,requestHeaders);
-        
-        
+
+
 
 
         System.out.println(responseBody);
+//        String tokenpw = data;
+        
+		/*---------------------------------------*/
+        
+        
+        JSONParser parser = new JSONParser();
+
+        try {
+            JSONObject jsonObject = (JSONObject) parser.parse(responseBody);
+            JSONObject response = (JSONObject) jsonObject.get("response");
+
+            String id = (String) response.get("id");
+            String nickname = (String) response.get("nickname");
+            String email = (String) response.get("email");
+            String name = (String) response.get("name");
+
+            System.out.println("ID: " + id);
+            System.out.println("Nickname: " + nickname);
+            System.out.println("Email: " + email);
+            System.out.println("Name: " + name);
+            
+//            sendData(id, nickname, email, name, token);
+            
+            return NaverLoginRequestDTO.builder()
+            		.id(id)
+            		.nickname(nickname)
+            		.email(email)
+            		.name(name)
+            		.token(token)
+            		.build();
+            
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+        
+        
+        
+        
+        
+      
+
+    
     }
+	
+	/*
+	 * public void parseJsondelData(String tokendel) {
+	 * 
+	 * 
+	 * String apiUrl =
+	 * "https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id="+
+	 * "W7Mq7kXYF3dBqzpj2kxG"+
+	 * "&client_secret="+"hhpMdDjGMX"+"&access_token="+tokendel.replaceAll("'",
+	 * "")+"&service_provider=NAVER";
+	 * 
+	 * try { String res = requestToServer(apiUrl); model.addAttribute("res", res);
+	 * //결과값 찍어주는용 session.invalidate(); } catch (IOException e) { // TODO
+	 * Auto-generated catch block e.printStackTrace(); } }
+	 */
+
 
 
     private static String get(String apiUrl, Map<String, String> requestHeaders){

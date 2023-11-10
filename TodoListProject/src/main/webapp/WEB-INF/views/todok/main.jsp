@@ -24,7 +24,7 @@
 
 <body>
 
- <%
+<%--  <%
     String clientId = "W7Mq7kXYF3dBqzpj2kxG";//애플리케이션 클라이언트 아이디값";
     String clientSecret = "hhpMdDjGMX";//애플리케이션 클라이언트 시크릿값";
     String code = request.getParameter("code");
@@ -61,8 +61,10 @@
     } catch (Exception e) {
       // Exception 로깅
     }
-  %>
+  %> --%>
   
+  
+  <button type="button" id="deleteButton">로그아웃하기</button>
   
   <div class="main-eLH">
     <div class="auto-group-2bkm-y7f">
@@ -250,7 +252,7 @@
 
 
     <div class="mainheader-LrM">
-      <div class="headuserprofile-Ewj">
+      <div class="headuserprofile-Ewj"><a href="http://127.0.0.1:80/todoproject/todok/myaccount">마이어카운트</a>
       </div>
       <div class="auto-group-rn1p-xcq">
         <div class="weathericon-WeM">
@@ -265,20 +267,27 @@
   <script type="text/javascript">
    var naver_id_login = new naver_id_login("W7Mq7kXYF3dBqzpj2kxG", "http://127.0.0.1:80/todoproject/todok/main");
   // 접근 토큰 값 출력
-  alert(naver_id_login.oauthParams.access_token);
- /*  const token = naver_id_login.oauthParams.access_token;
-  fetch('${pageContext.request.contextPath}/todok/login/naver/' + token) */
-  const data = naver_id_login.oauthParams;
-  fetch('${pageContext.request.contextPath}/todok/login/naver/' + data)
+  console.log(naver_id_login.oauthParams.access_token);
+/*   alert(naver_id_login.oauthParams.access_token); */
+  const token = naver_id_login.oauthParams.access_token;
+  fetch('${pageContext.request.contextPath}/todok/login/naver/' + token)
+  /* fetch('${pageContext.request.contextPath}/todok/login/naver/' + data) */
   // 네이버 사용자 프로필 조회
   naver_id_login.get_naver_userprofile("naverSignInCallback()");
   // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-  function naverSignInCallback() {
+/*   function naverSignInCallback() {
+	 alert(naver_id_login.getProfileData('id'));
     alert(naver_id_login.getProfileData('email'));
     alert(naver_id_login.getProfileData('nickname'));
-    alert(naver_id_login.getProfileData('age'));
-    
-  } 
+    alert(naver_id_login.getProfileData('name'));
+  }  */
+  
+
+  
+  
+  document.getElementById("deleteButton").onclick = () => {
+	  fetch('${pageContext.request.contextPath}/todok/login/naverdel/' + token)
+  }
  
 
   </script>
