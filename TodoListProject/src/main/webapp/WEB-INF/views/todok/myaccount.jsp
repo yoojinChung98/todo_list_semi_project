@@ -11,6 +11,9 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A400" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/myaccount.css" />
+
+  <!-- colorpicekr : pickr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
 </head>
 
 <body>
@@ -67,6 +70,21 @@
               <div class="infotitle-CXs">profile color</div>
               <div class="profilcricle-XKF" id="profileColor" name="profileColor"
                 style="background-color:#${profBox.profileColor};"></div>
+
+
+
+              <!-- <div class="color-picker">
+                <input type="color" id="colorInput" value="#ff0000">
+                <div id="selectedColor" class="selected-color"></div>
+              </div> -->
+
+              <!-- 커스텀 -->
+              <div class="color-picker">
+                <input type="color" id="colorInput" value="#ff0000" />
+              </div>
+
+
+
             </div>
           </div>
           <div class="auto-group-vc2d-nFB">
@@ -88,7 +106,39 @@
     </div>
   </div>
 
+  <script src="script.js"></script>
   <script>
+    // test2
+    // document.addEventListener('DOMContentLoaded', function () {
+    //   const colorInput = document.getElementById('colorInput');
+    //   const selectedColor = document.getElementById('selectedColor');
+
+    //   colorInput.addEventListener('input', function () {
+    //     const color = colorInput.value;
+    //     selectedColor.style.backgroundColor = color;
+    //   });
+    // });
+
+    // 커스텀
+    document.addEventListener('DOMContentLoaded', function () {
+      const colorInput = document.getElementById('colorInput');
+      const profileColor = document.getElementById('profileColor');
+
+      colorInput.addEventListener('input', function () {
+        const color = colorInput.value;
+        profileColor.style.backgroundColor = color;
+      });
+    });
+
+
+
+
+
+
+
+
+
+
     let pwFlag = true;
     let pwcFlag = true; //정규표현식 유효성 검사 여부 판단. 
 
