@@ -1,3 +1,4 @@
+  font-style: normal;
 .color-picker {
   display: inline-block;
   position: relative;
@@ -6,6 +7,7 @@
 html {
   font-size: 62.5%;
   background-image: url(../assets/bg.png);
+  font-family: 'Nanum AmSeuTeReuDam', serif;
 }
 * {
   margin: auto;
