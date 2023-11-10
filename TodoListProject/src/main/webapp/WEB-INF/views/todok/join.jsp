@@ -305,33 +305,36 @@
             
         if(idFlag && pwFlag){
             if(!document.getElementById('userId').getAttribute('readonly')){
-              console.log('아이디 중복체크(폼)');
                 alert('아이디 중복체크는 필수입니다.');
                 return;
             }
+
+            if(document.getElementById('userPw').value !== document.getElementById('userPwCheck').value){
+                alert('비밀번호를 확인해주세요.');
+                document.getElementById("userPw").style.backgroundColor = "rgb(255 167 167 / 50%)";
+                document.getElementById("userPwCheck").style.backgroundColor = "rgb(255 167 167 / 50%)";
+                userPw.focus();
+                return;
+            }
+
             if(document.getElementById('name').value.trim() === ''){
-              console.log('이름 중복체크(폼)');
                 alert('이름을 입력해주세요.');
                 return;
             }
             if(document.getElementById('nickName').value.trim() === ''){
-              console.log('닉네임 인증(폼)');
                 alert('닉네임을 입력해주세요.');
                 return;
             }
             if(document.getElementById('email1').value.trim() === ''){
-              console.log('이메일 인증(폼)');
                 alert('이메일을 입력해주세요.');
                 return;
             }
             if(!document.getElementById('emailCheck').disabled){
-              console.log('이메일 중복체크(폼)');
                 alert('이메일 인증을 완료해주세요.');
                 return;
             }
 
             if(confirm('회원가입을 하시겠습니까?')){
-              console.log('회원가입버튼(폼)');
                 document.joinForm.submit();
             }else return;
 
