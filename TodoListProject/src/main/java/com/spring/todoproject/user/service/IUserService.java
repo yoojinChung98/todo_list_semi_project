@@ -4,7 +4,7 @@ import com.spring.todoproject.user.dto.UserInsertInfoRequestDTO;
 
 public interface IUserService {
 	
-	//회원 가입
+		//회원 가입
 		void insertUserData(UserInsertInfoRequestDTO dto);
 		
 		//회원 정보 가져오기!
@@ -15,5 +15,8 @@ public interface IUserService {
 		
 		//회원 정보 수정
 		void updateUserDate();
+		
+		//아이디 체크
+		int idCheck(String account);
 
 }
