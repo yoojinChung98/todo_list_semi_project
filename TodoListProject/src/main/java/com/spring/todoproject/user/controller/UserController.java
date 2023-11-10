@@ -29,10 +29,7 @@ public class UserController {
 	
 	//회원가입 페이지로 이동
 	@GetMapping("/join")
-	public void UserJoin() {
-		
-	}
-	
+	public void UserJoin() {}
 	
 	//아이디 중복확인(비동기)
 	@GetMapping("/id/{account}")  
@@ -76,7 +73,7 @@ public class UserController {
 		
 		service.insertUserData(dto);
 		
-		return "/todok/join";
+		return "/todok/main";
 	}
 	
 	
