@@ -35,13 +35,27 @@
 		)
 	</select>
 	
-	
+	<!-- 유저 정보를 받아옴 -->
 	<select id="getUserInfo" resultType="users">
 		SELECT *
 		FROM users
 		WHERE user_id = #{userId}
 	</select>
 
+	<!-- 유저 닉네임과 비밀번호 수정 -->
+	<update id="updateNickPw">
+		UPDATE users SET
+		    nickname = #{nickName},
+		    user_pw = #{userPw}
+		WHERE user_id = #{userId}
+	</update>
+	
+	<!-- 유저 닉네임만 수정 (pw 가 null 일 경우) -->
+	<update id="updateNick">
+		UPDATE users SET
+		    nickname = #{nickName}
+		WHERE user_id = #{userId}
+	</update>
 
 
 </mapper>

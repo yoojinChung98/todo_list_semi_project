@@ -48,8 +48,9 @@
           <div class="auto-group-ktu7-K7P">
             <div class="auto-group-eq3f-q5j">
               <div class="infoname-L2V">
+                <input type="hidden" name="userId" id="userId" value="${userInfo.userId}" />
                 <div class="infotitle-FfF">name</div>
-                <input type="text" class="infovalue-jqK" readonly value="${userInfo.userId}" />
+                <input type="text" name="name" id="name" class="infovalue-jqK" readonly value="${userInfo.name}" />
               </div>
               <div class="infonickname-BxD">
                 <div class="infotitle-Y25">nickname</div>
@@ -88,6 +89,9 @@
   </div>
 
   <script>
+    let pwFlag = true;
+    let pwcFlag = true; //정규표현식 유효성 검사 여부 판단. 
+
     // 닉네임검증과 비밀번호 검증은 회원가입에서 사용한 검증법과 동일하게 적용
     // 검증을 통과했다면, update를 할 수 있도록 하면됨.
 
@@ -99,56 +103,66 @@
 
 
     // 수정완료 버튼을 누르면 검증 시작
-    document.getElementById('idCheckBtn').onclick = function (e) {
+    document.querySelector('.compledit-qWH').onclick = (e) => {
+      console.log('수정완료 검증');
 
-      /*비밀번호 형식 검사 스크립트*/
-      var pw = document.getElementById("userPw");
-      pw.onkeyup = function () {
+
+      if (document.getElementById('nickName').value.trim() === '') {
+        console.log('닉네임 인증(폼)');
+        alert('닉네임을 입력해주세요.');
+        document.getElementById('nickName').focus();
+        return;
+      }
+
+      // 비밀번호가 입력되지않았으면 확인검사는 생략하고 닉네임만 수정할 것.
+      if (document.getElementById("userPw") === '' &&
+        document.getElementById("userPwCheck") === '') {
+
+        /*비밀번호 형식 검사 스크립트*/
+        var pw = document.getElementById("userPw");
+
         var regex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/;
         // 비밀번호 숫자, 영문 대, 소문자 를포함하여 8~16 사이 
         if (regex.test(document.getElementById("userPw").value.trim())) {
           document.getElementById("userPw").style.backgroundColor = "rgb(150 255 160 / 50%)";
-          // document.getElementById("msgPw").innerHTML = '사용 가능합니다';
           pwFlag = true;
         } else {
-          document.getElementById("userPw").style.backgroundColor = "rgb(255 167 167 / 50%)";
-          alert('비밀번호는 영문+숫자로 입력해주세요.');
+          document.getElementById("userPw").focus();
+          alert('비밀번호는 영문+숫자로 10자 이상 입력해주세요.');
           pwFlag = false;
         }
-      }
-      /*비밀번호 확인검사*/
-      var pwConfirm = document.getElementById("userPwCheck");
-      pwConfirm.onkeyup = function () {
+
+        /*비밀번호 확인검사*/
+        var pwConfirm = document.getElementById("userPwCheck");
+        console.log('비밀번호 유효성검사 시작')
         var regex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/;
         if (regex.test(document.getElementById("userPwCheck").value.trim())) {
           if (document.getElementById("userPwCheck").value.trim() == document.getElementById("userPw").value
             .trim()) {
             document.getElementById("userPwCheck").style.backgroundColor = "rgb(150 255 160 / 50%)";
-            // document.getElementById("msgPw-c").innerHTML = '비밀번호가 일치합니다';
-            pwFlag = true;
+            pwcFlag = true;
           }
         } else {
-          document.getElementById("userPwCheck").style.backgroundColor = "rgb(255 167 167 / 50%)";
-          alert('비밀번호를 확인해주세요');
-          pwFlag = false;
+          document.getElementById("userPwCheck").focus();
+          alert('비밀번호가 잘 입력되었는지 확인해주세요');
+          pwcFlag = false;
         }
       }
 
 
-      if (pwFlag) {
-        if (document.getElementById('nickName').value.trim() === '') {
-          console.log('닉네임 인증(폼)');
-          alert('닉네임을 입력해주세요.');
-          return;
-        }
+      if (pwFlag && pwcFlag) {
+
 
         // 모든 값이 유효하다면 confirm 띄우고 요청보냄.
         if (confirm('회원정보를 수정하시겠습니까?')) {
+          console.log('서브밋 하겠음');
           document.updateForm.submit();
+        } else {
+          return;
         }
 
       } else {
-        alert('아이디와 비밀번호를 다시 확인해주세요.');
+        alert('비밀번호를 다시 확인해주세요.');
         return;
       }
     };
@@ -157,6 +171,7 @@
 
     // 취소버튼을 누르면 기존의 값으로 다시 세팅해줄 것.
     document.querySelector('.canceledit-EoK').onclick = () => {
+
       if (!confirm('변경사항을 되돌리시겠습니까?')) {
         return;
       }

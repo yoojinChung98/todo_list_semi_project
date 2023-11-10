@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.todoproject.main.mapper.IMainMapper;
 import com.spring.todoproject.main.service.MainService;
+import com.spring.todoproject.myaccount.dto.MyacntUpdRequestDTO;
 import com.spring.todoproject.myaccount.dto.ProfBoxDTO;
 import com.spring.todoproject.myaccount.dto.UserInfoResponseDTO;
 import com.spring.todoproject.myaccount.entity.Users;
@@ -45,6 +46,17 @@ public class MyaccountService {
 				.profileColor(entity.getProfileColor())
 				.build();
 		return dto;
+	}
+
+	public void updateAccount(MyacntUpdRequestDTO dto) {
+		if(dto.getUserPw().equals("")) {
+			log.info("닉네임만 교체!");
+			mapper.updateNick(dto);
+		} else {
+			log.info("비밀번호도 함께 교체!");
+			mapper.updateNickPw(dto);
+		}
+		
 	}
 	
 	
