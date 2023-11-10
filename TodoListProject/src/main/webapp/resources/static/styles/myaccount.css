@@ -1,3 +1,8 @@
+.color-picker {
+  display: inline-block;
+  position: relative;
+}
+
 html {
   font-size: 62.5%;
   background-image: url(../assets/bg.png);
@@ -68,6 +73,7 @@ body {
   object-fit: contain;
   vertical-align: top;
   flex-shrink: 0;
+  border-radius: 50%;
 }
 .myaccount-Grd .profilebox-xUZ .profile-FTf .auto-group-rhqm-mgu .userid-maR {
   display: flex;
@@ -223,7 +229,7 @@ body {
   white-space: nowrap;
 }
 .myaccount-Grd .profilebox-xUZ .mypagemenu-3ER {
-  margin: 0rem 4rem 9.65rem 3.9rem;
+  margin: 0rem 4rem 5rem 3.9rem;
   width: calc(100% - 7.9rem);
   align-items: center;
   display: flex;
@@ -274,7 +280,7 @@ body {
   font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
   white-space: nowrap;
   flex-shrink: 0;
-  margin-top: 50px;
+  margin-top: 70px;
   margin-bottom: 0;
   background-color: transparent;
   border: none;
@@ -285,6 +291,7 @@ body {
   object-fit: contain;
   vertical-align: top;
   flex-shrink: 0;
+  margin-top: 15rem;
 }
 .myaccount-Grd .auto-group-pd2h-Dgd {
   margin-bottom: 6.5rem;
@@ -576,6 +583,7 @@ body {
   border-radius: 10rem;
   flex-shrink: 0;
 }
+
 .myaccount-Grd .auto-group-pd2h-Dgd .auto-group-ynrd-PUd .auto-group-vc2d-nFB {
   margin-right: 22.7rem;
   width: calc(100% - 22.7rem);

@@ -26,7 +26,7 @@
 
 
 	<!-- 가장 많은 좋아요를 받은 추천 board_bno, board_like의 수 3개 추출-->
-	<select id="mostLikeBno" resultType="MostLikeRecomdResponseDTO">
+	<select id="mostLikeBno" resultType="mostLikeRecomdResponseDTO">
 		SELECT brn.board_bno, brn.cnt AS boardLikeCnt
         FROM
         (
@@ -45,12 +45,19 @@
 	
 	
 	<!-- 매개값으로 받은 board_bno의 사용자의 프로필컬러 hex, bno, user_id, board_content 값을 받아옴-->
-	<select id="getMostLikeData" resultType="MostLikeRecomdResponseDTO">
+	<select id="getMostLikeData" resultType="mostLikeRecomdResponseDTO">
 		SELECT u.profile_color, b.board_bno, b.user_id, content
 		FROM users u
 		INNER JOIN  board b
 		ON b.user_id = u.user_id
 		WHERE board_bno = #{boardBno}
+	</select>
+
+
+	<select id="getNickname" resultType="string">
+		SELECT nickname
+		FROM users
+		WHERE user_id = #{userId}
 	</select>
 
 </mapper>
