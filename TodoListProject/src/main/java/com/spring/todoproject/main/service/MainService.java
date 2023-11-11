@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.spring.todoproject.main.dto.MostLikeRecomdResponseDTO;
+import com.spring.todoproject.main.dto.TodoRequestDTO;
 import com.spring.todoproject.main.mapper.IMainMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -39,6 +40,15 @@ public class MainService {
 	public String getNickname(String userId) {
 		String test = mapper.getNickname(userId);
 		return test;
+	}
+
+
+	public void insertTodo(TodoRequestDTO dto) {
+		
+		
+		
+		mapper.insertTodo();
+		
 	}
 	
 	// 매개값으로 받은 board_bno의 사용자의 프로필컬러 hex 값을 받아오는 서비스

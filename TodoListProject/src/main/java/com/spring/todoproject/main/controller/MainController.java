@@ -12,6 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.todoproject.main.dto.MostLikeRecomdResponseDTO;
+import com.spring.todoproject.main.dto.TodoRequestDTO;
 import com.spring.todoproject.main.mapper.IWeatherMapper;
 import com.spring.todoproject.main.service.MainService;
 //import com.spring.todoproject.main.service.WeatherService;
@@ -72,6 +74,16 @@ public class MainController {
 	public String getNickname(@PathVariable String userId ) {
 		Map<String, Object> mv = new HashMap<>();
 		return service.getNickname(userId);
+	}
+	
+	// 투두 데이터를 insert 하는 메서드
+	@PostMapping("/todo")
+	@ResponseBody
+	public void insertTodo(@RequestBody TodoRequestDTO dto) {
+		
+		service.insertTodo(dto);
+		
+		
 	}
 	
 	
