@@ -1,17 +1,18 @@
 package com.spring.todoproject.main.mapper;
 
+import java.util.List;
+
+import com.spring.todoproject.main.dto.MostLikeRecomdResponseDTO;
+
 public interface IMainMapper {
 
-	//회원 가입
-	void insertUserData();
+	
+	// 가장 많은 좋아요를 받은 추천 board_bno 3개 추출
+	List<MostLikeRecomdResponseDTO> mostLikeBno ();
 
-	//회원 정보 가져오기!
-	void selectUserData(String userId);
+	// 매개값으로 받은 board_bno의 사용자의 프로필컬러 hex, bno, user_id, board_content 값 받아오기
+	MostLikeRecomdResponseDTO getMostLikeData (int boardBno);
 
-	//회원 정보 삭제
-	void deleteUserData();
-
-	//회원 정보 수정
-	void updateUserDate();
-
+	// 매개값으로 받은 userId 유저의 닉네임을 추출
+	String getNickname(String userId);
 }
