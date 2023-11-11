@@ -68,19 +68,12 @@
             </div>
             <div class="editpic-skV">
               <div class="infotitle-CXs">profile color</div>
-              <div class="profilcricle-XKF" id="profileColor" name="profileColor"
-                style="background-color:#${profBox.profileColor};"></div>
+              <div class="profilcricle-XKF" id="previewColor" style="background-color:#${profBox.profileColor};"></div>
 
-
-
-              <!-- <div class="color-picker">
-                <input type="color" id="colorInput" value="#ff0000">
-                <div id="selectedColor" class="selected-color"></div>
-              </div> -->
 
               <!-- 커스텀 -->
               <div class="color-picker">
-                <input type="color" id="colorInput" value="#ff0000" />
+                <input type="color" id="profileColor" name="profileColor" value="#ff0000" />
               </div>
 
 
@@ -108,25 +101,15 @@
 
   <script src="script.js"></script>
   <script>
-    // test2
-    // document.addEventListener('DOMContentLoaded', function () {
-    //   const colorInput = document.getElementById('colorInput');
-    //   const selectedColor = document.getElementById('selectedColor');
-
-    //   colorInput.addEventListener('input', function () {
-    //     const color = colorInput.value;
-    //     selectedColor.style.backgroundColor = color;
-    //   });
-    // });
-
-    // 커스텀
+    // 프로필컬러 피커 
     document.addEventListener('DOMContentLoaded', function () {
-      const colorInput = document.getElementById('colorInput');
       const profileColor = document.getElementById('profileColor');
+      const previewColor = document.getElementById('previewColor');
 
-      colorInput.addEventListener('input', function () {
-        const color = colorInput.value;
-        profileColor.style.backgroundColor = color;
+      // 컬러피커 색상 동기화
+      profileColor.addEventListener('input', function () {
+        const color = profileColor.value;
+        previewColor.style.backgroundColor = color;
       });
     });
 

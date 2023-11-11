@@ -73,7 +73,7 @@ public class UserController {
 		
 		service.insertUserData(dto);
 		
-		return "/todok/main";
+		return "redirect:/main";
 	}
 	
 	
