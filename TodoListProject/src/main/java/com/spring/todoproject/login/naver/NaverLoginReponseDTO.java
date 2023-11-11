@@ -8,17 +8,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
+@Getter @Setter @ToString
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode
+@AllArgsConstructor
 @Builder
-public class NaverLoginRequestDTO {
+public class NaverLoginReponseDTO {
 	
-//  sendData(id, nickname, email, name, token);
-
 	private String id;
 	private String nickname;
 	private String email1;
@@ -26,6 +22,5 @@ public class NaverLoginRequestDTO {
 	private String name;
 	private String token;
 	private String profile_color;
-	
-	
+
 }

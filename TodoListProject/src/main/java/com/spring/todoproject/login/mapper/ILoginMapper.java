@@ -13,7 +13,7 @@ public interface ILoginMapper {
 
 
 
-	String naverlogintest(@Param("email1")String email1,@Param("email2") String email2);
+	String naverlogintest(@Param("email1")String email1, @Param("email2") String email2);
 
 
 
@@ -23,7 +23,7 @@ public interface ILoginMapper {
 
 	void naverlogininsert(@Param("userId") String userId,@Param("userPw") String userPw,
 			@Param("name") String name,@Param("nickname") String nickname,
-			@Param("email1") String email1 ,@Param("email2") String email2);
+			@Param("email1") String email1 ,@Param("email2") String email2, String profile_color);
 
 
 }

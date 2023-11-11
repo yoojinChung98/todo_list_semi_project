@@ -26,8 +26,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MainController {
 	
+	
 	@GetMapping("/main")
 	public void main() {
+		System.out.println("메인페이지요청");
+		
+		
 
 	}
 	

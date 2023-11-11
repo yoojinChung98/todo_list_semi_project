@@ -4,13 +4,14 @@
     
 <mapper namespace="com.spring.todoproject.login.mapper.ILoginMapper">
 
-	<resultMap type="user" id="login">
-		<result property="userId" column="user_id"/>
-		<result property="userPw" column="user_pw"/>
+	<resultMap type="com.spring.todoproject.login.naver.NaverLoginRequestDTO" id="naverlogin">
+		<result property="id" column="user_id"/>
+		<result property="token" column="user_pw"/>
 		<result property="name" column="name"/>
-		<result property="nickName" column="nickname"/>
+		<result property="nickname" column="nickname"/>
 		<result property="email1" column="email1"/>
 		<result property="email2" column="email2"/>
+		<result property="profile_color" column="profile_color"/>
 		
 	</resultMap>
 	
@@ -27,7 +28,7 @@
 	
 	
 	<select id="naverlogintest" resultType="string">
-		SELECT *
+		SELECT user_id
 		FROM users
 		WHERE email1 = #{email1}
 		AND email2 = #{email2}
@@ -35,7 +36,7 @@
 	
 	<insert id="naverlogininsert">
 		INSERT INTO users
-		VALUES (#{userId}, #{userPw}, #{name}, #{nickname}, #{email1}, #{email2}, 'D9D9D9')
+		VALUES (#{userId}, #{userPw}, #{name}, #{nickname}, #{email1}, #{email2}, #{profile_color})
 	</insert>
 
 

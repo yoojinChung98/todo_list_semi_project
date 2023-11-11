@@ -75,8 +75,9 @@
       	
       
         const msg = '${result}';
-        if (msg === 'Succes') {
+        if (msg === 'Success') {
           alert('로그인 성공함')
+          fetch('${pageContext.request.contextPath}/todok/main')
         } else if (msg === 'Fail') {
           alert('로그인 실패')
         }else if (msg === '데이터가 안옴') {
@@ -105,7 +106,17 @@
       	naver_id_login.setPopup();
       	naver_id_login.init_naver_id_login();
       	
-      	console.log(state);
+      	/* console.log(state); */
+      	
+      	
+      	const userId = '${sessionScope.login}';
+      	console.log(uesrId);
+      	
+      	
+       
+        
+
+
         
 
 

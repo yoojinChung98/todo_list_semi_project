@@ -5,6 +5,7 @@
 <%@ page import="java.net.HttpURLConnection" %>
 <%@ page import="java.io.BufferedReader" %>
 <%@ page import="java.io.InputStreamReader" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -263,6 +264,8 @@
     </div>
   </div>
   
+   <p>Received data: ${result}</p>
+  
   
   <script type="text/javascript">
    var naver_id_login = new naver_id_login("W7Mq7kXYF3dBqzpj2kxG", "http://127.0.0.1:80/todoproject/todok/main");
@@ -271,23 +274,47 @@
 /*   alert(naver_id_login.oauthParams.access_token); */
   const token = naver_id_login.oauthParams.access_token;
   fetch('${pageContext.request.contextPath}/todok/login/naver/' + token)
-  /* fetch('${pageContext.request.contextPath}/todok/login/naver/' + data) */
+  	  .then(res => res.text())
+	  .then(data => {
+		  
+		  const userId = '${userId}';
+		  console.log('userId', '${userId}');
+		  
+	      // 성공적으로 데이터를 받아왔을 때의 처리
+	      console.log('Received data:', data); // 서버에서 반환한 데이터를 콘솔에 출력하거나 다른 처리 수행
+	      data.text
+	     // 다른 함수로 데이터를 전달하거나 사용할 수 있음
+	    })
   // 네이버 사용자 프로필 조회
+  
+  if(naver_id_login.is_callback == true){
+	  naver_id_login.get_naver_userprofile("callbackFunction()");
+  }
   naver_id_login.get_naver_userprofile("naverSignInCallback()");
   // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-/*   function naverSignInCallback() {
+ function naverSignInCallback() {
 	 alert(naver_id_login.getProfileData('id'));
     alert(naver_id_login.getProfileData('email'));
     alert(naver_id_login.getProfileData('nickname'));
     alert(naver_id_login.getProfileData('name'));
-  }  */
+    alert(naver_id_login.getProfileData('age'));
+  }
   
+ 
+ const userId = '${sessionScope.login}';
+ console.log(userId);
 
   
   
   document.getElementById("deleteButton").onclick = () => {
 	  fetch('${pageContext.request.contextPath}/todok/login/naverdel/' + token)
   }
+  
+  const userId = '${sessionScope}';
+	console.log(uesrId);
+	
+  
+  
  
 
   </script>

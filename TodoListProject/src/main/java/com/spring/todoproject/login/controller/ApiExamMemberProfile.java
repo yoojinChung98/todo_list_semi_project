@@ -59,10 +59,17 @@ public class ApiExamMemberProfile {
             String nickname = (String) response.get("nickname");
             String email = (String) response.get("email");
             String name = (String) response.get("name");
+            
+            
+    		String email2 = email.substring(email.length() - 10);
+    		System.out.println(email2);
+
+    		String email1 = email.substring(0, email.length() - 10);
 
             System.out.println("ID: " + id);
             System.out.println("Nickname: " + nickname);
-            System.out.println("Email: " + email);
+            System.out.println("Email: " + email1);
+            System.out.println("Email: " + email2);
             System.out.println("Name: " + name);
             
 //            sendData(id, nickname, email, name, token);
@@ -70,9 +77,11 @@ public class ApiExamMemberProfile {
             return NaverLoginRequestDTO.builder()
             		.id(id)
             		.nickname(nickname)
-            		.email(email)
+            		.email1(email1)
+            		.email2(email2)
             		.name(name)
             		.token(token)
+            		.profile_color("D9D9D9")
             		.build();
             
 

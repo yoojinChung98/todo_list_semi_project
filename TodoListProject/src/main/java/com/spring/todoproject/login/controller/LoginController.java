@@ -2,11 +2,8 @@ package com.spring.todoproject.login.controller;
 
 
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import javax.mail.Session;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,8 +33,17 @@ public class LoginController {
 
 	}
 	
+	/*
+	@GetMapping("/main")
+	public void main(HttpSession session, Model model) {
+		//마이페이지는 로그인 한 사람만 이동 가능 -> 세션에 아이디가 있다!
+		String id = (String) session.getAttribute("login");
+		model.addAttribute("userInfo", id);
+	}
+	*/
+	
 	@PostMapping("/login")
-	public void login(String userId, String userPw, Model model) {
+	public void login(String userId, String userPw, Model model, HttpSession session) {
 
 		 
 		 System.out.println("controller에 들어옴");
@@ -45,106 +51,57 @@ public class LoginController {
 		 System.out.printf("아이디:" + userId);
 		 System.out.printf("비밀번호:" + userPw);
 		 model.addAttribute("result", service.login(userId, userPw));
+		 String res = service.login(userId, userPw);
+		 
+		 if(res.equals("Success")) {
+			 session.setAttribute("userId", userId);
+		 }
+
 
 	}
 	
-//	-------------------------
 
-
-//    public String generateState()
-//	 {
-//    	SecureRandom random = new SecureRandom();
-//    	System.out.println(random);
-//    	return new BigInteger(130, random).toString(32);
-//	}
 
     
     
     @GetMapping("/login/naver/{token}")
-    public void tokenpass(@PathVariable String token) {
+    public void tokenpass(@PathVariable String token, HttpSession session) {
     	System.out.println("access_token: " + token);
     	
-    	naver(apiExamMemberProfile.parseJsonData(token));
-    }
-    
-    /*
-    @GetMapping("/login/naverdel/{tokendel}")
-    public void naverdel(@PathVariable String tokendel) {
-    	System.out.println("access_token: " + tokendel);
+    	String naverDto = naver(apiExamMemberProfile.parseJsonData(token));
+    	System.out.println("aaaaaaaaaaa: " + naverDto);
     	
-    	String apiUrl = "https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id="+"W7Mq7kXYF3dBqzpj2kxG"+
-        		"&client_secret="+"hhpMdDjGMX"+"&access_token="+tokendel.replaceAll("'", "")+"&service_provider=NAVER";
-		
-		try {
-			String res = requestToServer(apiUrl);
-			model.addAttribute("res", res); //결과값 찍어주는용
-		    session.invalidate();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	session.setAttribute("uesrId", naverDto);
+    	
+ 
     }
-    */
+    
+
     
     
     
 
 
-//	public String naver(String id, String nickname, String email, String name, String token) {
-	public void naver(NaverLoginRequestDTO dto) {
+
+	public String naver(NaverLoginRequestDTO dto) {
+
+		log.info(dto.toString());
+		
+				
+		String naverDto = service.naverlogin(dto.getId(), dto.getToken(), dto.getName(), dto.getNickname(), dto.getEmail1(), dto.getEmail2(), dto.getProfile_color());
+
+		return naverDto;
 		
 
-//		System.out.println(id == null);
-//		System.out.println(token == null);
-//		System.out.println(nickname == null);
-//		System.out.println(email == null);
-//		System.out.println(name == null);
-//		System.out.println("id-----------" + dto.getId());
-//		System.out.println("tokenpw-----------" + dto.getToken());
-//		System.out.println("nickname-----------" + nickname);
-//		System.out.println("email-----------" + email);
-//		System.out.println("name-----------" + name);
-		log.info(dto.toString());
-
-				
-		service.naverlogin(dto.getId(), dto.getToken(), dto.getName(), dto.getNickname(), dto.getEmail());
-//		service.naverlogin(idi);
+	
 
 	}
+	
+	
 
 
     
- /*  
-	private String requestToServer(String apiURL, String headerStr) throws IOException {
-	    URL url = new URL(apiURL);
-	    HttpURLConnection con = (HttpURLConnection)url.openConnection();
-	    con.setRequestMethod("GET");
-	    System.out.println("header Str: " + headerStr);
-	    if(headerStr != null && !headerStr.equals("") ) {
-	      con.setRequestProperty("Authorization", headerStr);
-	    }
-	    int responseCode = con.getResponseCode();
-	    BufferedReader br;
-	    System.out.println("responseCode="+responseCode);
-	    if(responseCode == 200) { // 정상 호출
-	      br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-	    } else {  // 에러 발생
-	      br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-	    }
-	    String inputLine;
-	    StringBuffer res = new StringBuffer();
-	    while ((inputLine = br.readLine()) != null) {
-	      res.append(inputLine);
-	    }
-	    br.close();
-	    if(responseCode==200) {
-	    	String new_res=res.toString().replaceAll("&#39;", "");
-			 return new_res; 
-	    } else {
-	      return null;
-	    }
-	  }
-	  */
+
     
 
 
