@@ -1,3 +1,4 @@
+    user_id varchar2(30) NOT NULL,
 package com.spring.todoproject.board.entity;
 
 import java.time.LocalDateTime;
