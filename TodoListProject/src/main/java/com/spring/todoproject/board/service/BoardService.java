@@ -64,7 +64,7 @@ public class BoardService  implements IBoardService{
 			dtolist = mapper.boardListBest
 					(Page.builder()
 							.pageNo(pageNumber)
-							.amount(4)
+							.amount(5)
 							.build()
 							, userId);
 			
@@ -74,7 +74,7 @@ public class BoardService  implements IBoardService{
 			dtolist = mapper.boardListNew
 					(Page.builder()
 							.pageNo(pageNumber)
-							.amount(4)
+							.amount(5)
 							.build()
 							, userId);
 			
