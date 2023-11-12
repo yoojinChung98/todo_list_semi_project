@@ -266,10 +266,6 @@ prefix="c"%>
         updateTodoDate(selectedDate);
       }
 
-      nonClick.forEach((e) => {
-        e.addEventListener('click', handleClick);
-      });
-
       //투두리스트--------------------------------
       // 날짜 선택시 투두리스트 날짜 업데이트
       function updateTodoDate(selectedDate) {
