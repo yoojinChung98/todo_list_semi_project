@@ -1,11 +1,53 @@
+@font-face {
+  font-family: 'Nanum AmSeuTeReuDam';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_01@1.0/Amsterdam.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html {
   font-size: 62.5%;
   background-image: url(../assets/bg.png);
+  font-family: 'Nanum AmSeuTeReuDam', serif;
 }
 * {
   margin: auto;
   padding: 0;
+  font-family: 'Nanum AmSeuTeReuDam', serif;
 }
+
+
+html {
+/*   height: 260px;
+  width: 330px; */
+  overflow-y: auto;
+}
+html::-webkit-scrollbar {
+  width: 13px;
+}
+html::-webkit-scrollbar-thumb {
+  /* background-color: rgba(66, 66, 66, 0.2); */
+  background-color: #c4c4c4;
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+html::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
+}
+
+
+
+
+
+
+
+
+
+
 ul,
 li {
   list-style: none;
@@ -171,7 +213,7 @@ body {
   background-color: rgba(245, 245, 245, 0.4199999869);
 }
 .board-xLZ .boardtodo-QZF {
-  margin: 0rem 46.3rem 0rem 46.8rem;
+  margin: 2rem 46.3rem 0rem 46.8rem;
   width: calc(100% - 93.1rem);
   row-gap: 1.5rem;
   align-items: center;

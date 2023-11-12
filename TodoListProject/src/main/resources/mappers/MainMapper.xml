@@ -3,7 +3,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper
-	namespace="com.spring.todoproject.Main.mapper.IMainMapper">
+	namespace="com.spring.todoproject.main.mapper.IMainMapper">
 
 
 	<!-- 이렇게 해주는거 귀찮 그냥 이름 맞춰주자 -> 이러면 안됌. <resultMap type="" id=""></resultMap> 
@@ -24,6 +24,79 @@
 	<!-- CDATA: Character Data의 약자로, 마크업 언어에서 문자열 데이터를 표기하기 위한 문법입니다. 특수 문자 
 		등을 순수한 문자로 표기하고 싶을 때 사용하는 태그입니다. -->
 
+
+	<!-- 가장 많은 좋아요를 받은 추천 board_bno, board_like의 수 3개 추출-->
+	<select id="mostLikeBno" resultType="mostLikeRecomdResponseDTO">
+		SELECT brn.board_bno, brn.cnt AS boardLikeCnt
+        FROM
+        (
+            SELECT ROWNUM AS rn, bcnt.* 
+            FROM
+            (
+                SELECT count(*) AS cnt, board_bno
+                FROM board_like bl
+                GROUP BY board_bno
+                ORDER BY cnt DESC
+            ) bcnt
+        ) brn
+        <![CDATA[WHERE rn <= 4]]>
+	</select>
+	<!-- DTO 로 포장해도, 그냥 null 은 null 인대로 두고, 서비스에서 getProfColor 랑 조합하면 됨. -->
+	
+	
+	<!-- 매개값으로 받은 board_bno의 사용자의 프로필컬러 hex, bno, user_id, board_content 값을 받아옴-->
+	<select id="getMostLikeData" resultType="mostLikeRecomdResponseDTO">
+		SELECT u.profile_color, b.board_bno, b.user_id, content
+		FROM users u
+		INNER JOIN  board b
+		ON b.user_id = u.user_id
+		WHERE board_bno = #{boardBno}
+	</select>
+
+
+	<select id="getNickname" resultType="string">
+		SELECT nickname
+		FROM users
+		WHERE user_id = #{userId}
+	</select>
+	
+	
+	
+	<insert id="insertMyTodo">
+		INSERT INTO todo
+		VALUES (seq_todo_no.NEXTVAL, #{userId}, #{clickDate}, #{todoContent}, 0)
+	</insert>
+	
+	<select id="getlastTodoNo" resultType="string">
+		SELECT seq_todo_no.CURRVAL FROM DUAL
+	</select>
+	
+	<!-- checked true 일 때 -> 1 -->
+	<update id="updateMyTodoChkO">
+		update todo
+		SET CHK_BTN = 1
+		WHERE todo_no = #{todoNo}
+	</update>
+	
+	
+	<!-- checked false 일 때 -> 0 -->
+	<update id="updateMyTodoChkX">
+		update todo
+		SET CHK_BTN = 0
+		WHERE todo_no = #{todoNo}
+	</update>
+	
+	<!-- 클릭된 Date와 userId 에 해당하는 모든 todo 조회 -->
+	<select id="getTodoOfDate" resultType="todo">
+		SELECT * FROM todo
+		WHERE user_id = #{userId} AND click_date = #{clickDate}
+	</select>
+	
+	<!-- todo 삭제 -->
+	<delete id="deleteTodo">
+		DELETE FROM todo
+		WHERE todo_no = #{todoNo}
+	</delete>
 
 </mapper>
 

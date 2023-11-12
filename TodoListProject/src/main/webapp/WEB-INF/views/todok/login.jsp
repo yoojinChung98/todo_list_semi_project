@@ -62,7 +62,8 @@
                           </a>
                         </div>
                       </div>
-                      <button type="button" class="joinbtn-3CV"><a href="${pageContext.request.contextPath}/todok/join">회원가입</a></button>
+                      <button type="button" class="joinbtn-3CV"><a
+                          href="${pageContext.request.contextPath}/todok/join">회원가입</a></button>
                     </div>
                   </div>
                 </form>
@@ -104,7 +105,7 @@
                   // naver_id_login.setState(state);
                   // naver_id_login.setPopup();
                   // naver_id_login.init_naver_id_login();
-                  
+
 
                   /* console.log(state); */
 
