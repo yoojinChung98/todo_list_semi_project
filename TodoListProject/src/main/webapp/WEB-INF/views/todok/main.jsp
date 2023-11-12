@@ -451,18 +451,13 @@ prefix="c"%>
       }
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////
-
     // 처음 페이지가 로드되거나 날짜가 변경될 때, todo list 를 비우고 존재하는 todo를 채워넣는 함수
     function putTodo(data) {
 
       console.log('putTodo 접근완료');
 
       if (!firstAccess) {
-        console.log('todobody 지목');
-        // let $todobody = document.querySelector('.todobody');
         let todosContainer = document.getElementById('todos_id');
-        console.log('이제 내용물을 비우겠음');
         todosContainer.textContent = '';
       }
 
@@ -484,12 +479,9 @@ prefix="c"%>
         let checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.checked = d.chkBtn == 1 ? true : false;
-        console.log('값 추출해보겠음');
-        console.log(d.chkBtn);
         checkbox.addEventListener('change', function () {
 
           // 투두 checked 값을 동기화하기 위해 DB update 함수 호출
-          console.log('여기는 addTodo() 속 if 절 속 체크박스 추가!');
           updateCheckedTodo(tno.value, checkbox);
 
           // 체크박스 상태에 따라 completed 클래스를 추가 또는 제거
@@ -500,8 +492,6 @@ prefix="c"%>
         // 할 일 텍스트 표시
         let todoTextElement = document.createElement('span');
         todoTextElement.textContent = d.todoContent;
-        console.log('값 추출해보겠음');
-        console.log(d.todoContent);
 
         // 삭제 버튼 추가
         let deleteButton = document.createElement('div');
@@ -544,9 +534,7 @@ prefix="c"%>
 
       // 추가 후 입력 폼 초기화
       todoInput.value = '';
-      console.log('이제 firstAccess는 false');
       firstAccess = false;
-      console.log(firstAccess);
 
     }
 
