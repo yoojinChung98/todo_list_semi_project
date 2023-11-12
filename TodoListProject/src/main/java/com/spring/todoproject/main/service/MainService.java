@@ -87,6 +87,13 @@ public class MainService {
 		}
 		return dtoList;
 	}
+
+
+	// 투두리스트 삭제
+	public void deleteTodo(TodoRequestDTO dto) {
+		mapper.deleteTodo(dto);
+		
+	}
 	
 	// 매개값으로 받은 board_bno의 사용자의 프로필컬러 hex 값을 받아오는 서비스
 //	public String[] getProfColor(Integer[] boardBnos) {

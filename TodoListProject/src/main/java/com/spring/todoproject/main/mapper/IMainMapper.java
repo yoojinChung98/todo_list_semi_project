@@ -33,6 +33,9 @@ public interface IMainMapper {
 
 	// Date와 userId 에 해당하는 모든 todo리스트 가져옴
 	List<Todo> getTodoOfDate(Todo entity);
+
+	// 투두 삭제
+	void deleteTodo(TodoRequestDTO dto);
 	
 	
 

@@ -91,6 +91,12 @@
 		SELECT * FROM todo
 		WHERE user_id = #{userId} AND click_date = #{clickDate}
 	</select>
+	
+	<!-- todo 삭제 -->
+	<delete id="deleteTodo">
+		DELETE FROM todo
+		WHERE todo_no = #{todoNo}
+	</delete>
 
 </mapper>
 

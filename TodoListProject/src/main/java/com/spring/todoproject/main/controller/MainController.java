@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -98,6 +99,13 @@ public class MainController {
 		log.info(userId);
 		log.info(clickDate);
 		return service.getTodoOfDate(userId, clickDate);
+	}
+	
+	// 해당 투두 삭제
+	@DeleteMapping("/deleteTodo")
+	@ResponseBody
+	public void deleteTodo(@RequestBody TodoRequestDTO dto) {
+		service.deleteTodo(dto);
 	}
 	
 	
