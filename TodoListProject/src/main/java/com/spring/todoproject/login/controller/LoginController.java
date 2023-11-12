@@ -2,7 +2,6 @@ package com.spring.todoproject.login.controller;
 
 
 
-import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -33,27 +32,22 @@ public class LoginController {
 
 	}
 	
-	/*
-	@GetMapping("/main")
-	public void main(HttpSession session, Model model) {
-		//마이페이지는 로그인 한 사람만 이동 가능 -> 세션에 아이디가 있다!
-		String id = (String) session.getAttribute("login");
-		model.addAttribute("userInfo", id);
-	}
-	*/
 	
 	@PostMapping("/login")
 	public void login(String userId, String userPw, Model model, HttpSession session) {
 
 		 
 		 System.out.println("controller에 들어옴");
-		 
 		 System.out.printf("아이디:" + userId);
 		 System.out.printf("비밀번호:" + userPw);
 		 model.addAttribute("result", service.login(userId, userPw));
 		 String res = service.login(userId, userPw);
+		 System.out.println(res);
 		 
-		 if(res.equals("Success")) {
+		 
+		 
+		 if(res == "Success") {
+			 Object uesrId = userId;
 			 session.setAttribute("userId", userId);
 		 }
 
@@ -64,26 +58,27 @@ public class LoginController {
 
     
     
-    @GetMapping("/login/naver/{token}")
-    public void tokenpass(@PathVariable String token, HttpSession session) {
+    @PostMapping("/login/naver/{token}")
+    public String tokenpass(@PathVariable String token, HttpSession session) {
     	System.out.println("access_token: " + token);
     	
-    	String naverDto = naver(apiExamMemberProfile.parseJsonData(token));
-    	System.out.println("aaaaaaaaaaa: " + naverDto);
+    	Object naverturn = naver(apiExamMemberProfile.parseJsonData(token));
     	
-    	session.setAttribute("uesrId", naverDto);
+		Object uesrIdset = naverturn;
+    	session.setAttribute("userId", uesrIdset);
+    	
+    	Object userIdget = session.getAttribute("userId");
+    	
+    	return null;
     	
  
     }
     
 
     
-    
-    
 
 
-
-	public String naver(NaverLoginRequestDTO dto) {
+	public Object naver(NaverLoginRequestDTO dto) {
 
 		log.info(dto.toString());
 		
@@ -91,10 +86,6 @@ public class LoginController {
 		String naverDto = service.naverlogin(dto.getId(), dto.getToken(), dto.getName(), dto.getNickname(), dto.getEmail1(), dto.getEmail2(), dto.getProfile_color());
 
 		return naverDto;
-		
-
-	
-
 	}
 	
 	
