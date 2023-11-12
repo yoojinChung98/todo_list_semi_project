@@ -12,9 +12,10 @@ import lombok.ToString;
 @NoArgsConstructor @AllArgsConstructor
 public class TodoRequestDTO {
 
+	private int todoNo;
 	private String userId;
 	private String clickDate;
 	private String todoContent;
-	private int chkBtn;	
+	private boolean chkBtn;	
 	
 }

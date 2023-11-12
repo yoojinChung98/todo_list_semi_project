@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.todoproject.main.dto.MostLikeRecomdResponseDTO;
 import com.spring.todoproject.main.dto.TodoRequestDTO;
+import com.spring.todoproject.main.entity.Todo;
 import com.spring.todoproject.main.mapper.IMainMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -43,11 +44,29 @@ public class MainService {
 	}
 
 
-	public void insertTodo(TodoRequestDTO dto) {
+	public String insertMyTodo(TodoRequestDTO dto) {
+		log.info("서비스 접근완료!");
+		Todo entity = new Todo(dto);
+		mapper.insertMyTodo(entity);
 		
+		// 마지막 시퀀스값 반환
+		return mapper.getlastTodoNo();
 		
+	}
+
+	// todo의 checked 값을 변경하기 위한 서비스
+	public void updateMyTodoChk(TodoRequestDTO dto) {
 		
-		mapper.insertTodo();
+		log.info("서비스통과");
+		
+		Todo entity = new Todo(dto, dto.isChkBtn());
+		if(dto.isChkBtn()) {			
+			log.info("값이 tru네용");
+			mapper.updateMyTodoChkO(entity);
+		} else {
+			log.info("값이 flase네용");
+			mapper.updateMyTodoChkX(entity);
+		}
 		
 	}
 	

@@ -58,7 +58,7 @@ prefix="c"%>
           </div> -->
         <!-- 투두리스트 입력 폼 -->
         <div class="todo-input">
-          <input type="text" id="todoInput" placeholder="오늘의 할 일을 입력하고 ENTER를 눌러주세요" maxlength="18" /><br /><br />
+          <input type="text" id="todoInput" placeholder="오늘의 할 일을 입력하고 ENTER를 눌러주세요" maxlength="16" /><br /><br />
 
           <div class="addbuttondiv">
             <button class="addTodoButton" onclick="addTodo()">
@@ -285,7 +285,7 @@ prefix="c"%>
 
 
 
-    function sendTodoToServer() {
+    function sendTodoToServer(tno) {
 
       // 1. 보낼 객체 포장
       const req = {
@@ -294,10 +294,10 @@ prefix="c"%>
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          'userId': sessionStorage.getItem("login"),
+          // 'userId': sessionStorage.getItem("login"),
+          'userId': 'id2',
           'clickDate': document.querySelector('.tododate-EDf').textContent,
-          'todoContent': document.getElementById('todoInput'),
-          'chkBtn': document.querySelector('.todos input').checked,
+          'todoContent': document.getElementById('todoInput').value,
 
         }),
       };
@@ -308,9 +308,14 @@ prefix="c"%>
       console.log(req.textContent);
       console.log(req.chkBtn);
 
-      fetch('main/nickname', req)
-        .then(res => res.json())
+      fetch('main/todo', req)
+        .then(res => res.text())
         .then(data => {
+          console.log('비동기요청 완료.');
+
+          console.log(parseInt(data));
+          tno.id = parseInt(data);
+
 
         })
 
@@ -333,21 +338,52 @@ prefix="c"%>
 
 
 
+    function updateCheckedTodo(tno) {
 
+      // checked 값이 변경될 때마다 db 에 연결되어야 함. (update)
+      console.log('여기는 updateCheckedTodo');
+      console.log(parseInt(tno.id));
+      console.log(tno.checked);
+
+      fetch('main/checkedTodo', {
+          method: 'put',
+          headers: {
+            'ContentType': 'application/json',
+          },
+          body: JSON.stringify({
+            'todoNo': parseInt(tno.id),
+            'chkBtn': tno.checked,
+          })
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log('chk 업데이트 비동기통신 완료.');
+        })
+
+    }
 
 
 
 
     function addTodo() {
+
+
       const todoInput = document.getElementById('todoInput');
       const todoText = todoInput.value.trim();
 
       const addButton = document.querySelector('.todo-input button');
 
-      if (todoText !== '') {
-        // 할 일이 비어있지 않으면 DB에 입력값 INSERT
-        sendTodoToServer();
 
+      // todo_no  값을 저장할 hidden input 추가
+      const tno = document.createElement('input');
+      tno.type = 'hidden';
+      tno.classList.add('todo_no');
+
+
+      if (todoText !== '') {
+
+        // 할 일이 비어있지 않으면 DB에 입력값 INSERT
+        sendTodoToServer(tno);
 
 
 
@@ -355,10 +391,19 @@ prefix="c"%>
         const todosContainer = document.querySelector('.todos');
         const newTodoItem = document.createElement('li');
 
+
+
+
+
         // 체크박스 추가
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.addEventListener('change', function () {
+
+          // 투두 checked 값을 동기화하기 위해 DB update.
+          console.log('여기는 addTodo() 속 if 절 속 체크박스 추가!');
+          updateCheckedTodo(tno);
+
           // 체크박스 상태에 따라 completed 클래스를 추가 또는 제거
           newTodoItem.classList.toggle('completed', checkbox.checked);
           updateRemainingTodos();
@@ -391,6 +436,7 @@ prefix="c"%>
         });
 
         // 투두 아이템에 체크박스, 텍스트, 삭제 버튼 추가
+        newTodoItem.appendChild(tno);
         newTodoItem.appendChild(checkbox);
         newTodoItem.appendChild(todoTextElement);
         newTodoItem.appendChild(deleteButton);
@@ -429,12 +475,9 @@ prefix="c"%>
         fetch('main/mostlike')
           .then((res) => res.json())
           .then((data) => {
-            console.log('return 전', data);
             if (data == null) return;
 
             const $mostliketext = $mostLikeBox.firstElementChild;
-
-            console.log('return 넘김', data);
 
             const $firstSiblings =
               $mostliketext.nextElementSibling.childNodes;

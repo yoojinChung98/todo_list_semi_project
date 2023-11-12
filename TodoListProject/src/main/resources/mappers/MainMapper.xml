@@ -59,6 +59,32 @@
 		FROM users
 		WHERE user_id = #{userId}
 	</select>
+	
+	
+	
+	<insert id="insertMyTodo">
+		INSERT INTO todo
+		VALUES (seq_todo_no.NEXTVAL, #{userId}, #{clickDate}, #{todoContent}, 0)
+	</insert>
+	
+	<select id="getlastTodoNo" resultType="string">
+		SELECT seq_todo_no.CURRVAL FROM DUAL
+	</select>
+	
+	<!-- checked true 일 때 -> 1 -->
+	<update id="updateMyTodoChkO">
+		update todo
+		SET CHK_BTN = 1
+		WHERE todo_no = #{todoNO}
+	</update>
+	
+	
+	<!-- checked false 일 때 -> 0 -->
+	<update id="updateMyTodoChkX">
+		update todo
+		SET CHK_BTN = 0
+		WHERE todo_no = #{todoNO}
+	</update>
 
 </mapper>
 

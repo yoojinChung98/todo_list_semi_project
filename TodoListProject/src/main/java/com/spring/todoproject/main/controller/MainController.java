@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,9 +39,6 @@ public class MainController {
 	@Autowired
 	// 메인 페이지 서비스
 	private final MainService service;
-	
-//	@Autowired
-//	private final WeatherService serviceW;
 	
 	@Autowired
 	private final IWeatherMapper mapper;
@@ -79,11 +77,17 @@ public class MainController {
 	// 투두 데이터를 insert 하는 메서드
 	@PostMapping("/todo")
 	@ResponseBody
-	public void insertTodo(@RequestBody TodoRequestDTO dto) {
+	public String insertMyTodo(@RequestBody TodoRequestDTO dto) {
 		
-		service.insertTodo(dto);
-		
-		
+		return service.insertMyTodo(dto);
+	}
+	
+	// 투두 데이터 checked를 update 하는 메서드
+	@PutMapping("/checkedTodo")
+	@ResponseBody
+	public void updateMyTodoChk(@RequestBody TodoRequestDTO dto) {
+		log.info("update 컨트롤러 도착!");
+		service.updateMyTodoChk(dto);
 	}
 	
 	
