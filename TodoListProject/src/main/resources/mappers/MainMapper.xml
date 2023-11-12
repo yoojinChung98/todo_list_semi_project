@@ -75,7 +75,7 @@
 	<update id="updateMyTodoChkO">
 		update todo
 		SET CHK_BTN = 1
-		WHERE todo_no = #{todoNO}
+		WHERE todo_no = #{todoNo}
 	</update>
 	
 	
@@ -83,7 +83,7 @@
 	<update id="updateMyTodoChkX">
 		update todo
 		SET CHK_BTN = 0
-		WHERE todo_no = #{todoNO}
+		WHERE todo_no = #{todoNo}
 	</update>
 
 </mapper>

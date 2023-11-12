@@ -123,6 +123,15 @@ prefix="c"%>
   <script>
     // const login = sessionStorage.getItem('login');
 
+    // DB에서 해당하는 날짜에 등록된 todo리스트를 가져오는 함수
+    function getTodoOfDate() {
+
+    }
+
+    window.onload() {
+      getTodoOfDate();
+    }
+
     //--------------------------------달력-------------------------
     let date = new Date();
 
@@ -337,28 +346,18 @@ prefix="c"%>
 
 
 
-
-    function updateCheckedTodo(tno) {
-
-      // checked 값이 변경될 때마다 db 에 연결되어야 함. (update)
-      console.log('여기는 updateCheckedTodo');
-      console.log(parseInt(tno.id));
-      console.log(tno.checked);
-
+    // DB 의 checked 값을 변경하는 로직
+    function updateCheckedTodo(tno, checkbox) {
       fetch('main/checkedTodo', {
-          method: 'put',
-          headers: {
-            'ContentType': 'application/json',
-          },
-          body: JSON.stringify({
-            'todoNo': parseInt(tno.id),
-            'chkBtn': tno.checked,
-          })
+        method: 'put',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          'todoNo': parseInt(tno.id),
+          'chkBtn': checkbox.checked,
         })
-        .then(res => res.json())
-        .then(data => {
-          console.log('chk 업데이트 비동기통신 완료.');
-        })
+      })
 
     }
 
@@ -367,42 +366,32 @@ prefix="c"%>
 
     function addTodo() {
 
-
       const todoInput = document.getElementById('todoInput');
       const todoText = todoInput.value.trim();
-
       const addButton = document.querySelector('.todo-input button');
-
 
       // todo_no  값을 저장할 hidden input 추가
       const tno = document.createElement('input');
       tno.type = 'hidden';
       tno.classList.add('todo_no');
 
-
       if (todoText !== '') {
 
         // 할 일이 비어있지 않으면 DB에 입력값 INSERT
         sendTodoToServer(tno);
 
-
-
         // 할 일이 비어있지 않으면 투두리스트에 추가
         const todosContainer = document.querySelector('.todos');
         const newTodoItem = document.createElement('li');
-
-
-
-
 
         // 체크박스 추가
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.addEventListener('change', function () {
 
-          // 투두 checked 값을 동기화하기 위해 DB update.
+          // 투두 checked 값을 동기화하기 위해 DB update 함수 호출
           console.log('여기는 addTodo() 속 if 절 속 체크박스 추가!');
-          updateCheckedTodo(tno);
+          updateCheckedTodo(tno, checkbox);
 
           // 체크박스 상태에 따라 completed 클래스를 추가 또는 제거
           newTodoItem.classList.toggle('completed', checkbox.checked);
