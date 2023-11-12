@@ -436,7 +436,7 @@ prefix="c"%>
         newTodoItem.appendChild(checkbox);
         newTodoItem.appendChild(todoTextElement);
         newTodoItem.appendChild(deleteButton);
-        todosContainer.appendChild(newTodoItem);
+        todosContainer.appendChild();
 
         updateRemainingTodos(); // 추가 후 "남은 할 일 n개" 업데이트
 
@@ -470,7 +470,7 @@ prefix="c"%>
 
         // 할 일이 비어있지 않으면 투두리스트에 추가
         const todosContainer = document.querySelector('.todos'); //ul 태그
-        const newTodoItem = document.createElement('li');
+        let newTodoItem = document.createElement('li');
 
         // 체크박스 추가
         const checkbox = document.createElement('input');
