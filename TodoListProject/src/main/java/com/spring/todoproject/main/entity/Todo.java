@@ -46,7 +46,20 @@ public class Todo {
 	
 	
 	private LocalDate strToDate(String strDate) {
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
+		
+		
+		
+		
+		
+		DateTimeFormatter fmt;
+		if(strDate.indexOf("월") == 8) {
+			if(strDate.indexOf("일") == 12) {fmt = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");}
+			else {fmt = DateTimeFormatter.ofPattern("yyyy년 MM월 d일");}
+		}else {
+			if(strDate.indexOf("일") == 11) {fmt = DateTimeFormatter.ofPattern("yyyy년 M월 dd일");}
+			else {fmt = DateTimeFormatter.ofPattern("yyyy년 M월 d일");}
+		}
+		
         LocalDate ldt = LocalDate.parse(strDate, fmt);
         return ldt;
 	}	
