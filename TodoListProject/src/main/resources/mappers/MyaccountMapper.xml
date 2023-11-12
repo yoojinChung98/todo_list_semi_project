@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.spring.todoproject.myaccount.mapper.IMyaccountMapper">
+
+	<!-- 매개값으로 받은 유저아이디에 해당하는 보드의 수를 조회하는 인라인뷰와 이너조인. -->
+	<select id="getProfInfo" resultType="profBoxDTO">
+		SELECT u.profile_color, u.nickname, b_cnt.cnt AS boardCnt
+		FROM users u
+		INNER JOIN(
+		    SELECT COUNT(*) AS cnt, user_id
+		    FROM board
+		    WHERE user_id = #{userId}
+		    GROUP By user_id
+		) b_cnt
+		ON u.user_id = b_cnt.user_id
+		WHERE u.user_id = #{userId}
+	</select>
+	
+	<!-- 매개값으로 받은 유저아이디가 작성한 보드의 모든 좋아요수를 카운트.
+	board_like 테이블의 테이블행수 카운트 -> int로 반환. -->
+	<select id="getBoardLikeCnt" resultType="int">
+		SELECT COUNT(*) AS cnt
+		FROM(
+		    SELECT bl.board_bno, bl.like_click_id
+		    FROM board_like bl
+		    INNER JOIN (
+		        SELECT board_bno, user_id
+		        FROM board
+		        WHERE user_id = #{userId}
+		    ) b
+		    ON bl.board_bno = b.board_bno
+		)
+	</select>
+	
+	<!-- 유저 정보를 받아옴 -->
+	<select id="getUserInfo" resultType="users">
+		SELECT *
+		FROM users
+		WHERE user_id = #{userId}
+	</select>
+
+	<!-- 유저 닉네임과 비밀번호 수정 -->
+	<update id="updateNickPw">
+		UPDATE users SET
+		    nickname = #{nickName},
+		    user_pw = #{userPw},
+		    profile_color = #{profileColor}
+		WHERE user_id = #{userId}
+	</update>
+	
+	<!-- 유저 닉네임만 수정 (pw 가 null 일 경우) -->
+	<update id="updateNick">
+		UPDATE users SET
+		    nickname = #{nickName},
+		    profile_color = #{profileColor}
+		WHERE user_id = #{userId}
+	</update>
+
+
+</mapper>
