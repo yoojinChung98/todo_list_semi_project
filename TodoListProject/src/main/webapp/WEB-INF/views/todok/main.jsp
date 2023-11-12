@@ -47,7 +47,7 @@ prefix="c"%>
           <div class="remaining-todos">남은 할 일 OO개</div>
         </div>
         <div class="todobody">
-          <ul class="todos"></ul>
+          <ul class="todos" id="todos_id"></ul>
         </div>
         <!-- <div class="haveto-Voo"> css 적용 위해 남겨두기
             <img
@@ -255,10 +255,10 @@ prefix="c"%>
 
     // 날짜 선택시 투두리스트 날짜 업데이트
     function updateTodayTodoDate(selectedDate) {
-      const selectedMonth = date.getMonth() + 1;
-      const selectedYear = date.getFullYear();
-      const todayDate = date.getDate();
-      const todoDateElement = document.querySelector('.tododate-EDf');
+      let selectedMonth = date.getMonth() + 1;
+      let selectedYear = date.getFullYear();
+      let todayDate = date.getDate();
+      let todoDateElement = document.querySelector('.tododate-EDf');
       todoDateElement.textContent =
         selectedYear + '년 ' + selectedMonth + '월 ' + todayDate + '일';
     }
@@ -269,19 +269,20 @@ prefix="c"%>
     // DB에서 해당하는 날짜에 등록된 todo리스트를 가져오는 함수
     function getTodoOfDate(selectedDate) {
 
-      const selectedMonth = date.getMonth() + 1;
-      const selectedYear = date.getFullYear();
-      const todoDateElement = document.querySelector('.tododate-EDf');
-      const clickDate =
+      let selectedMonth = date.getMonth() + 1;
+      let selectedYear = date.getFullYear();
+      let todoDateElement = document.querySelector('.tododate-EDf');
+      let clickDate =
         selectedYear + '년 ' + selectedMonth + '월 ' + selectedDate + '일';
 
-      // const userId = login;
-      const userId = 'id2';
+      // let userId = login;
+      let userId = 'id2';
 
       fetch('main/todo/' + userId + '/' + clickDate)
         .then(res => res.json())
         .then(data => {
           console.log('비동기요청 완료.');
+          console.log(data);
 
           putTodo(data);
         })
@@ -388,11 +389,13 @@ prefix="c"%>
         sendTodoToServer(tno);
 
         // 할 일이 비어있지 않으면 투두리스트에 추가
-        const todosContainer = document.querySelector('.todos');
-        const newTodoItem = document.createElement('li');
+        let todosContainer = document.getElementById('todos_id');
+        console.log('.todos 값을 가져와보겠음');
+        console.log(todosContainer);
+        let newTodoItem = document.createElement('li');
 
         // 체크박스 추가
-        const checkbox = document.createElement('input');
+        let checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.addEventListener('change', function () {
 
@@ -406,17 +409,17 @@ prefix="c"%>
         });
 
         // 할 일 텍스트 표시
-        const todoTextElement = document.createElement('span');
+        let todoTextElement = document.createElement('span');
         todoTextElement.textContent = todoText;
 
         // 삭제 버튼 추가
-        const deleteButton = document.createElement('div');
+        let deleteButton = document.createElement('div');
         deleteButton.textContent = '';
         deleteButton.style.display = 'none'; // 초기에는 삭제 버튼을 숨김
         deleteButton.addEventListener('click', deleteTodo);
 
         // 이미지를 담을 img 요소 생성
-        const deleteImage = document.createElement('img');
+        let deleteImage = document.createElement('img');
         deleteImage.src =
           '${pageContext.request.contextPath}/assets/delete-icon.png'; // 이미지 경로 설정
         deleteImage.alt = 'Delete'; // 이미지 대체 텍스트 설정
@@ -436,7 +439,7 @@ prefix="c"%>
         newTodoItem.appendChild(checkbox);
         newTodoItem.appendChild(todoTextElement);
         newTodoItem.appendChild(deleteButton);
-        todosContainer.appendChild();
+        todosContainer.appendChild(newTodoItem);
 
         updateRemainingTodos(); // 추가 후 "남은 할 일 n개" 업데이트
 
@@ -454,28 +457,35 @@ prefix="c"%>
 
       if (!firstAccess) {
         console.log('todobody 지목');
-        const $todobody = document.querySelector('.todobody');
+        // let $todobody = document.querySelector('.todobody');
+        let todosContainer = document.getElementById('todos_id');
         console.log('이제 내용물을 비우겠음');
-        $todobody.textContent = '';
+        todosContainer.textContent = '';
       }
 
       // 요청을 통해 받은 값을 foreach 처럼 하나하나 까면 될 듯?
-      for (const d of data) {
+      for (d of data) {
 
         // todo_no  값을 저장할 hidden input 추가
-        const tno = document.createElement('input');
+        let tno = document.createElement('input');
         tno.type = 'hidden';
         tno.classList.add('todo_no');
         tno.value = d.todoNo;
+        console.log('값 추출해보겠음');
+        console.log(d.todoNo);
 
         // 할 일이 비어있지 않으면 투두리스트에 추가
-        const todosContainer = document.querySelector('.todos'); //ul 태그
+        let todosContainer = document.getElementById('todos_id');
+        console.log('.todos 값을 가져와보겠음');
+        console.log(todosContainer);
         let newTodoItem = document.createElement('li');
 
         // 체크박스 추가
-        const checkbox = document.createElement('input');
+        let checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.checked = d.chkBtn == 1 ? true : false;
+        console.log('값 추출해보겠음');
+        console.log(d.chkBtn);
         checkbox.addEventListener('change', function () {
 
           // 투두 checked 값을 동기화하기 위해 DB update 함수 호출
@@ -488,17 +498,19 @@ prefix="c"%>
         });
 
         // 할 일 텍스트 표시
-        const todoTextElement = document.createElement('span');
+        let todoTextElement = document.createElement('span');
         todoTextElement.textContent = d.todoContent;
+        console.log('값 추출해보겠음');
+        console.log(d.todoContent);
 
         // 삭제 버튼 추가
-        const deleteButton = document.createElement('div');
+        let deleteButton = document.createElement('div');
         deleteButton.textContent = '';
         deleteButton.style.display = 'none'; // 초기에는 삭제 버튼을 숨김
         deleteButton.addEventListener('click', deleteTodo);
 
         // 이미지를 담을 img 요소 생성
-        const deleteImage = document.createElement('img');
+        let deleteImage = document.createElement('img');
         deleteImage.src =
           '${pageContext.request.contextPath}/assets/delete-icon.png'; // 이미지 경로 설정
         deleteImage.alt = 'Delete'; // 이미지 대체 텍스트 설정
@@ -551,9 +563,9 @@ prefix="c"%>
 
     // 남은 할 일 계산 기능 함수
     function updateRemainingTodos() {
-      const remainingTodosElement =
+      let remainingTodosElement =
         document.querySelector('.remaining-todos');
-      const remainingTodosCount = document.querySelectorAll(
+      let remainingTodosCount = document.querySelectorAll(
         '.todos li:not(.completed)'
       ).length;
       remainingTodosElement.textContent =
@@ -564,7 +576,7 @@ prefix="c"%>
     window.onload = function () {
       const $mostLikeBox = document.querySelector('.mostlikemain-jhb');
 
-      getTodoOfDate(date.getDate);
+      getTodoOfDate(date.getDate());
 
       // '가장 많은 좋아요를 받은 할 일' 을 List<dto>로 받아오는 함수
       function getMostLike() {

@@ -95,6 +95,8 @@ public class MainController {
 	@ResponseBody
 	public List<TodoResponseDTO> getTodoOfDate(@PathVariable String userId, @PathVariable String clickDate){
 		log.info("todo/all 컨트롤러 도착!");
+		log.info(userId);
+		log.info(clickDate);
 		return service.getTodoOfDate(userId, clickDate);
 	}
 	
