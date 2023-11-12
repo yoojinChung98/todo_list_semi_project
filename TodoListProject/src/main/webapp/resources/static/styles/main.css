@@ -868,6 +868,11 @@ span.this:hover {
 .main-eLH .todos span {
   padding-left: 7px;
 }
+
+.main-eLH .todos .completed span {
+  text-decoration: line-through;
+}
+
 .main-eLH .todos div {
   float: right;
   cursor: pointer;

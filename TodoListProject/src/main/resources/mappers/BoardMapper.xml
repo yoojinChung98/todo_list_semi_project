@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.spring.todoproject.board.mapper.IBoardMapper">
+
+	<!-- 이렇게 해주는거 귀찮 그냥 이름 맞춰주자 -> 이러면 안됌. <resultMap type="" id=""></resultMap> 
+		Mybatis의 설정에 이름 바꾸는 설정을 작성해서 적용시켜준다 -> 더이상 이렇게 매번 작성하지 않아도 된다 -->
+
+	<insert id="boardRegist">
+		INSERT INTO board
+		(board_bno,content,user_id)
+		VALUES(seq_board_bno.NEXTVAL, #{content} , #{userId})
+	</insert>
+
+
+	<select id="boardListNew" resultType="boardMap">
+		SELECT * FROM
+			(
+				SELECT ROWNUM AS RN,
+					tbl.board_bno,
+					tbl.content,
+					tbl.board_regdate,
+					tbl.user_id,
+					tbl.likeCount,
+					NVL2(tbl.likeFlag, 1, 0) AS likeFlag,
+					tbl.profileColor,
+					tbl.nickname
+				FROM
+					(
+						SELECT a.*,
+							(SELECT count(*) FROM board_like b
+							WHERE b.board_bno = a.board_bno ) AS likeCount,
+							(SELECT '1' FROM board_like c
+							WHERE c.board_bno = a.board_bno
+							AND c.like_click_id = #{userId}) AS likeFlag,
+							(SELECT d.profile_color FROM users d
+							WHERE d.user_id = a.user_id) AS profileColor,
+							(SELECT e.nickname FROM users e
+							WHERE e.user_id = a.user_id) AS nickname
+						FROM board a
+						ORDER BY a.board_regdate DESC
+					) tbl
+			)
+         <![CDATA[
+        WHERE RN > #{paging.pageStart} AND RN <= #{paging.pageEnd}
+        ]]>
+	</select>
+
+	<select id="boardListBest" resultType="boardMap">
+		SELECT * FROM
+			(
+			SELECT ROWNUM AS RN, tbl2.* FROM
+				(
+					SELECT
+						tbl.board_bno,
+						tbl.content,
+						tbl.board_regdate,
+						tbl.user_id,
+						tbl.likeCount,
+						NVL2(tbl.likeFlag, 1, 0) AS likeFlag,
+						tbl.profileColor,
+						tbl.nickname
+					FROM
+						(
+							SELECT a.*,
+								(SELECT count(*) FROM board_like b
+								WHERE b.board_bno = a.board_bno ) AS likeCount,
+								(SELECT 1 FROM board_like c
+								WHERE c.board_bno = a.board_bno
+								AND c.like_click_id = #{userId}) AS likeFlag,
+								(SELECT d.profile_color FROM users d
+								WHERE d.user_id = a.user_id) AS profileColor,
+								(SELECT e.nickname FROM users e
+								WHERE e.user_id = a.user_id) AS nickname
+							FROM board a
+							ORDER BY a.board_regdate DESC
+						) tbl
+					ORDER BY tbl.likeCount DESC
+				) tbl2
+			)
+     <![CDATA[
+    WHERE RN > #{paging.pageStart} AND RN <= #{paging.pageEnd}
+    ]]>
+
+
+	</select>
+
+	<select id="getNickName" resultType="user">
+		SELECT *
+		FROM users
+		WHERE user_id = #{userId}
+	</select>
+	
+	<insert id="insertClickLike">
+		INSERT INTO board_like
+		VALUES (#{boardBno}, #{userId})
+	</insert>
+	
+	   
+	   
+	   <delete id="deleteClickLike">
+		DELETE FROM board_like
+		WHERE like_click_id=#{userId}
+		AND board_bno=#{boardBno}
+	</delete>
+	
+	<select id="getLikeCount" resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM board_like a
+		WHERE board_bno=#{boardBno}
+	</select>
+	
+	<select id="getLikeFlag" resultType="String">
+		SELECT
+			1
+		FROM board_like
+		WHERE board_bno=#{boardBno}
+		AND like_click_id = #{userId}
+	</select>
+	
+
+
+</mapper>

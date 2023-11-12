@@ -5,6 +5,11 @@
   font-weight: normal;
   font-style: normal;
 }
+.color-picker {
+  display: inline-block;
+  position: relative;
+}
+
 html {
   font-size: 62.5%;
   background-image: url(../assets/bg.png);
@@ -13,6 +18,7 @@ html {
 * {
   margin: auto;
   padding: 0;
+  font-family: 'Nanum AmSeuTeReuDam', serif;
 }
 ul,
 li {
