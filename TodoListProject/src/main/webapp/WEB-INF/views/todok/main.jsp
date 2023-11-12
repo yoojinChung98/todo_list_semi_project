@@ -359,14 +359,14 @@ prefix="c"%>
 
 
     // DB 의 checked 값을 변경하는 로직
-    function updateCheckedTodo(tno, checkbox) {
+    function updateCheckedTodo(tnoValue, checkbox) {
       fetch('${pageContext.request.contextPath}/main/checkedTodo', {
         method: 'put',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          'todoNo': parseInt(tno.id),
+          'todoNo': parseInt(tnoValue),
           'chkBtn': checkbox.checked,
         })
       })
@@ -385,6 +385,8 @@ prefix="c"%>
       const tno = document.createElement('input');
       tno.type = 'hidden';
       tno.classList.add('todo_no');
+      tno.id = 'todoNo'
+      tno.name = 'todoNo'
 
       if (todoText !== '') {
 
@@ -393,8 +395,6 @@ prefix="c"%>
 
         // 할 일이 비어있지 않으면 투두리스트에 추가
         let todosContainer = document.getElementById('todos_id');
-        console.log('.todos 값을 가져와보겠음');
-        console.log(todosContainer);
         let newTodoItem = document.createElement('li');
 
         // 체크박스 추가
@@ -474,13 +474,10 @@ prefix="c"%>
         tno.type = 'hidden';
         tno.classList.add('todo_no');
         tno.value = d.todoNo;
-        console.log('값 추출해보겠음');
-        console.log(d.todoNo);
+
 
         // 할 일이 비어있지 않으면 투두리스트에 추가
         let todosContainer = document.getElementById('todos_id');
-        console.log('.todos 값을 가져와보겠음');
-        console.log(todosContainer);
         let newTodoItem = document.createElement('li');
 
         // 체크박스 추가
@@ -493,7 +490,7 @@ prefix="c"%>
 
           // 투두 checked 값을 동기화하기 위해 DB update 함수 호출
           console.log('여기는 addTodo() 속 if 절 속 체크박스 추가!');
-          updateCheckedTodo(tno, checkbox);
+          updateCheckedTodo(tno.value, checkbox);
 
           // 체크박스 상태에 따라 completed 클래스를 추가 또는 제거
           newTodoItem.classList.toggle('completed', checkbox.checked);
