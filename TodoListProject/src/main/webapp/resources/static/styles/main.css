@@ -1,0 +1,941 @@
+@font-face {
+  font-family: 'Nanum AmSeuTeReuDam';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_01@1.0/Amsterdam.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+html {
+  font-size: 62.5%;
+  font-family: 'Nanum AmSeuTeReuDam';
+  background-image: url(../assets/bg.png);
+}
+* {
+  margin: auto;
+  padding: 0;
+  font-family: 'Nanum AmSeuTeReuDam', serif;
+}
+ul,
+li {
+  list-style: none;
+}
+input {
+  border: none;
+}
+body {
+  width: 192rem;
+  padding: -10rem;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-eLH {
+  width: 100%;
+  height: 108rem;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.main-eLH .auto-group-2bkm-y7f {
+  width: 140rem;
+  height: 64.95rem;
+  position: absolute;
+  left: 18.3rem;
+  top: 20rem;
+  display: flex;
+  align-items: flex-end;
+}
+.main-eLH .auto-group-2bkm-y7f .calendar-HPF {
+  margin: 0rem 66.2rem 0rem 0rem;
+  box-sizing: border-box;
+  padding: 3.8rem 4.5rem 6.6rem 4.4rem;
+  width: 49.5rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(0.2rem);
+  background-color: rgba(255, 255, 255, 0.4199999869);
+  border-radius: 4rem;
+  flex-shrink: 0;
+}
+/* 태승의 진짜 달력 ,이것을 제외하고 hpf 밑에는 모두 날려도 된다 - 날렸다 */
+.main-eLH .auto-group-2bkm-y7f .cal {
+  margin: 0rem 58rem 0rem 0rem;
+  box-sizing: border-box;
+  padding: 3.8rem 4.5rem 3.8rem 4.5rem;
+  width: 49.5rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(0.2rem);
+  background-color: rgba(255, 255, 255, 0.4199999869);
+  border-radius: 4rem;
+  flex-shrink: 0;
+  max-width: 100%; /* 최대 너비 설정 */
+  overflow: hidden; /* 넘치는 부분 숨김 */
+  height: 645px;
+}
+
+.cal-title {
+  margin-bottom: 1.5rem;
+  width: 100%;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2125;
+  color: #8dc3e1;
+  font-family: Inter, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 34px;
+  letter-spacing: 2px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  color: #000000;
+  padding: 10px 30px 10px 20px;
+  border-bottom: 1px solid #8d8b8b;
+  width: 32rem;
+  margin: 10px 0 0 0;
+}
+
+.nav-btn {
+  color: #000;
+  border: none;
+  cursor: pointer;
+  font-size: 28px;
+  font-family: 'Nanum AmSeuTeReuDam';
+  background-color: transparent;
+  font-weight: bold;
+  transition: color 0.3s; /* 부드러운 색상 변화를 위한 트랜지션 추가 */
+}
+
+.nav-btn:hover {
+  color: #f39c12;
+}
+
+.year-month {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 10px 25px 10px;
+  height: 370px;
+  margin: 0;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 40px);
+  gap: 5px;
+  margin: 5px 0px 5px 0px;
+}
+
+.day {
+  text-align: center;
+  font-weight: bold;
+  font-size: 26px;
+  padding: 10px;
+  color: #000000;
+}
+
+.dates {
+  display: grid;
+  grid-template-columns: repeat(7, 40px);
+  gap: 5px;
+  margin: 0;
+}
+
+.date {
+  text-align: center;
+  padding: 3px;
+  height: 45px;
+  font-size: 26px;
+}
+.this {
+  color: #000;
+}
+.today {
+  font-weight: bold;
+}
+.click {
+  color: #8dc3e1;
+  font-size: 40px; /* 폰트 크기를 18px로 변경 */
+  position: relative;
+  top: -1rem;
+}
+
+.other {
+  color: #888;
+  font-weight: 500;
+}
+
+span.this:hover {
+  cursor: pointer;
+  color: #f39c12;
+}
+
+.days .day:first-child {
+  color: #ff6363;
+}
+.days .day:last-child {
+  color: #2a98fe;
+}
+
+/* 달력 끝 */
+.main-eLH .auto-group-2bkm-y7f .boardmain-fNy {
+  width: 49.5rem;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.main-eLH .auto-group-2bkm-y7f .boardmain-fNy .recommain-CNu {
+  margin-bottom: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.main-eLH .auto-group-2bkm-y7f .boardmain-fNy .recommain-CNu .recomtext-9Z3 {
+  margin-bottom: 10px;
+  display: flex;
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.2575;
+  color: #70665d;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.main-eLH .auto-group-2bkm-y7f .boardmain-fNy .recommain-CNu .recomtodo-Fry {
+  box-sizing: border-box;
+  padding: 0.9rem 3.8rem 1.5rem 3rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(0.2rem);
+  background-color: rgba(255, 255, 255, 0.400000006);
+  border-radius: 4rem;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .recommain-CNu
+  .recomtodo-Fry
+  .profilecircle-BVj {
+  width: 6.5rem;
+  height: 6.5rem;
+  background-color: #d9d9d9;
+  border-radius: 3.25rem;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .recommain-CNu
+  .recomtodo-Fry
+  .auto-group-ag6m-uAq {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .recommain-CNu
+  .recomtodo-Fry
+  .auto-group-ag6m-uAq
+  .userid-SRf {
+  margin-bottom: 0.25rem;
+  margin-left: 0px;
+  display: flex;
+  font-size: 3.4rem;
+  font-weight: 400;
+  line-height: 1.2575;
+  color: #70665d;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .recommain-CNu
+  .recomtodo-Fry
+  .auto-group-ag6m-uAq
+  .this-is-one-line-content-vrd {
+  display: flex;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #6f655d;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .recommain-CNu
+  .recomtodo-Fry
+  .auto-group-drq3-G9o {
+  margin-top: 1.9rem;
+  width: 5rem;
+  height: 6.7rem;
+  position: relative;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .recommain-CNu
+  .recomtodo-Fry
+  .auto-group-drq3-G9o
+  .k-CZF {
+  width: 4.5rem;
+  height: 2.6rem;
+  position: absolute;
+  left: 0.2rem;
+  top: 4.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.2575;
+  color: #000000;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .recommain-CNu
+  .recomtodo-Fry
+  .auto-group-drq3-G9o
+  .like-Umf {
+  width: 5rem;
+  height: 4.4rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: contain;
+  vertical-align: top;
+}
+.main-eLH .auto-group-2bkm-y7f .boardmain-fNy .mostlikemain-jhb {
+  margin-bottom: 0rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketext-gcq {
+  margin-bottom: 10px;
+  display: flex;
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.2575;
+  color: #70665d;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo1-z7j {
+  margin-bottom: 1.5rem;
+  box-sizing: border-box;
+  padding: 1rem 4rem 1.5rem 3rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.400000006);
+  border-radius: 4rem;
+  box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.150000006);
+  backdrop-filter: blur(0.2rem);
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo1-z7j
+  .profilecircle-i3j {
+  width: 6.5rem;
+  height: 6.5rem;
+  background-color: #d9d9d9;
+  border-radius: 3.25rem;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo1-z7j
+  .auto-group-4rdx-2aD {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo1-z7j
+  .auto-group-4rdx-2aD
+  .userid-AgR {
+  margin-bottom: 0.25rem;
+  margin-left: 0px;
+  display: flex;
+  font-size: 3.4rem;
+  font-weight: 400;
+  line-height: 1.2575;
+  color: #70665d;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo1-z7j
+  .auto-group-4rdx-2aD
+  .this-is-one-line-content-6py {
+  display: flex;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #6f655d;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo1-z7j
+  .auto-group-zp4z-EwB {
+  margin-top: 1.9rem;
+  width: 5rem;
+  height: 6.8rem;
+  position: relative;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo1-z7j
+  .auto-group-zp4z-EwB
+  .k-b13 {
+  width: 4.5rem;
+  height: 2.6rem;
+  position: absolute;
+  left: 0.2rem;
+  top: 4.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.2575;
+  color: #000000;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo1-z7j
+  .auto-group-zp4z-EwB
+  .like-TJ9 {
+  width: 5rem;
+  height: 4.4rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: contain;
+  vertical-align: top;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo2-vBj {
+  margin-bottom: 1.5rem;
+  box-sizing: border-box;
+  padding: 1rem 4rem 1.5rem 3rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.400000006);
+  border-radius: 4rem;
+  box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.150000006);
+  backdrop-filter: blur(0.2rem);
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo2-vBj
+  .profilecircle-c4Z {
+  width: 6.5rem;
+  height: 6.5rem;
+  background-color: #d9d9d9;
+  border-radius: 3.25rem;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo2-vBj
+  .auto-group-acz5-8Yh {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo2-vBj
+  .auto-group-acz5-8Yh
+  .userid-sWH {
+  margin-bottom: 0.25rem;
+  margin-left: 0px;
+  display: flex;
+  font-size: 3.4rem;
+  font-weight: 400;
+  line-height: 1.2575;
+  color: #70665d;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo2-vBj
+  .auto-group-acz5-8Yh
+  .this-is-one-line-content-1Mb {
+  display: flex;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #6f655d;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo2-vBj
+  .auto-group-mmry-hER {
+  margin-top: 1.9rem;
+  width: 5rem;
+  height: 6.8rem;
+  position: relative;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo2-vBj
+  .auto-group-mmry-hER
+  .k-dtm {
+  width: 4.5rem;
+  height: 2.6rem;
+  position: absolute;
+  left: 0.2rem;
+  top: 4.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.2575;
+  color: #000000;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo2-vBj
+  .auto-group-mmry-hER
+  .like-weZ {
+  width: 5rem;
+  height: 4.4rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: contain;
+  vertical-align: top;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo3-DMB {
+  margin-bottom: 1.5rem;
+  box-sizing: border-box;
+  padding: 1rem 4rem 1.5rem 3rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.400000006);
+  border-radius: 4rem;
+  box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.150000006);
+  backdrop-filter: blur(0.2rem);
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo3-DMB
+  .profilecircle-Lgh {
+  width: 6.5rem;
+  height: 6.5rem;
+  background-color: #d9d9d9;
+  border-radius: 3.25rem;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo3-DMB
+  .auto-group-uzsu-qtM {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo3-DMB
+  .auto-group-uzsu-qtM
+  .userid-yUm {
+  margin-bottom: 0.25rem;
+  margin-left: 0px;
+  display: flex;
+  font-size: 3.4rem;
+  font-weight: 400;
+  line-height: 1.2575;
+  color: #70665d;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo3-DMB
+  .auto-group-uzsu-qtM
+  .this-is-one-line-content-VCD {
+  display: flex;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #6f655d;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo3-DMB
+  .auto-group-dwd3-dJR {
+  margin-top: 1.9rem;
+  width: 5rem;
+  height: 6.8rem;
+  position: relative;
+  flex-shrink: 0;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo3-DMB
+  .auto-group-dwd3-dJR
+  .k-aDf {
+  width: 4.5rem;
+  height: 2.6rem;
+  position: absolute;
+  left: 0.2rem;
+  top: 4.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.2575;
+  color: #000000;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+}
+.main-eLH
+  .auto-group-2bkm-y7f
+  .boardmain-fNy
+  .mostlikemain-jhb
+  .mostliketodo3-DMB
+  .auto-group-dwd3-dJR
+  .like-dhj {
+  width: 5rem;
+  height: 4.4rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: contain;
+  vertical-align: top;
+}
+.main-eLH .auto-group-2bkm-y7f .boardmain-fNy .goboardbtn-WWd {
+  border: transparent;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.2rem;
+  font-weight: 400;
+  line-height: 1.2575;
+  letter-spacing: 0.32rem;
+  color: #8dc3e1;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+  box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(0.2rem);
+  background-color: rgba(255, 255, 255, 0.400000006);
+  border-radius: 4rem;
+  flex-shrink: 0;
+}
+.main-eLH .todayslist-j8V {
+  box-sizing: border-box;
+  padding: 5.9rem 5.5rem 3.9rem 6.8rem;
+  width: 49.5rem;
+  height: 64.5rem;
+  position: absolute;
+  left: 54rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.150000006);
+  backdrop-filter: blur(0.2rem);
+  background-color: rgba(255, 255, 255, 0.4199999869);
+  border-radius: 4rem;
+}
+.main-eLH .todayslist-j8V .todoheader-bRb {
+  box-sizing: border-box;
+  padding-bottom: 0.3rem;
+  width: 36.5rem;
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  border-bottom: solid 0.1rem rgba(66, 66, 66, 0.200000003);
+  flex-shrink: 0;
+  height: 135px;
+  margin: 0;
+}
+.main-eLH .todayslist-j8V .todoheader-bRb .todotitle-ux5 {
+  margin-top: 0;
+  margin-bottom: 2px;
+  width: 100%;
+  text-align: center;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 1.2125;
+  color: #8dc3e1;
+  font-family: Inter, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+  /*이건 타이틀 입니다*/
+}
+.main-eLH .todayslist-j8V .todoheader-bRb .tododate-EDf {
+  width: 100%;
+  height: 25px;
+  text-align: right;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2575;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin: 0;
+  margin-bottom: 1px;
+  /* 이건 날짜 나타나는 부분 입니다 */
+}
+.remaining-todos {
+  text-align: right;
+  height: 25px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2575;
+  height: 30px;
+  color: #38d9a9;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin: 0;
+  /*남은 할일 나타나는 부분입니다*/
+}
+.todobody {
+  height: 260px;
+  width: 350px;
+  overflow-y: auto;
+}
+.todobody::-webkit-scrollbar {
+  width: 10px;
+}
+.todobody::-webkit-scrollbar-thumb {
+  background-color: rgba(66, 66, 66, 0.2);
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+.todobody::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
+}
+/*스크롤바 css*/
+
+.main-eLH .todos {
+  list-style: none;
+  padding: 0;
+  max-height: 40rem; /* 최대 높이 설정 */
+  font-size: 26px;
+  /* 할 일 목록이 추가되는 부분입니다 */
+}
+.main-eLH .todos li {
+  height: 36px;
+  width: 340px;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+.main-eLH .todos span {
+  padding-left: 7px;
+}
+.main-eLH .todos div {
+  float: right;
+}
+.main-eLH .todayslist-j8V .todoheader-bRb .auto-group-g5y5-xfT .tododay-Cph {
+  text-align: right;
+  font-size: 1.7rem;
+  font-weight: 400;
+  line-height: 1.2575;
+  color: #5f4c3b;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.todo-input {
+  margin-top: 0;
+}
+.addbuttondiv {
+  align-items: center;
+  display: flex;
+}
+
+#todoInput {
+  padding: 6px; /* 내부 여백 추가 */
+  width: 320px; /* 너비를 지정 */
+  height: 30px; /* 높이를 지정 */
+  border-radius: 8px;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  font-size: 21px;
+  background-color: rgba(250, 250, 250, 0.5); /* 배경에 50% 투명도 */
+  /* 인풋 입력창 */
+}
+
+/* 추가 버튼 */
+.addTodoButton {
+  border: transparent;
+  background-color: transparent;
+}
+
+.main-eLH .mainheader-LrM {
+  box-sizing: border-box;
+  padding: 1rem 4.2rem 0.9rem 3.2rem;
+  width: 159rem;
+  height: 14.7rem;
+  position: absolute;
+  left: 16.5rem;
+  top: 4rem;
+  display: flex;
+  align-items: center;
+  background-color: rgba(52, 152, 219, 0.5500000119);
+  border-radius: 3rem;
+  box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.150000006);
+  backdrop-filter: blur(0.2rem);
+}
+.main-eLH .mainheader-LrM .headuserprofile-Ewj {
+  width: 9rem;
+  height: 9rem;
+  background-color: #ebebeb;
+  border-radius: 4.5rem;
+  flex-shrink: 0;
+}
+.main-eLH .mainheader-LrM .auto-group-rn1p-xcq {
+  margin-right: 94.7rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.main-eLH .mainheader-LrM .auto-group-rn1p-xcq .userid-DHs {
+  display: flex;
+  font-size: 5rem;
+  font-weight: 400;
+  line-height: 1.2575;
+  letter-spacing: 0.35rem;
+  color: #70665d;
+  font-family: Nanum AmSeuTeReuDam, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.main-eLH .mainheader-LrM .todoksidelogo-78M {
+  width: 13rem;
+  height: 10rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
