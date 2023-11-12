@@ -1,7 +1,9 @@
 package com.spring.todoproject.main.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -66,19 +68,24 @@ public class MainService {
 	}
 
 
-	public TodoResponseDTO getTodoOfDate(TodoRequestDTO dto) {
+	public List<TodoResponseDTO> getTodoOfDate(String userId, String clickDate) {
 		log.info("서비스 도착");
-		Todo entity = new Todo(dto, dto.getClickDate());
-		Todo result = mapper.getTodoOfDate(entity);
 		
-		TodoResponseDTO resDto = TodoResponseDTO.builder()
-				.todoNo(result.getTodoNo())
-				.userId(result.getUserId())
-				.todoContent(result.getTodoContent())
-				.chkBtn(result.getChkBtn())
-				.build();
-		System.out.println("resDto는 : "+resDto);
-		return resDto;
+		List<Todo> result = mapper.getTodoOfDate(new Todo(userId, clickDate));
+		List<TodoResponseDTO> dtoList = new ArrayList<>();
+		
+		for(Todo todo : result) {
+			TodoResponseDTO resDto = TodoResponseDTO.builder()
+					.todoNo(todo.getTodoNo())
+					.userId(todo.getUserId())
+					.todoContent(todo.getTodoContent())
+					.chkBtn(todo.getChkBtn())
+					.build();
+			
+			dtoList.add(resDto);
+			System.out.println("resDto는 : "+resDto);
+		}
+		return dtoList;
 	}
 	
 	// 매개값으로 받은 board_bno의 사용자의 프로필컬러 hex 값을 받아오는 서비스

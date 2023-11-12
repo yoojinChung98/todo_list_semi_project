@@ -121,58 +121,11 @@ prefix="c"%>
   </div>
 
   <script>
+    console.log('firstAccess는 true');
+    let firstAccess = true;
     // const login = sessionStorage.getItem('login');
 
-    // DB에서 해당하는 날짜에 등록된 todo리스트를 가져오는 함수
-    function getTodoOfDate() {
 
-      // 1. 보낼 객체 포장
-      const req = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          // 'userId': sessionStorage.getItem("login"),
-          'userId': 'id2',
-          'clickDate': document.querySelector('.tododate-EDf').textContent,
-        }),
-      };
-
-      // 2. 비동기 요청 보냄
-      console.log(req.userId);
-      console.log(req.clickDate);
-      console.log(req.textContent);
-      console.log(req.chkBtn);
-
-      fetch('main/todo/all', req)
-        .then(res => res.json())
-        .then(data => {
-          console.log('비동기요청 완료.');
-
-          console.log(data.todoNo);
-          console.log(data.userId);
-          console.log(data.todoContent);
-          console.log(data.chkBtn);
-
-
-
-        })
-
-
-
-
-
-
-
-    }
-
-    window.onload() {
-      getTodoOfDate();
-
-
-      addTodo(); // 여기 함수랑 비슷한 느낌으로 add 가 아닌 putTodo를 만들어서 요소 삽입해놓자(반복문써도 ㄱㅊ할 듯?)
-    }
 
     //--------------------------------달력-------------------------
     let date = new Date();
@@ -279,7 +232,6 @@ prefix="c"%>
     function handleClick(event) {
 
       // 날짜가 변경될 때, 해당하는 날짜의 todo 리스트를 다시 불러옴(여기 내부에 addtodo? 그거 넣자.).
-      getTodoOfDate();
 
       // 기존에 선택한 날짜에 대한 클래스를 찾아 제거
       document.querySelectorAll('.this.click').forEach((e) => {
@@ -292,6 +244,7 @@ prefix="c"%>
       // 클릭한 날짜에 해당하는 투두리스트 날짜표현 업데이트
       const selectedDate = +event.target.innerText;
       updateTodoDate(selectedDate);
+      getTodoOfDate(selectedDate);
     }
 
     nonClick.forEach((e) => {
@@ -313,6 +266,32 @@ prefix="c"%>
     updateTodayTodoDate();
 
 
+    // DB에서 해당하는 날짜에 등록된 todo리스트를 가져오는 함수
+    function getTodoOfDate(selectedDate) {
+
+      const selectedMonth = date.getMonth() + 1;
+      const selectedYear = date.getFullYear();
+      const todoDateElement = document.querySelector('.tododate-EDf');
+      const clickDate =
+        selectedYear + '년 ' + selectedMonth + '월 ' + selectedDate + '일';
+
+      // const userId = login;
+      const userId = 'id2';
+
+      fetch('main/todo/' + userId + '/' + clickDate)
+        .then(res => res.json())
+        .then(data => {
+          console.log('비동기요청 완료.');
+
+          putTodo(data);
+        })
+
+    }
+
+
+
+
+
     // 날짜 선택시 투두리스트 날짜 업데이트
     function updateTodoDate(selectedDate) {
       const selectedMonth = date.getMonth() + 1;
@@ -320,6 +299,7 @@ prefix="c"%>
       const todoDateElement = document.querySelector('.tododate-EDf');
       todoDateElement.textContent =
         selectedYear + '년 ' + selectedMonth + '월 ' + selectedDate + '일';
+
     }
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -467,29 +447,35 @@ prefix="c"%>
 
     //////////////////////////////////////////////////////////////////////////////////////////
 
-    function putTodo() {
+    // 처음 페이지가 로드되거나 날짜가 변경될 때, todo list 를 비우고 존재하는 todo를 채워넣는 함수
+    function putTodo(data) {
 
-      const todoInput = document.getElementById('todoInput');
-      const todoText = todoInput.value.trim();
-      const addButton = document.querySelector('.todo-input button');
+      console.log('putTodo 접근완료');
 
-      // todo_no  값을 저장할 hidden input 추가
-      const tno = document.createElement('input');
-      tno.type = 'hidden';
-      tno.classList.add('todo_no');
+      if (!firstAccess) {
+        console.log('todobody 지목');
+        const $todobody = document.querySelector('.todobody');
+        console.log('이제 내용물을 비우겠음');
+        $todobody.textContent = '';
+      }
 
-      if (todoText !== '') {
+      // 요청을 통해 받은 값을 foreach 처럼 하나하나 까면 될 듯?
+      for (const d of data) {
 
-        // 할 일이 비어있지 않으면 DB에 입력값 INSERT
-        sendTodoToServer(tno);
+        // todo_no  값을 저장할 hidden input 추가
+        const tno = document.createElement('input');
+        tno.type = 'hidden';
+        tno.classList.add('todo_no');
+        tno.value = d.todoNo;
 
         // 할 일이 비어있지 않으면 투두리스트에 추가
-        const todosContainer = document.querySelector('.todos');
+        const todosContainer = document.querySelector('.todos'); //ul 태그
         const newTodoItem = document.createElement('li');
 
         // 체크박스 추가
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
+        checkbox.checked = d.chkBtn == 1 ? true : false;
         checkbox.addEventListener('change', function () {
 
           // 투두 checked 값을 동기화하기 위해 DB update 함수 호출
@@ -503,7 +489,7 @@ prefix="c"%>
 
         // 할 일 텍스트 표시
         const todoTextElement = document.createElement('span');
-        todoTextElement.textContent = todoText;
+        todoTextElement.textContent = d.todoContent;
 
         // 삭제 버튼 추가
         const deleteButton = document.createElement('div');
@@ -534,11 +520,22 @@ prefix="c"%>
         newTodoItem.appendChild(deleteButton);
         todosContainer.appendChild(newTodoItem);
 
-        updateRemainingTodos(); // 추가 후 "남은 할 일 n개" 업데이트
-
-        // 추가 후 입력 폼 초기화
-        todoInput.value = '';
       }
+
+
+
+
+
+
+
+      updateRemainingTodos(); // 추가 후 "남은 할 일 n개" 업데이트
+
+      // 추가 후 입력 폼 초기화
+      todoInput.value = '';
+      console.log('이제 firstAccess는 false');
+      firstAccess = false;
+      console.log(firstAccess);
+
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -566,6 +563,8 @@ prefix="c"%>
 
     window.onload = function () {
       const $mostLikeBox = document.querySelector('.mostlikemain-jhb');
+
+      getTodoOfDate(date.getDate);
 
       // '가장 많은 좋아요를 받은 할 일' 을 List<dto>로 받아오는 함수
       function getMostLike() {

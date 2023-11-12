@@ -39,16 +39,15 @@ public class Todo {
 	}
 	
 	// getTodoOfDate 시 사용할 생성자
-	public Todo(TodoRequestDTO reqDto, String clickDate) {
-		this.userId = reqDto.getUserId();
-		this.clickDate = strToDate(reqDto.getClickDate());
+	public Todo(String userId, String clickDate) {
+		this.userId = userId;
+		this.clickDate = strToDate(clickDate);
 	}
 	
 	
 	private LocalDate strToDate(String strDate) {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
         LocalDate ldt = LocalDate.parse(strDate, fmt);
-        System.out.println("변환된 ldt값 : "+ldt);
         return ldt;
 	}	
 	

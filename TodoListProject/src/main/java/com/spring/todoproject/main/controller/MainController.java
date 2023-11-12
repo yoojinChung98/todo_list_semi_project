@@ -91,11 +91,11 @@ public class MainController {
 	}
 	
 	// 해당하는 날짜의 해당 유저의 todo 리스트 모두 조회하는 메서드
-	@GetMapping("/todo/all")
+	@GetMapping("/todo/{userId}/{clickDate}")
 	@ResponseBody
-	public TodoResponseDTO getTodoOfDate(@RequestBody TodoRequestDTO dto){
+	public List<TodoResponseDTO> getTodoOfDate(@PathVariable String userId, @PathVariable String clickDate){
 		log.info("todo/all 컨트롤러 도착!");
-		return service.getTodoOfDate(dto);
+		return service.getTodoOfDate(userId, clickDate);
 	}
 	
 	

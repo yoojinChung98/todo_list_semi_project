@@ -32,7 +32,7 @@ public interface IMainMapper {
 	void updateMyTodoChkX(Todo entity);
 
 	// Date와 userId 에 해당하는 모든 todo리스트 가져옴
-	Todo getTodoOfDate(Todo entity);
+	List<Todo> getTodoOfDate(Todo entity);
 	
 	
 
