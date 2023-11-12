@@ -20,6 +20,8 @@
 		<typeAlias type="com.spring.todoproject.main.dto.MostLikeRecomdResponseDTO" alias="mostLikeRecomdResponseDTO" />
 		<typeAlias type="com.spring.todoproject.myaccount.dto.ProfBoxDTO" alias="profBoxDTO" />
 		<typeAlias type="com.spring.todoproject.myaccount.entity.Users" alias="users" />
+		<typeAlias type="com.spring.todoproject.main.entity.Todo" alias="todo" />
+		
 		
 		<!-- <typeAlias type="com.spring.todoproject.freeboard.entity.FreeBoard" alias="freeboard" /> -->
 		<!-- <typeAlias type="com.spring.todoproject.user.entity.User" alias="user" /> -->

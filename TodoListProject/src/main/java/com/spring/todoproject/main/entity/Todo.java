@@ -38,6 +38,12 @@ public class Todo {
 		this.chkBtn = boolToInt(reqDto.isChkBtn());
 	}
 	
+	// getTodoOfDate 시 사용할 생성자
+	public Todo(TodoRequestDTO reqDto, String clickDate) {
+		this.userId = reqDto.getUserId();
+		this.clickDate = strToDate(reqDto.getClickDate());
+	}
+	
 	
 	private LocalDate strToDate(String strDate) {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");

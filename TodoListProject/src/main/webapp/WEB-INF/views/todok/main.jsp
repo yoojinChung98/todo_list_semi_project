@@ -126,10 +126,52 @@ prefix="c"%>
     // DB에서 해당하는 날짜에 등록된 todo리스트를 가져오는 함수
     function getTodoOfDate() {
 
+      // 1. 보낼 객체 포장
+      const req = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          // 'userId': sessionStorage.getItem("login"),
+          'userId': 'id2',
+          'clickDate': document.querySelector('.tododate-EDf').textContent,
+        }),
+      };
+
+      // 2. 비동기 요청 보냄
+      console.log(req.userId);
+      console.log(req.clickDate);
+      console.log(req.textContent);
+      console.log(req.chkBtn);
+
+      fetch('main/todo/all', req)
+        .then(res => res.json())
+        .then(data => {
+          console.log('비동기요청 완료.');
+
+          console.log(data.todoNo);
+          console.log(data.userId);
+          console.log(data.todoContent);
+          console.log(data.chkBtn);
+
+
+
+        })
+
+
+
+
+
+
+
     }
 
     window.onload() {
       getTodoOfDate();
+
+
+      addTodo(); // 여기 함수랑 비슷한 느낌으로 add 가 아닌 putTodo를 만들어서 요소 삽입해놓자(반복문써도 ㄱㅊ할 듯?)
     }
 
     //--------------------------------달력-------------------------
@@ -235,6 +277,10 @@ prefix="c"%>
     const nonClick = document.querySelectorAll('.this');
 
     function handleClick(event) {
+
+      // 날짜가 변경될 때, 해당하는 날짜의 todo 리스트를 다시 불러옴(여기 내부에 addtodo? 그거 넣자.).
+      getTodoOfDate();
+
       // 기존에 선택한 날짜에 대한 클래스를 찾아 제거
       document.querySelectorAll('.this.click').forEach((e) => {
         e.classList.remove('click');
@@ -254,8 +300,6 @@ prefix="c"%>
 
     //투두리스트--------------------------------
 
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
     // 날짜 선택시 투두리스트 날짜 업데이트
     function updateTodayTodoDate(selectedDate) {
       const selectedMonth = date.getMonth() + 1;
@@ -267,7 +311,6 @@ prefix="c"%>
     }
 
     updateTodayTodoDate();
-
 
 
     // 날짜 선택시 투두리스트 날짜 업데이트
@@ -327,22 +370,7 @@ prefix="c"%>
 
 
         })
-
-      // 3. 값을 따로 가져오는건 다른 함수에서 선언하고 호출하자.
-
-
-
-      // 여기 윗부분에서 해당하는 날짜에 들어있는 투두리스트를 먼저 깔아놓는 함수를 호출한번 해줘야할 것 같은데 그건 addTodo함수 내부가 아니라
-      // 투데이리스트를 비우고(초기화),  해당하는 날짜, 유저를 where로 걸어서 가져온 todo테이블의 조회값을 먼저 뿌리는 함수를 밖에서 선언하고
-      // 처음 홈페이지에 진입될 때 / 다른 날짜가 클릭될 때 호출되는 함수여야 함.
-
     }
-
-
-
-
-
-
 
 
 
@@ -360,7 +388,6 @@ prefix="c"%>
       })
 
     }
-
 
 
 
@@ -437,6 +464,87 @@ prefix="c"%>
         todoInput.value = '';
       }
     }
+
+    //////////////////////////////////////////////////////////////////////////////////////////
+
+    function putTodo() {
+
+      const todoInput = document.getElementById('todoInput');
+      const todoText = todoInput.value.trim();
+      const addButton = document.querySelector('.todo-input button');
+
+      // todo_no  값을 저장할 hidden input 추가
+      const tno = document.createElement('input');
+      tno.type = 'hidden';
+      tno.classList.add('todo_no');
+
+      if (todoText !== '') {
+
+        // 할 일이 비어있지 않으면 DB에 입력값 INSERT
+        sendTodoToServer(tno);
+
+        // 할 일이 비어있지 않으면 투두리스트에 추가
+        const todosContainer = document.querySelector('.todos');
+        const newTodoItem = document.createElement('li');
+
+        // 체크박스 추가
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.addEventListener('change', function () {
+
+          // 투두 checked 값을 동기화하기 위해 DB update 함수 호출
+          console.log('여기는 addTodo() 속 if 절 속 체크박스 추가!');
+          updateCheckedTodo(tno, checkbox);
+
+          // 체크박스 상태에 따라 completed 클래스를 추가 또는 제거
+          newTodoItem.classList.toggle('completed', checkbox.checked);
+          updateRemainingTodos();
+        });
+
+        // 할 일 텍스트 표시
+        const todoTextElement = document.createElement('span');
+        todoTextElement.textContent = todoText;
+
+        // 삭제 버튼 추가
+        const deleteButton = document.createElement('div');
+        deleteButton.textContent = '';
+        deleteButton.style.display = 'none'; // 초기에는 삭제 버튼을 숨김
+        deleteButton.addEventListener('click', deleteTodo);
+
+        // 이미지를 담을 img 요소 생성
+        const deleteImage = document.createElement('img');
+        deleteImage.src =
+          '${pageContext.request.contextPath}/assets/delete-icon.png'; // 이미지 경로 설정
+        deleteImage.alt = 'Delete'; // 이미지 대체 텍스트 설정
+        deleteButton.appendChild(deleteImage); // 이미지를 삭제 버튼에 추가
+        // src="${pageContext.request.contextPath}/assets/like-RBX.png"
+        // 마우스 이벤트를 통해 삭제 버튼을 보이게/숨기게 처리
+        newTodoItem.addEventListener('mouseover', function () {
+          deleteButton.style.display = 'inline-block';
+        });
+
+        newTodoItem.addEventListener('mouseout', function () {
+          deleteButton.style.display = 'none';
+        });
+
+        // 투두 아이템에 체크박스, 텍스트, 삭제 버튼 추가
+        newTodoItem.appendChild(tno);
+        newTodoItem.appendChild(checkbox);
+        newTodoItem.appendChild(todoTextElement);
+        newTodoItem.appendChild(deleteButton);
+        todosContainer.appendChild(newTodoItem);
+
+        updateRemainingTodos(); // 추가 후 "남은 할 일 n개" 업데이트
+
+        // 추가 후 입력 폼 초기화
+        todoInput.value = '';
+      }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
     function deleteTodo() {
       // 삭제 버튼 클릭 시 해당 투두 아이템 삭제

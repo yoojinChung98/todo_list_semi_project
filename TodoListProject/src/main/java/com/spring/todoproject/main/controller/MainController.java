@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.todoproject.main.dto.MostLikeRecomdResponseDTO;
 import com.spring.todoproject.main.dto.TodoRequestDTO;
+import com.spring.todoproject.main.dto.TodoResponseDTO;
 import com.spring.todoproject.main.mapper.IWeatherMapper;
 import com.spring.todoproject.main.service.MainService;
 //import com.spring.todoproject.main.service.WeatherService;
@@ -86,8 +87,15 @@ public class MainController {
 	@PutMapping("/checkedTodo")
 	@ResponseBody
 	public void updateMyTodoChk(@RequestBody TodoRequestDTO dto) {
-		log.info("update 컨트롤러 도착!");
 		service.updateMyTodoChk(dto);
+	}
+	
+	// 해당하는 날짜의 해당 유저의 todo 리스트 모두 조회하는 메서드
+	@GetMapping("/todo/all")
+	@ResponseBody
+	public TodoResponseDTO getTodoOfDate(@RequestBody TodoRequestDTO dto){
+		log.info("todo/all 컨트롤러 도착!");
+		return service.getTodoOfDate(dto);
 	}
 	
 	

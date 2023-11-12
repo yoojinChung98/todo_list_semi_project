@@ -85,6 +85,12 @@
 		SET CHK_BTN = 0
 		WHERE todo_no = #{todoNo}
 	</update>
+	
+	<!-- 클릭된 Date와 userId 에 해당하는 모든 todo 조회 -->
+	<select id="getTodoOfDate" resultType="todo">
+		SELECT * FROM todo
+		WHERE user_id = #{userId} AND click_date = #{clickDate}
+	</select>
 
 </mapper>
 

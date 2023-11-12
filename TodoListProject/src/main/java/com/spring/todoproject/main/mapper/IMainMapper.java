@@ -30,6 +30,9 @@ public interface IMainMapper {
 
 	// 화면 단의 todo의 checked 값을 동기화(checked=false=0)
 	void updateMyTodoChkX(Todo entity);
+
+	// Date와 userId 에 해당하는 모든 todo리스트 가져옴
+	Todo getTodoOfDate(Todo entity);
 	
 	
 

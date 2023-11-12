@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.todoproject.main.dto.MostLikeRecomdResponseDTO;
 import com.spring.todoproject.main.dto.TodoRequestDTO;
+import com.spring.todoproject.main.dto.TodoResponseDTO;
 import com.spring.todoproject.main.entity.Todo;
 import com.spring.todoproject.main.mapper.IMainMapper;
 
@@ -45,7 +46,6 @@ public class MainService {
 
 
 	public String insertMyTodo(TodoRequestDTO dto) {
-		log.info("서비스 접근완료!");
 		Todo entity = new Todo(dto);
 		mapper.insertMyTodo(entity);
 		
@@ -56,18 +56,29 @@ public class MainService {
 
 	// todo의 checked 값을 변경하기 위한 서비스
 	public void updateMyTodoChk(TodoRequestDTO dto) {
-		
-		log.info("서비스통과");
-		
 		Todo entity = new Todo(dto, dto.isChkBtn());
 		if(dto.isChkBtn()) {			
-			log.info("값이 tru네용");
 			mapper.updateMyTodoChkO(entity);
 		} else {
-			log.info("값이 flase네용");
 			mapper.updateMyTodoChkX(entity);
 		}
 		
+	}
+
+
+	public TodoResponseDTO getTodoOfDate(TodoRequestDTO dto) {
+		log.info("서비스 도착");
+		Todo entity = new Todo(dto, dto.getClickDate());
+		Todo result = mapper.getTodoOfDate(entity);
+		
+		TodoResponseDTO resDto = TodoResponseDTO.builder()
+				.todoNo(result.getTodoNo())
+				.userId(result.getUserId())
+				.todoContent(result.getTodoContent())
+				.chkBtn(result.getChkBtn())
+				.build();
+		System.out.println("resDto는 : "+resDto);
+		return resDto;
 	}
 	
 	// 매개값으로 받은 board_bno의 사용자의 프로필컬러 hex 값을 받아오는 서비스
