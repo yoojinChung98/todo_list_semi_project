@@ -1,100 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1"
-    />
-    <meta
-      name="theme-color"
-      content="#000000"
-    />
-    <title>Board</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Inter%3A400"
-    />
-    <link
-      rel="stylesheet"
-      href="${pageContext.request.contextPath}/styles/board.css"
-    />
-  </head>
+<head>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#000000" />
+<title>Board</title>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Inter%3A400" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/styles/board.css" />
+</head>
 
-  <body>
-    <div class="board-xLZ">
-      <div class="auto-group-skmt-U41">
-        <img
-          class="todoksidelogo-zHF"
-          id="homeBtn"
-          src="${pageContext.request.contextPath}/assets/todoksidelogo-jBw.png"
-        />
+<body>
+	<div class="board-xLZ">
+		<div class="auto-group-skmt-U41">
+			<img class="todoksidelogo-zHF" id="homeBtn"
+				src="${pageContext.request.contextPath}/assets/todoksidelogo-jBw.png" />
 
-        <div class="regboardinputbox-WWV">
-          <div
-            class="regboarduserprofile-1y3"
-            name="profileColor"
-            id="profileColor"
-          ></div>
-          <div class="auto-group-d2mf-VdK">
-            <div
-              class="regboarduser-dDj"
-              name="nickName"
-              id="nickName"
-              readonly
-            ></div>
-            <textarea
-              class="auto-group-naob-iky"
-              name="content"
-              maxlength="40"
-              id="content"
-              placeholder="당신이 생각하는 색다른 할 일을 모두에게 추천해주세요~"
-            ></textarea>
-          </div>
+			<div class="regboardinputbox-WWV">
+				<div class="regboarduserprofile-1y3" name="profileColor"
+					id="profileColor"></div>
+				<div class="auto-group-d2mf-VdK">
+					<div class="regboarduser-dDj" name="nickName" id="nickName"
+						readonly></div>
+					<textarea class="auto-group-naob-iky" name="content" maxlength="40"
+						id="content" placeholder="당신이 생각하는 색다른 할 일을 모두에게 추천해주세요~"
+						spellcheck="false"></textarea>
+				</div>
 
-          <button
-            type="button"
-            id="registBtn"
-            style="margin-top: 88px; border: none; background: transparent"
-          >
-            <img
-              class="regbtn-8ph"
-              src="${pageContext.request.contextPath}/assets/regbtn.png"
-            />
-          </button>
-        </div>
-      </div>
+				<button type="button" id="registBtn"
+					style="margin-top: 88px; border: none; background: transparent">
+					<img class="regbtn-8ph"
+						src="${pageContext.request.contextPath}/assets/regbtn.png" />
+				</button>
+			</div>
+		</div>
 
-      <div class="boardorderbtn-oA9">
-        <button
-          type="button"
-          id="newBtn"
-          value="1"
-          class="recomdorderbtn-WqF"
-        >
-          등록순
-        </button>
-        <button
-          type="button"
-          id="bestBtn"
-          value="2"
-          class="latestorderbtn-LpH"
-        >
-          인기순
-        </button>
-      </div>
+		<div class="boardorderbtn-oA9">
+			<button type="button" id="newBtn" value="1"
+				class="recomdorderbtn-WqF">등록순</button>
+			<button type="button" id="bestBtn" value="2"
+				class="latestorderbtn-LpH">인기순</button>
+		</div>
 
-      <div id="contentDiv">
-        비동기 방식으로 서버와 통신을 진행한 후 목록을 만들어서 붙일 예정.
-        <!-- <div class="boardtodo-QZF">
+		<div id="contentDiv">
+			비동기 방식으로 서버와 통신을 진행한 후 목록을 만들어서 붙일 예정.
+			<!-- <div class="boardtodo-QZF">
           <div class="boardtodo1-W6V">
             <div class="boardlistprofile-RjF"></div>
             <div class="auto-group-8wsh-Kpd">
@@ -121,9 +79,9 @@ prefix="c" %>
             </div>
           </div> -->
 
-        <!-- asdf -->
+			<!-- asdf -->
 
-        <!-- <div class="boardtodo2-Lmf">
+			<!-- <div class="boardtodo2-Lmf">
             <div class="boardlistprofile-TbP"></div>
             <div class="auto-group-bx4y-kqP">
               <div class="boardlistuser-JM7">
@@ -200,11 +158,11 @@ prefix="c" %>
           </div>
         </div> -->
 
-        <!-- asdf -->
-      </div>
-    </div>
-    
-    <script>
+			<!-- asdf -->
+		</div>
+	</div>
+
+	<script>
 
       document.getElementById('homeBtn').onclick = () => {
         location.href = '${pageContext.request.contextPath}/main';
@@ -227,33 +185,21 @@ prefix="c" %>
       const $nickName = document.getElementById('nickName');
       
   
-    
-      // var reLoadContent = document
-      //   .getElementById('content')
-      //   .getAttribute('placeholder');
-      // console.log('요소 가져왓음: ', reLoadContent);
-      // const reLoadContent = document.getElementById('content');
-      // placeholder = '당신이 생각하는 색다른 할 일을 모두에게 추천해주세요~';
-  
-      // const userId = 'abc1234'; //test 를 위해
-  
+	// 화면 들어오면 무조건 등록된 자료를 일단 조회    
       window.onload = function () {
         document.getElementById('homeBtn').onclick = () => {
           location.href = '${pageContext.request.contextPath}/todok/main';
         };
-        // const userId = '${login}';
-        // console.log('자동 고고');
-        // const userId = 'abc1234'; //test 를 위해
-     
+
         selectNum = 1;
         getNickName(userId);
-        console.log('window에서 userId: ', userId);
+    
         getList(1, true, selectNum, userId);
   
         return;
       };
   
-      // 닉네임 가져오는 함수
+	// 닉네임 가져오는 함수
       function getNickName(userId) {
    
         fetch('${pageContext.request.contextPath}/board/getNickName/' + userId, {
@@ -264,49 +210,46 @@ prefix="c" %>
         })
           .then((res) => res.json())
           .then((data) => {
-            // console.log('서버에서 넘어온 닉값: ', data);
             $nickName.insertAdjacentHTML('afterbegin', data.nickName);
-          document.getElementById('profileColor').style.backgroundColor =
+	        document.getElementById('profileColor').style.backgroundColor =
             '#' + data.profileColor;
           });
        
       } // 닉네임 끝
 
-
+	//추천 글 등록 버튼 클릭 
       document.getElementById('registBtn').onclick = () => {
-        check();
+        insertBoard();
       };
   
-      //조회순 버튼 클릭
+    //최신 조회순 버튼 클릭
       document.getElementById('newBtn').onclick = () => {
-    
-        selectNum = 1;
+  		selectNum = 1;
         //글 목록 함수 호출
-		    str = '';
-		    page = 1;
-		    isFinish = false;
-		    reqStatus = false;
-        getList(1, true, selectNum, userId);
+	    str = '';
+	    page = 1;
+	    isFinish = false;
+	    reqStatus = false;
+    	getList(1, true, selectNum, userId);
+    	
       };
+      
+     //인기 조회순  조회
       document.getElementById('bestBtn').onclick = () => {
-        // const userId = 'abc1234'; //test 를 위해
+      
         selectNum = 2;
         str = '';
-		    page = 1;
-		    isFinish = false;
-		    reqStatus = false;
+	    page = 1;
+	    isFinish = false;
+	    reqStatus = false;
         getList(1, true, selectNum, userId);
     
       };
   
-      function check() {
+  	// 추천글 입력
+      function insertBoard() {
         const content = document.getElementById('content').value;
-        // const userId = '${login}';
   
-        // const userId = 'abc1234'; //test 를 위해
-  
-        alert(userId);
-        alert(content);
         if (userId === '') {
           alert('로그인이 필요한 화면입니다');
           return;
@@ -348,13 +291,13 @@ prefix="c" %>
 		        reqStatus = false;
             getList(page, true, selectNum, userId);
           });
-      } //보드 등록 끝
+      } //추천 등록 끝
   
       
   
-      //목록 함수
+      //추천 등록 list 함수
       function getList(page, reset, selectNum, userId) {
-        console.log('GET LIST 들어올때 : ' , selectNum );
+  
         str = '';
         isFinish = false;
         
@@ -387,12 +330,8 @@ prefix="c" %>
             for (board of list) {
               let parseTimeCall = parseTime(board.boardRegdate);
   
-              // console.log('board.regDate : ', board.boardRegdate);
-  
-              // console.log('', board.likeFlag);
-  
+ 
               if (board.likeFlag === '1') {
-                // console.log('확인용 플래그값: ', board.likeFlag);
                 likeImg = 'like-VSR.png';
               } else {
                 likeImg = 'like-empty.png';
@@ -451,10 +390,10 @@ prefix="c" %>
 
 
 
-        } //글 목록 함수 호출 끝
+        } //추천 등록 list 함수
 
 
-
+		//무한 스크롤 시작
         const handleScroll = _.throttle(() => {
            
            /*
@@ -480,12 +419,13 @@ prefix="c" %>
            
              }
            }
-         }, 100);
+         }, 1000);   //무한 스크롤 끝
+        
+        
          
          //무한 스크롤 페이징
          //브라우저 창에서 스크롤이 발생할 때마다 이벤트 발생!
          window.addEventListener('scroll', () => {
-         
            if (!reqStatus) handleScroll();
          });
  
@@ -496,19 +436,23 @@ prefix="c" %>
         // onclick이벤트가 자꾸 null값이라고 값을 못찾아서 아예 반복문이 끝난
         // 여기다가 이벤트를 걸어보겠음.
           //좋아요 버튼 기능 구현 시작
-          $contentDiv.addEventListener('click', (e) => {
+         $contentDiv.addEventListener('click', (e) => {
             // 일단 button -> a 기능 막기
+
+            if (userId === '') {
+          		alert('로그인이 필요한 합니다');
+          		return;
+       		 } ;
+            
+            
+            
+            
             e.preventDefault();
-            // console.log('target -> ', e.target);
             if (!e.target.matches('#likeBtn') && !e.target.matches('#likeImg')) {
               return;
             }
             
-            
             var FlagAndBno = e.target.getAttribute('name');
-            // console.log('test1 값꺼내기 -> ', FlagAndBno);
-            // console.log('flag 값꺼내기 -> ', FlagAndBno.toString().substring(0,1));
-            // console.log('board_bno 값꺼내기 -> ', FlagAndBno.toString().substring(2,FlagAndBno.toString().length));
             
             // string 타입으로 값 뻄.
             boardBno = FlagAndBno.toString().substring(2,FlagAndBno.toString().length);
@@ -529,66 +473,40 @@ prefix="c" %>
             })
             .then(res => res.json())
             .then(data => {
-              // console.log('likeupate요청결과 -> ',data);
-              // 결과 -> 잘 나옴 눈물남~구라임
-              // console.log('message확인문 -> ', data.message);
               if(data.message === "InsertSuccess"){
-                // console.log('if문 지나서 insertsuccess -> ', data.message);
                 // 1. likeFlag -> 1로 변경해줘야함.
-                // var FlagAndBno = e.target.getAttribute('name');
-                
                 FlagAndBno = data.likeFlag + ' ' + boardBno;
-                // console.log('setAttribute하기전 e.target이뭔데 ', e.target);
                 e.target.setAttribute('name' , FlagAndBno);
-                // console.log('insert성공시 값 확인용 -> ', FlagAndBno);
+
 
                 // 2. 하트 회색 -> 빨간색으로 변경 need
                 e.target.setAttribute(
                 'src',
                 '${pageContext.request.contextPath}/assets/like-VSR.png'
                 );
-                // 3. likeCount값 밀어넣기. <p>태그의 값에 밀어 넣기
 
-                // console.log('set한 likeCount값 -> ', data.likeCount);
-                
-               // 2. 'likeCount' 클래스를 가진 모든 요소를 선택
+                // 3. likeCount값 밀어넣기. <p>태그의 값에 밀어 넣기
                 const parentDiv = e.target.closest('div');
                 let pContent = parentDiv.querySelector('p').innerHTML;
-                  // console.log('p의 내용값 -> ',pContent);
-
-                
-                  parentDiv.querySelector('p').innerHTML = data.likeCount;
-                  // console.log('변경된 p내용 값 -> ', pContent);
+                parentDiv.querySelector('p').innerHTML = data.likeCount;
 
               }else{
 
-                // console.log('if문 지나서 delete   -> ', data.message);
-                // 1. likeFlag -> 1로 변경해줘야함.
-                // var FlagAndBno = e.target.getAttribute('name');
-                
-              
+                // 1. likeFlag -> 1로 변경해줘야함.           
                 FlagAndBno = data.likeFlag + ' ' + boardBno;
-                // console.log('setAttribute하기전 e.target이뭔데 ', e.target);
-
                 e.target.setAttribute('name' , FlagAndBno);
-                // console.log('delete 성공시 값 확인용 -> ', FlagAndBno);
-
-                // 2. 하트 회색 -> 빨간색으로 변경 need
+                
+                // 2. 하트 빨간색 -> 회색 으로 변경 need
                 e.target.setAttribute(
                 'src',
                 '${pageContext.request.contextPath}/assets/like-empty.png'
                 );
+
                 // 3. likeCount값 밀어넣기. <p>태그의 값에 밀어 넣기
                   const parentDiv = e.target.closest('div');
                   let pContent = parentDiv.querySelector('p').innerHTML;
-                  // console.log('p의 내용값 -> ',pContent);
-
                   parentDiv.querySelector('p').innerHTML = data.likeCount;
-                  // console.log('변경된 p내용 값 -> ', pContent);
-
               }
- 
-
             })
 
            
@@ -610,5 +528,5 @@ prefix="c" %>
         return time;
       }
     </script>
-  </body>
+</body>
 </html>
