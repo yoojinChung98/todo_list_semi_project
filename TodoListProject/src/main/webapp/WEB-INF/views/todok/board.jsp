@@ -250,8 +250,6 @@
       function insertBoard() {
         const content = document.getElementById('content').value;
   
-        alert(userId);
-        alert(content);
         if (userId === '') {
           alert('로그인이 필요한 화면입니다');
           return;
@@ -438,8 +436,17 @@
         // onclick이벤트가 자꾸 null값이라고 값을 못찾아서 아예 반복문이 끝난
         // 여기다가 이벤트를 걸어보겠음.
           //좋아요 버튼 기능 구현 시작
-          $contentDiv.addEventListener('click', (e) => {
+         $contentDiv.addEventListener('click', (e) => {
             // 일단 button -> a 기능 막기
+
+            if (userId === '') {
+          		alert('로그인이 필요한 합니다');
+          		return;
+       		 } ;
+            
+            
+            
+            
             e.preventDefault();
             if (!e.target.matches('#likeBtn') && !e.target.matches('#likeImg')) {
               return;
