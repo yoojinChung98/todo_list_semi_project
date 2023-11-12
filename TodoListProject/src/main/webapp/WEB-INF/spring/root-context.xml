@@ -44,6 +44,7 @@
    
    	<mybatis-spring:scan base-package="com.spring.todoproject.main.mapper"/>
    	<mybatis-spring:scan base-package="com.spring.todoproject.myaccount.mapper"/>
+   	<mybatis-spring:scan base-package="com.spring.todoproject.board.mapper"/>
    <!-- 
     <mybatis-spring:scan base-package="com.spring.todoproject.freeboard.mapper"/>
     <mybatis-spring:scan base-package="com.spring.todoproject.reply.mapper"/>
