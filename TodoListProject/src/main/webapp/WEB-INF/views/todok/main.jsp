@@ -276,9 +276,12 @@ prefix="c"%>
         selectedYear + '년 ' + selectedMonth + '월 ' + selectedDate + '일';
 
       // let userId = login;
-      let userId = 'id2';
+      const userId = 'id2';
 
-      fetch('main/todo/' + userId + '/' + clickDate)
+
+      let reqUrl = '/main/todo' + userId + '/' + clickDate;
+
+      fetch('${pageContext.request.contextPath}/main/todo/' + userId + '/' + clickDate)
         .then(res => res.json())
         .then(data => {
           console.log('비동기요청 완료.');
@@ -341,7 +344,7 @@ prefix="c"%>
       console.log(req.textContent);
       console.log(req.chkBtn);
 
-      fetch('main/todo', req)
+      fetch('${pageContext.request.contextPath}/main/todo', req)
         .then(res => res.text())
         .then(data => {
           console.log('비동기요청 완료.');
@@ -357,7 +360,7 @@ prefix="c"%>
 
     // DB 의 checked 값을 변경하는 로직
     function updateCheckedTodo(tno, checkbox) {
-      fetch('main/checkedTodo', {
+      fetch('${pageContext.request.contextPath}/main/checkedTodo', {
         method: 'put',
         headers: {
           'Content-Type': 'application/json',
@@ -580,7 +583,7 @@ prefix="c"%>
 
       // '가장 많은 좋아요를 받은 할 일' 을 List<dto>로 받아오는 함수
       function getMostLike() {
-        fetch('main/mostlike')
+        fetch('${pageContext.request.contextPath}/main/mostlike')
           .then((res) => res.json())
           .then((data) => {
             if (data == null) return;
@@ -645,7 +648,7 @@ prefix="c"%>
       }
 
       function getNickname(userId) {
-        fetch('main/nickname/' + userId)
+        fetch('${pageContext.request.contextPath}/main/nickname/' + userId)
           .then((res) => res.text())
           .then((data) => {
             const $userid = document.querySelector('.userid-DHs');
