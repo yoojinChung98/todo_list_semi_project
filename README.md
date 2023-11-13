@@ -199,7 +199,3 @@ https://github.com/yoojinChung98/java_basic/assets/142370086/e2ebad00-bd8a-45b1-
 # 발표ppt
 
 [TODOK_PROJECTS (1).pptx](https://github.com/yoojinChung98/java_basic/files/13331398/TODOK_PROJECTS.1.pptx)
-
-### 사용한 툴
-
-피그마, 깃, vscode, 그리고 최정현.
